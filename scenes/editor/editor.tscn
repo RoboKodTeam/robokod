@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://bocuk6l37sfqi"]
+
+[ext_resource type="Script" path="res://scenes/editor/init.gd" id="1_7q7w8"]
+
+[sub_resource type="SystemFont" id="SystemFont_ddw8p"]
+font_names = PackedStringArray("JetBrains Mono", "Consolas", "Monospace")
+font_weight = 500
+subpixel_positioning = 0
+
+[node name="Editor" type="CodeEdit"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/background_color = Color(0.129412, 0.129412, 0.129412, 1)
+theme_override_fonts/font = SubResource("SystemFont_ddw8p")
+text = "#
+# Гра починається з головної функції. Тут можна запрограмувати дії гравця щоб пройти рівень. Усі дії гравець виконує послідовно, але будьте обережними, щоб він не врізався в стінку чи не впав!
+#
+
+func start(player):
+    player.right(2)
+    player.down(2)
+    player.right()
+
+
+#
+# Щоб гравець реагувати на події всередині гри можна використати функцію ігрового тіку. Так можна очікувати певної умови й відповідати на неї. Наприклад, побити ворогів, як тільки вони з'являться!
+#
+
+func tik(player):
+    if player.hasTargetEnemy():
+        lootDropped = player.shoot()
+
+        if lootDropped:
+            player.collectLoot()"
+placeholder_text = "А Ви ризикові починати з чистого листа)"
+wrap_mode = 1
+scroll_smooth = true
+caret_blink = true
+highlight_all_occurrences = true
+highlight_current_line = true
+draw_spaces = true
+line_folding = true
+indent_use_spaces = true
+indent_automatic = true
+auto_brace_completion_enabled = true
+auto_brace_completion_highlight_matching = true
+script = ExtResource("1_7q7w8")
