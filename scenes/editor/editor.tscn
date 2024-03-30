@@ -1,11 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bocuk6l37sfqi"]
 
+[ext_resource type="FontFile" uid="uid://bylysp813blnp" path="res://fonts/JetBrainsMono-Variable.ttf" id="1_0yaxl"]
 [ext_resource type="Script" path="res://scenes/editor/highlighter/init.gd" id="1_5ej1p"]
-
-[sub_resource type="SystemFont" id="SystemFont_ddw8p"]
-font_names = PackedStringArray("JetBrains Mono", "Consolas", "Monospace")
-font_weight = 500
-subpixel_positioning = 0
 
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_uckk7"]
 script = ExtResource("1_5ej1p")
@@ -17,7 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/background_color = Color(0.129412, 0.129412, 0.129412, 1)
-theme_override_fonts/font = SubResource("SystemFont_ddw8p")
+theme_override_fonts/font = ExtResource("1_0yaxl")
 text = "#
 # Гра починається з головної функції. Тут можна запрограмувати дії гравця щоб пройти рівень. Усі дії гравець виконує послідовно, але будьте обережними, щоб він не врізався в стінку чи не впав!
 #
