@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="La Curse de Godot"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/ide/ide.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,8 +19,8 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
-window/size/borderless=true
+window/size/mode=4
+window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
