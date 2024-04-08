@@ -1,6 +1,7 @@
 [gd_scene load_steps=54 format=3 uid="uid://jbhvvpc3no3i"]
 
 [ext_resource type="Texture2D" uid="uid://c83m8gka4of8s" path="res://assets/drone/death.png" id="1_6ri72"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_o3v2h"]
 [ext_resource type="Texture2D" uid="uid://dpccb62c88nsd" path="res://assets/drone/idle.png" id="2_r0gtv"]
 [ext_resource type="Texture2D" uid="uid://bhl27kqn5nn22" path="res://assets/drone/land.png" id="3_7edxt"]
 [ext_resource type="Texture2D" uid="uid://gtg7odiy8x8v" path="res://assets/drone/walk.png" id="4_oyv8c"]
