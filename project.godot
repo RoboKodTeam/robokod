@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="La Curse de Godot"
-run/main_scene="res://scenes/ide/ide.tscn"
+run/main_scene="res://scenes/levels/level1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
