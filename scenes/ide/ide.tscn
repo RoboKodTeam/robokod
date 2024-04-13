@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8srtbtnoy6kp"]
+[gd_scene load_steps=8 format=3 uid="uid://c8srtbtnoy6kp"]
 
 [ext_resource type="PackedScene" uid="uid://h7jxouflro7b" path="res://scenes/editor/editor.tscn" id="1_i4rgn"]
+[ext_resource type="Script" path="res://scenes/level_container.gd" id="1_j2mda"]
+[ext_resource type="PackedScene" uid="uid://dw0lmhpqi6r72" path="res://scenes/levels/level1.tscn" id="1_nocmn"]
 [ext_resource type="Script" path="res://scenes/editor/highlighter/init.gd" id="1_vh56v"]
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_chm3h"]
+script = ExtResource("1_vh56v")
 
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_inyme"]
 script = ExtResource("1_vh56v")
@@ -17,33 +22,60 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-drag_to_rearrange_enabled = true
+split_offset = 1280
 
-[node name="TabBar" type="TabBar" parent="TabContainer"]
+[node name="EmulatorTabContainer" type="TabContainer" parent="HSplitContainer"]
 layout_mode = 2
 
-[node name="Editor" parent="TabContainer/TabBar" instance=ExtResource("1_i4rgn")]
-layout_mode = 1
+[node name="Emulator" type="TabBar" parent="HSplitContainer/EmulatorTabContainer"]
+layout_mode = 2
 
-[node name="TabBar2" type="TabBar" parent="TabContainer"]
+[node name="LevelContainer" type="Container" parent="HSplitContainer/EmulatorTabContainer/Emulator"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j2mda")
+
+[node name="Level 1" parent="HSplitContainer/EmulatorTabContainer/Emulator/LevelContainer" instance=ExtResource("1_nocmn")]
+z_index = 100
+scale = Vector2(2, 2)
+
+[node name="EditorTabContainer" type="TabContainer" parent="HSplitContainer"]
+layout_mode = 2
+drag_to_rearrange_enabled = true
+
+[node name="Level 1" type="TabBar" parent="HSplitContainer/EditorTabContainer"]
+layout_mode = 2
+
+[node name="Editor" parent="HSplitContainer/EditorTabContainer/Level 1" instance=ExtResource("1_i4rgn")]
+layout_mode = 1
+syntax_highlighter = SubResource("CodeHighlighter_chm3h")
+
+[node name="Level 2" type="TabBar" parent="HSplitContainer/EditorTabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Editor" parent="TabContainer/TabBar2" instance=ExtResource("1_i4rgn")]
+[node name="Editor" parent="HSplitContainer/EditorTabContainer/Level 2" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
 syntax_highlighter = SubResource("CodeHighlighter_inyme")
 
-[node name="TabBar3" type="TabBar" parent="TabContainer"]
+[node name="Level 3" type="TabBar" parent="HSplitContainer/EditorTabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Editor" parent="TabContainer/TabBar3" instance=ExtResource("1_i4rgn")]
+[node name="Editor" parent="HSplitContainer/EditorTabContainer/Level 3" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
 syntax_highlighter = SubResource("CodeHighlighter_eitos")
+
+[connection signal="resized" from="HSplitContainer/EmulatorTabContainer/Emulator" to="HSplitContainer/EmulatorTabContainer/Emulator/LevelContainer" method="_on_emulator_resized"]
