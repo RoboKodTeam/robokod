@@ -1,6 +1,6 @@
 extends Control
 
-@onready var level_container = $HSplitContainer/EmulatorTabContainer/Emulator/LevelContainer
+@onready var level_container = %LevelContainer
 
 
 func _ready():

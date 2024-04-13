@@ -1,9 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8srtbtnoy6kp"]
+[gd_scene load_steps=13 format=3 uid="uid://c8srtbtnoy6kp"]
 
 [ext_resource type="PackedScene" uid="uid://h7jxouflro7b" path="res://scenes/editor/editor.tscn" id="1_i4rgn"]
 [ext_resource type="Script" path="res://scenes/level_container.gd" id="1_j2mda"]
 [ext_resource type="Script" path="res://scenes/editor/highlighter/init.gd" id="1_vh56v"]
 [ext_resource type="Script" path="res://scenes/ide/ide_test.gd" id="1_y1i8u"]
+[ext_resource type="Texture2D" uid="uid://cwt4ri3vi3hg5" path="res://assets/ui/minimize_FILL0_wght400_GRAD0_opsz24.svg" id="2_2u16r"]
+[ext_resource type="Texture2D" uid="uid://d3aihr36gcahs" path="res://assets/ui/play_arrow_FILL0_wght400_GRAD0_opsz24.svg" id="2_34dbq"]
+[ext_resource type="Texture2D" uid="uid://chxlvstomijdq" path="res://assets/ui/close_FILL0_wght400_GRAD0_opsz24 (1).svg" id="2_ubh4m"]
+[ext_resource type="Texture2D" uid="uid://cxxmjyskwsxy8" path="res://assets/ui/replay_FILL0_wght400_GRAD0_opsz24.svg" id="3_ncn61"]
+[ext_resource type="Texture2D" uid="uid://e1myeud1fbid" path="res://assets/ui/stop_FILL0_wght400_GRAD0_opsz24.svg" id="4_susuq"]
 
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_chm3h"]
 script = ExtResource("1_vh56v")
@@ -23,22 +28,76 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y1i8u")
 
-[node name="HSplitContainer" type="HSplitContainer" parent="."]
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VSplitContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VSplitContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="ProgramIcon" type="TextureRect" parent="VSplitContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_susuq")
+expand_mode = 2
+
+[node name="WindowTitle" type="Label" parent="VSplitContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Level 1"
+
+[node name="FlowControls" type="HBoxContainer" parent="VSplitContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 10.0
+
+[node name="RunButton" type="Button" parent="VSplitContainer/HBoxContainer/FlowControls"]
+layout_mode = 2
+icon = ExtResource("2_34dbq")
+flat = true
+
+[node name="RerunButton" type="Button" parent="VSplitContainer/HBoxContainer/FlowControls"]
+layout_mode = 2
+icon = ExtResource("3_ncn61")
+flat = true
+
+[node name="StopButton" type="Button" parent="VSplitContainer/HBoxContainer/FlowControls"]
+layout_mode = 2
+icon = ExtResource("4_susuq")
+flat = true
+
+[node name="WindowControls" type="HBoxContainer" parent="VSplitContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="MinimizeButton" type="Button" parent="VSplitContainer/HBoxContainer/WindowControls"]
+layout_mode = 2
+icon = ExtResource("2_2u16r")
+flat = true
+
+[node name="CloseButton" type="Button" parent="VSplitContainer/HBoxContainer/WindowControls"]
+layout_mode = 2
+icon = ExtResource("2_ubh4m")
+flat = true
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer"]
+layout_mode = 2
 split_offset = 1280
 
-[node name="EmulatorTabContainer" type="TabContainer" parent="HSplitContainer"]
+[node name="EmulatorTabContainer" type="TabContainer" parent="VSplitContainer/HSplitContainer"]
 layout_mode = 2
 
-[node name="Emulator" type="TabBar" parent="HSplitContainer/EmulatorTabContainer"]
+[node name="Emulator" type="TabBar" parent="VSplitContainer/HSplitContainer/EmulatorTabContainer"]
 layout_mode = 2
 
-[node name="LevelContainer" type="Container" parent="HSplitContainer/EmulatorTabContainer/Emulator"]
+[node name="LevelContainer" type="Container" parent="VSplitContainer/HSplitContainer/EmulatorTabContainer/Emulator"]
+unique_name_in_owner = true
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -48,31 +107,31 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j2mda")
 
-[node name="EditorTabContainer" type="TabContainer" parent="HSplitContainer"]
+[node name="EditorTabContainer" type="TabContainer" parent="VSplitContainer/HSplitContainer"]
 layout_mode = 2
 drag_to_rearrange_enabled = true
 
-[node name="Level 1" type="TabBar" parent="HSplitContainer/EditorTabContainer"]
+[node name="Level 1" type="TabBar" parent="VSplitContainer/HSplitContainer/EditorTabContainer"]
 layout_mode = 2
 
-[node name="Editor" parent="HSplitContainer/EditorTabContainer/Level 1" instance=ExtResource("1_i4rgn")]
+[node name="Editor" parent="VSplitContainer/HSplitContainer/EditorTabContainer/Level 1" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
 syntax_highlighter = SubResource("CodeHighlighter_chm3h")
 
-[node name="Level 2" type="TabBar" parent="HSplitContainer/EditorTabContainer"]
+[node name="Level 2" type="TabBar" parent="VSplitContainer/HSplitContainer/EditorTabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Editor" parent="HSplitContainer/EditorTabContainer/Level 2" instance=ExtResource("1_i4rgn")]
+[node name="Editor" parent="VSplitContainer/HSplitContainer/EditorTabContainer/Level 2" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
 syntax_highlighter = SubResource("CodeHighlighter_inyme")
 
-[node name="Level 3" type="TabBar" parent="HSplitContainer/EditorTabContainer"]
+[node name="Level 3" type="TabBar" parent="VSplitContainer/HSplitContainer/EditorTabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Editor" parent="HSplitContainer/EditorTabContainer/Level 3" instance=ExtResource("1_i4rgn")]
+[node name="Editor" parent="VSplitContainer/HSplitContainer/EditorTabContainer/Level 3" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
 syntax_highlighter = SubResource("CodeHighlighter_eitos")
 
-[connection signal="resized" from="HSplitContainer/EmulatorTabContainer/Emulator" to="HSplitContainer/EmulatorTabContainer/Emulator/LevelContainer" method="_on_emulator_resized"]
+[connection signal="resized" from="VSplitContainer/HSplitContainer/EmulatorTabContainer/Emulator" to="VSplitContainer/HSplitContainer/EmulatorTabContainer/Emulator/LevelContainer" method="_on_emulator_resized"]
