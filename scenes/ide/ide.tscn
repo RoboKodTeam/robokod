@@ -13,9 +13,6 @@
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_chm3h"]
 script = ExtResource("1_vh56v")
 
-[sub_resource type="CodeHighlighter" id="CodeHighlighter_inyme"]
-script = ExtResource("1_vh56v")
-
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_eitos"]
 script = ExtResource("1_vh56v")
 
@@ -111,26 +108,19 @@ script = ExtResource("1_j2mda")
 layout_mode = 2
 drag_to_rearrange_enabled = true
 
-[node name="Level 1" type="TabBar" parent="VSplitContainer/HSplitContainer/EditorTabContainer"]
+[node name="LevelTab" type="TabBar" parent="VSplitContainer/HSplitContainer/EditorTabContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Editor" parent="VSplitContainer/HSplitContainer/EditorTabContainer/Level 1" instance=ExtResource("1_i4rgn")]
+[node name="Editor" parent="VSplitContainer/HSplitContainer/EditorTabContainer/LevelTab" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
 syntax_highlighter = SubResource("CodeHighlighter_chm3h")
 
-[node name="Level 2" type="TabBar" parent="VSplitContainer/HSplitContainer/EditorTabContainer"]
+[node name="Documentation" type="TabBar" parent="VSplitContainer/HSplitContainer/EditorTabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Editor" parent="VSplitContainer/HSplitContainer/EditorTabContainer/Level 2" instance=ExtResource("1_i4rgn")]
-layout_mode = 1
-syntax_highlighter = SubResource("CodeHighlighter_inyme")
-
-[node name="Level 3" type="TabBar" parent="VSplitContainer/HSplitContainer/EditorTabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Editor" parent="VSplitContainer/HSplitContainer/EditorTabContainer/Level 3" instance=ExtResource("1_i4rgn")]
+[node name="Editor" parent="VSplitContainer/HSplitContainer/EditorTabContainer/Documentation" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
 syntax_highlighter = SubResource("CodeHighlighter_eitos")
 
