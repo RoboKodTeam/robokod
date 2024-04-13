@@ -10,6 +10,8 @@ var tile_center = Vector2(int(tile_size / 2), tile_size / 2)
 
 var active = false
 
+@onready var sprite = $AnimatedSprite2D
+
 
 func _get_direction():
 	var direction = Vector2.ZERO
@@ -37,6 +39,7 @@ func _physics_process(_delta):
 		target = grid_to_coord(position_grid)
 		print("Moving from ", position, " to ", target)
 
+		sprite.play("walk")
 		velocity = position.direction_to(target) * speed
 
 	if position.distance_to(target) > 1:
@@ -44,6 +47,7 @@ func _physics_process(_delta):
 		move_and_slide()
 	else:
 		active = false
+		sprite.play("idle")
 
 
 func coord_to_grid(coord: Vector2):
