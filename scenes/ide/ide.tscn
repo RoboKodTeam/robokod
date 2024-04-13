@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://h7jxouflro7b" path="res://scenes/editor/editor.tscn" id="1_i4rgn"]
 [ext_resource type="Script" path="res://scenes/level_container.gd" id="1_j2mda"]
-[ext_resource type="PackedScene" uid="uid://dw0lmhpqi6r72" path="res://scenes/levels/level1.tscn" id="1_nocmn"]
 [ext_resource type="Script" path="res://scenes/editor/highlighter/init.gd" id="1_vh56v"]
+[ext_resource type="Script" path="res://scenes/ide/ide_test.gd" id="1_y1i8u"]
 
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_chm3h"]
 script = ExtResource("1_vh56v")
@@ -21,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_y1i8u")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
 layout_mode = 1
@@ -46,10 +47,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j2mda")
-
-[node name="Level 1" parent="HSplitContainer/EmulatorTabContainer/Emulator/LevelContainer" instance=ExtResource("1_nocmn")]
-z_index = 100
-scale = Vector2(2, 2)
 
 [node name="EditorTabContainer" type="TabContainer" parent="HSplitContainer"]
 layout_mode = 2

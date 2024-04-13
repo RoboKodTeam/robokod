@@ -26,3 +26,10 @@ func _notification(what):
 func _on_emulator_resized():
 	Log.info("Emulator resized, asking to redraw")
 	queue_sort()
+
+
+func set_level(level: Node2D):
+	for child in get_children():
+		remove_child(child)
+
+	add_child(level)
