@@ -103,7 +103,6 @@ sources/2 = SubResource("TileSetAtlasSource_emivj")
 [node name="Level 1" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(-1, -1)
 tile_set = SubResource("TileSet_mbv2b")
 format = 2
 layer_0/name = "Floor"
@@ -117,7 +116,3 @@ layer_2/tile_data = PackedInt32Array(0, 2, 0, 65536, 196610, 1, 131072, 2, 2, 19
 
 [node name="Player" parent="." instance=ExtResource("1_nep3p")]
 position = Vector2(304, 80)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(192, 160)
-zoom = Vector2(3, 3)
