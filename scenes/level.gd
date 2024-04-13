@@ -6,5 +6,4 @@ extends Node2D
 func get_level_dimensions():
 	var map_dimens = tile_map.get_map_dimensions()
 	var level_dimens = Vector2(map_dimens.x * scale.x, map_dimens.y * scale.y)
-	Log.prn("Level dimensions counted: ", level_dimens)
 	return level_dimens

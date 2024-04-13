@@ -9,14 +9,12 @@ script = ExtResource("1_vh56v")
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_eitos"]
 script = ExtResource("1_vh56v")
 
-[node name="Control" type="Control"]
+[node name="IDE" type="Control"]
 layout_mode = 3
-anchors_preset = 11
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -560.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TabContainer" type="TabContainer" parent="."]
