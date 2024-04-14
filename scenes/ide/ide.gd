@@ -15,7 +15,7 @@ func _ready():
 
 func open_level(resource, title):
 	var instance = resource.instantiate()
-	level_container.set_level(instance)
+	level_container.level = instance
 
 	level_tab.name = title
 

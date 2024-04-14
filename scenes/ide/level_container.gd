@@ -1,5 +1,16 @@
 extends Container
 
+var level: Node2D:
+	set(value):
+		for child in get_children():
+			remove_child(child)
+
+		Log.info("Setting level")
+		add_child(value)
+	get:
+		var children = get_children()
+		return null if children.size() < 1 else children[0]
+
 
 func _get_maximum_content_size():
 	var max_size = Vector2()
@@ -38,11 +49,3 @@ func _notification(what):
 
 func _on_emulator_resized():
 	queue_sort()
-
-
-func set_level(level: Node2D):
-	for child in get_children():
-		remove_child(child)
-
-	Log.info("Setting level")
-	add_child(level)
