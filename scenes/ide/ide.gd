@@ -10,7 +10,7 @@ extends Control
 
 func _ready():
 	var level1_resource = preload("res://scenes/levels/level1.tscn")
-	open_level(level1_resource, "Level 1.naftascript")
+	open_level(level1_resource, "Level 1")
 
 
 func open_level(resource, title):

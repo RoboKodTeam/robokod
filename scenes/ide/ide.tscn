@@ -77,9 +77,12 @@ split_offset = 1280
 layout_mode = 2
 
 [node name="EmulatorTabContainer" type="TabContainer" parent="VSplitContainer/WindowContent/EmulatorBox"]
-layout_mode = 2
-offset_right = 1280.0
-offset_bottom = 1036.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("8_dbuh6")
 
 [node name="Emulator" type="TabBar" parent="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer"]
@@ -131,9 +134,12 @@ icon = ExtResource("4_susuq")
 layout_mode = 2
 
 [node name="EditorTabContainer" type="TabContainer" parent="VSplitContainer/WindowContent/EditorBox"]
-layout_mode = 2
-offset_right = 628.0
-offset_bottom = 1036.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("8_dbuh6")
 drag_to_rearrange_enabled = true
 
@@ -144,6 +150,23 @@ theme = ExtResource("8_dbuh6")
 
 [node name="Editor" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer/LevelTab" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
+text = "#
+# Гра починається з головної функції. Тут можна запрограмувати дії гравця щоб пройти рівень. Усі дії гравець виконує послідовно, але будьте обережними, щоб він не врізався в стінку чи не впав!
+#
+
+func start(player):
+    player.right(2)
+    player.down(2)
+    player.right()
+
+
+#
+# Щоб гравець реагував на різні непередбачувані події в грі використовуйте функцію ігрового тіку. Таким чином можна дочекатися певної умови за допомогою if і відповісти на неї. Наприклад, якщо в поле зору потрапить жук, гравець одразу піде його зібрати!
+#
+
+func tik(player):
+    if player.canSeeBugs():
+        player.collectBugs()"
 syntax_highlighter = SubResource("CodeHighlighter_chm3h")
 
 [node name="Documentation" type="TabBar" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer"]
@@ -153,6 +176,7 @@ theme = ExtResource("8_dbuh6")
 
 [node name="Editor" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer/Documentation" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
+text = "Тут могла бути ваша документація)"
 syntax_highlighter = SubResource("CodeHighlighter_eitos")
 
 [connection signal="pressed" from="VSplitContainer/WindowBar/WindowControls/MinimizeButton" to="." method="_on_minimize_button_pressed"]
