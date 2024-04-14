@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://c8srtbtnoy6kp"]
 
 [ext_resource type="PackedScene" uid="uid://h7jxouflro7b" path="res://scenes/editor/editor.tscn" id="1_i4rgn"]
-[ext_resource type="Script" path="res://scenes/level_container.gd" id="1_j2mda"]
+[ext_resource type="Script" path="res://scenes/ide/level_container.gd" id="1_j2mda"]
 [ext_resource type="Script" path="res://scenes/editor/highlighter/init.gd" id="1_vh56v"]
 [ext_resource type="Script" path="res://scenes/ide/ide.gd" id="1_y1i8u"]
 [ext_resource type="Texture2D" uid="uid://cwt4ri3vi3hg5" path="res://assets/ui/minimize_FILL0_wght400_GRAD0_opsz24.svg" id="2_2u16r"]
