@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8srtbtnoy6kp"]
+[gd_scene load_steps=18 format=3 uid="uid://c8srtbtnoy6kp"]
 
 [ext_resource type="PackedScene" uid="uid://h7jxouflro7b" path="res://scenes/editor/editor.tscn" id="1_i4rgn"]
 [ext_resource type="Script" path="res://scenes/level_container.gd" id="1_j2mda"]
@@ -7,10 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://cwt4ri3vi3hg5" path="res://assets/ui/minimize_FILL0_wght400_GRAD0_opsz24.svg" id="2_2u16r"]
 [ext_resource type="Texture2D" uid="uid://d3aihr36gcahs" path="res://assets/ui/play_arrow_FILL0_wght400_GRAD0_opsz24.svg" id="2_34dbq"]
 [ext_resource type="Texture2D" uid="uid://chxlvstomijdq" path="res://assets/ui/close_FILL0_wght400_GRAD0_opsz24 (1).svg" id="2_ubh4m"]
+[ext_resource type="Theme" uid="uid://wkh0bbgm7eao" path="res://themes/button.tres" id="3_gi6lv"]
 [ext_resource type="Texture2D" uid="uid://cxxmjyskwsxy8" path="res://assets/ui/replay_FILL0_wght400_GRAD0_opsz24.svg" id="3_ncn61"]
+[ext_resource type="Theme" uid="uid://cl1dlavvcxhae" path="res://themes/button_run.tres" id="3_uk233"]
 [ext_resource type="Texture2D" uid="uid://e1myeud1fbid" path="res://assets/ui/stop_FILL0_wght400_GRAD0_opsz24.svg" id="4_susuq"]
 [ext_resource type="Script" path="res://scenes/ide/minimize_button.gd" id="6_6t3ii"]
+[ext_resource type="Theme" uid="uid://btexrjlaoasqy" path="res://themes/button_green.tres" id="6_v4vvh"]
 [ext_resource type="Script" path="res://scenes/ide/close_button.gd" id="7_i2l7s"]
+[ext_resource type="Theme" uid="uid://h0u1573k3goc" path="res://themes/button_red.tres" id="7_kghbk"]
 
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_chm3h"]
 script = ExtResource("1_vh56v")
@@ -59,18 +63,18 @@ size_flags_stretch_ratio = 8.0
 
 [node name="RunButton" type="Button" parent="VSplitContainer/HBoxContainer/FlowControls"]
 layout_mode = 2
+theme = ExtResource("3_uk233")
 icon = ExtResource("2_34dbq")
-flat = true
 
 [node name="RerunButton" type="Button" parent="VSplitContainer/HBoxContainer/FlowControls"]
 layout_mode = 2
+theme = ExtResource("6_v4vvh")
 icon = ExtResource("3_ncn61")
-flat = true
 
 [node name="StopButton" type="Button" parent="VSplitContainer/HBoxContainer/FlowControls"]
 layout_mode = 2
+theme = ExtResource("7_kghbk")
 icon = ExtResource("4_susuq")
-flat = true
 
 [node name="WindowControls" type="HBoxContainer" parent="VSplitContainer/HBoxContainer"]
 layout_mode = 2
@@ -78,14 +82,14 @@ size_flags_horizontal = 10
 
 [node name="MinimizeButton" type="Button" parent="VSplitContainer/HBoxContainer/WindowControls"]
 layout_mode = 2
+theme = ExtResource("3_gi6lv")
 icon = ExtResource("2_2u16r")
-flat = true
 script = ExtResource("6_6t3ii")
 
 [node name="CloseButton" type="Button" parent="VSplitContainer/HBoxContainer/WindowControls"]
 layout_mode = 2
+theme = ExtResource("3_gi6lv")
 icon = ExtResource("2_ubh4m")
-flat = true
 script = ExtResource("7_i2l7s")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer"]
