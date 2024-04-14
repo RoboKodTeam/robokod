@@ -168,6 +168,7 @@ function tik(player):
     if player.canSeeBugs():
         player.collectBugs()"
 syntax_highlighter = SubResource("CodeHighlighter_chm3h")
+perform_idle_syntax_check = true
 
 [node name="Documentation" type="TabBar" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer"]
 visible = false
