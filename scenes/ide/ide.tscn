@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c8srtbtnoy6kp"]
+[gd_scene load_steps=17 format=3 uid="uid://c8srtbtnoy6kp"]
 
 [ext_resource type="PackedScene" uid="uid://h7jxouflro7b" path="res://scenes/editor/editor.tscn" id="1_i4rgn"]
 [ext_resource type="Script" path="res://scenes/level_container.gd" id="1_j2mda"]
@@ -15,6 +15,7 @@
 [ext_resource type="Theme" uid="uid://btexrjlaoasqy" path="res://themes/button_green.tres" id="6_v4vvh"]
 [ext_resource type="Script" path="res://scenes/ide/close_button.gd" id="7_i2l7s"]
 [ext_resource type="Theme" uid="uid://h0u1573k3goc" path="res://themes/button_red.tres" id="7_kghbk"]
+[ext_resource type="Theme" uid="uid://dl5g2chlcmb3e" path="res://themes/tabs.tres" id="8_dbuh6"]
 
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_chm3h"]
 script = ExtResource("1_vh56v")
@@ -40,69 +41,54 @@ grow_horizontal = 2
 grow_vertical = 2
 dragger_visibility = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VSplitContainer"]
+[node name="WindowBar" type="HBoxContainer" parent="VSplitContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VSplitContainer/HBoxContainer"]
+[node name="WindowCredentials" type="HBoxContainer" parent="VSplitContainer/WindowBar"]
 layout_mode = 2
 size_flags_horizontal = 2
 
-[node name="ProgramIcon" type="TextureRect" parent="VSplitContainer/HBoxContainer/HBoxContainer"]
+[node name="ProgramIcon" type="TextureRect" parent="VSplitContainer/WindowBar/WindowCredentials"]
 layout_mode = 2
 texture = ExtResource("4_susuq")
 expand_mode = 2
 
-[node name="WindowTitle" type="Label" parent="VSplitContainer/HBoxContainer/HBoxContainer"]
+[node name="WindowTitle" type="Label" parent="VSplitContainer/WindowBar/WindowCredentials"]
 layout_mode = 2
 text = "IFNTUOG Educational Game - Level 1"
 
-[node name="FlowControls" type="HBoxContainer" parent="VSplitContainer/HBoxContainer"]
+[node name="WindowControls" type="HBoxContainer" parent="VSplitContainer/WindowBar"]
 layout_mode = 2
-size_flags_horizontal = 10
-size_flags_stretch_ratio = 8.0
+size_flags_horizontal = 8
 
-[node name="RunButton" type="Button" parent="VSplitContainer/HBoxContainer/FlowControls"]
-layout_mode = 2
-theme = ExtResource("3_uk233")
-icon = ExtResource("2_34dbq")
-
-[node name="RerunButton" type="Button" parent="VSplitContainer/HBoxContainer/FlowControls"]
-layout_mode = 2
-theme = ExtResource("6_v4vvh")
-icon = ExtResource("3_ncn61")
-
-[node name="StopButton" type="Button" parent="VSplitContainer/HBoxContainer/FlowControls"]
-layout_mode = 2
-theme = ExtResource("7_kghbk")
-icon = ExtResource("4_susuq")
-
-[node name="WindowControls" type="HBoxContainer" parent="VSplitContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-
-[node name="MinimizeButton" type="Button" parent="VSplitContainer/HBoxContainer/WindowControls"]
+[node name="MinimizeButton" type="Button" parent="VSplitContainer/WindowBar/WindowControls"]
 layout_mode = 2
 theme = ExtResource("3_gi6lv")
 icon = ExtResource("2_2u16r")
-script = ExtResource("6_6t3ii")
 
-[node name="CloseButton" type="Button" parent="VSplitContainer/HBoxContainer/WindowControls"]
+[node name="CloseButton" type="Button" parent="VSplitContainer/WindowBar/WindowControls"]
 layout_mode = 2
 theme = ExtResource("3_gi6lv")
 icon = ExtResource("2_ubh4m")
-script = ExtResource("7_i2l7s")
 
-[node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer"]
+[node name="WindowContent" type="HSplitContainer" parent="VSplitContainer"]
 layout_mode = 2
 split_offset = 1280
 
-[node name="EmulatorTabContainer" type="TabContainer" parent="VSplitContainer/HSplitContainer"]
+[node name="EmulatorBox" type="Control" parent="VSplitContainer/WindowContent"]
 layout_mode = 2
 
-[node name="Emulator" type="TabBar" parent="VSplitContainer/HSplitContainer/EmulatorTabContainer"]
+[node name="EmulatorTabContainer" type="TabContainer" parent="VSplitContainer/WindowContent/EmulatorBox"]
 layout_mode = 2
+offset_right = 1280.0
+offset_bottom = 1036.0
+theme = ExtResource("8_dbuh6")
 
-[node name="LevelContainer" type="Container" parent="VSplitContainer/HSplitContainer/EmulatorTabContainer/Emulator"]
+[node name="Emulator" type="TabBar" parent="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer"]
+layout_mode = 2
+theme = ExtResource("8_dbuh6")
+
+[node name="LevelContainer" type="Container" parent="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/Emulator"]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 1
@@ -113,26 +99,67 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j2mda")
 
-[node name="EditorTabContainer" type="TabContainer" parent="VSplitContainer/HSplitContainer"]
-layout_mode = 2
-drag_to_rearrange_enabled = true
+[node name="FlowControls" type="HFlowContainer" parent="VSplitContainer/WindowContent/EmulatorBox"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -104.0
+offset_bottom = 32.0
+grow_horizontal = 0
+alignment = 2
 
-[node name="LevelTab" type="TabBar" parent="VSplitContainer/HSplitContainer/EditorTabContainer"]
+[node name="RunButton" type="Button" parent="VSplitContainer/WindowContent/EmulatorBox/FlowControls"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("3_uk233")
+icon = ExtResource("2_34dbq")
 
-[node name="Editor" parent="VSplitContainer/HSplitContainer/EditorTabContainer/LevelTab" instance=ExtResource("1_i4rgn")]
+[node name="RerunButton" type="Button" parent="VSplitContainer/WindowContent/EmulatorBox/FlowControls"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("6_v4vvh")
+icon = ExtResource("3_ncn61")
+
+[node name="StopButton" type="Button" parent="VSplitContainer/WindowContent/EmulatorBox/FlowControls"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("7_kghbk")
+icon = ExtResource("4_susuq")
+
+[node name="EditorBox" type="Control" parent="VSplitContainer/WindowContent"]
+layout_mode = 2
+
+[node name="EditorTabContainer" type="TabContainer" parent="VSplitContainer/WindowContent/EditorBox"]
+layout_mode = 2
+offset_right = 628.0
+offset_bottom = 1036.0
+theme = ExtResource("8_dbuh6")
+drag_to_rearrange_enabled = true
+
+[node name="LevelTab" type="TabBar" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("8_dbuh6")
+
+[node name="Editor" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer/LevelTab" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
 syntax_highlighter = SubResource("CodeHighlighter_chm3h")
 
-[node name="Documentation" type="TabBar" parent="VSplitContainer/HSplitContainer/EditorTabContainer"]
+[node name="Documentation" type="TabBar" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer"]
 visible = false
 layout_mode = 2
+theme = ExtResource("8_dbuh6")
 
-[node name="Editor" parent="VSplitContainer/HSplitContainer/EditorTabContainer/Documentation" instance=ExtResource("1_i4rgn")]
+[node name="Editor" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer/Documentation" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
 syntax_highlighter = SubResource("CodeHighlighter_eitos")
 
-[connection signal="pressed" from="VSplitContainer/HBoxContainer/WindowControls/MinimizeButton" to="VSplitContainer/HBoxContainer/WindowControls/MinimizeButton" method="_on_pressed"]
-[connection signal="pressed" from="VSplitContainer/HBoxContainer/WindowControls/CloseButton" to="VSplitContainer/HBoxContainer/WindowControls/CloseButton" method="_on_pressed"]
-[connection signal="resized" from="VSplitContainer/HSplitContainer/EmulatorTabContainer/Emulator" to="VSplitContainer/HSplitContainer/EmulatorTabContainer/Emulator/LevelContainer" method="_on_emulator_resized"]
+[connection signal="pressed" from="VSplitContainer/WindowBar/WindowControls/MinimizeButton" to="." method="_on_minimize_button_pressed"]
+[connection signal="pressed" from="VSplitContainer/WindowBar/WindowControls/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="resized" from="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/Emulator" to="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/Emulator/LevelContainer" method="_on_emulator_resized"]
+[connection signal="pressed" from="VSplitContainer/WindowContent/EmulatorBox/FlowControls/RunButton" to="." method="_on_run_button_pressed"]
+[connection signal="pressed" from="VSplitContainer/WindowContent/EmulatorBox/FlowControls/RerunButton" to="." method="_on_rerun_button_pressed"]
+[connection signal="pressed" from="VSplitContainer/WindowContent/EmulatorBox/FlowControls/StopButton" to="." method="_on_stop_button_pressed"]
