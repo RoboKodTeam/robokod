@@ -52,9 +52,10 @@ func _format_code():
 func _validate_syntax():
 	_clear_errors()
 
-	var parser = ScriptParser.new()
-	var notices = parser.parse(text)
+	var script = CustomScript.new()
+	script.parse(text)
 
+	var notices = script.validate()
 	for notice in notices:
 		_mark_line_as_flawed(notice.statement.line_number, notice.message)
 

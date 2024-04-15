@@ -1,21 +1,12 @@
-class_name ScriptParser
+class_name CustomScript
 extends Object
+
+var statements: Array[Statement] = []
+var pos: int = 0
 
 
 func parse(text: String):
-	Log.log("Beginning parsing script")
-
-	var statements = ScriptParser._extract_statements_from(text)
-	var notices = ScriptParser._validate(statements)
-
-	Log.log("Parsing finished")
-	return notices
-
-
-static func _extract_statements_from(text: String) -> Array[Statement]:
 	Log.log("Extracting code statements")
-
-	var out: Array[Statement] = []
 
 	var line_n = -1
 	for line in text.split("\n"):
@@ -40,26 +31,10 @@ static func _extract_statements_from(text: String) -> Array[Statement]:
 		var statement = Statement.new(line_n, statement_level, words)
 		Log.log("  - statement:", statement)
 
-		out.push_back(statement)
-
-	return out
+		statements.push_back(statement)
 
 
-class Statement:
-	var line_number: int
-	var level: int
-	var words: PackedStringArray
-
-	func _init(p_line: int, p_level: int, p_words: PackedStringArray):
-		line_number = p_line
-		level = p_level
-		words = p_words
-
-	func to_printable():
-		return {line = line_number, level = level, words = words}
-
-
-static func _validate(statements: Array[Statement]) -> Array:
+func validate() -> Array:
 	Log.log("Validating statements")
 
 	var out = []
@@ -88,3 +63,75 @@ static func _validate(statements: Array[Statement]) -> Array:
 
 	Log.log("Collected", out.size(), "notices")
 	return out
+
+
+func collapse_statements() -> Array[Statement]:
+	var anonymous_parent = _collapse_code_block(Statement.new(), 0)
+	return anonymous_parent.children
+
+
+func _collapse_code_block(main: Statement, level_to_process: int) -> CodeBlock:
+	var out = CodeBlock.new(main)
+
+	var last: Statement = null
+	while pos < statements.size():
+		var next = statements[pos]
+
+		# End of code block reached
+		if next.level < level_to_process:
+			break
+
+		# Same level
+		if next.level == level_to_process:
+			# Save last cached statement
+			if last != null:
+				out.children.push_back(last)
+
+			# Accept a new statement for future
+			last = next
+
+			# Increment current statement index
+			pos += 1
+			continue
+
+		# Code block statements begin
+		if next.level > level_to_process:
+			last = _collapse_code_block(last, next.level)
+			continue
+
+	# Save the last cached statement
+	if last != null:
+		out.children.push_back(last)
+
+	return out
+
+
+class Statement:
+	var line_number: int
+	var level: int
+	var words: PackedStringArray
+
+	func _init(p_line: int = 0, p_level: int = 0, p_words: PackedStringArray = []):
+		line_number = p_line
+		level = p_level
+		words = p_words
+
+	func to_printable():
+		return {line = line_number, level = level, words = words}
+
+
+class CodeBlock:
+	extends Statement
+
+	var children: Array[Statement] = []
+
+	func _init(main: Statement):
+		line_number = main.line_number
+		level = main.level
+		words = main.words
+
+	func add(statement: Statement):
+		children.push_back(statement)
+
+	func to_printable():
+		return {line = line_number, level = level, words = words, children = children}
