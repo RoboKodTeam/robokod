@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://h7jxouflro7b"]
 
-[ext_resource type="FontFile" uid="uid://bylysp813blnp" path="res://fonts/JetBrainsMono-Variable.ttf" id="1_0yaxl"]
 [ext_resource type="Script" path="res://scenes/editor/highlighter/init.gd" id="1_5ej1p"]
+[ext_resource type="Theme" uid="uid://butn6iid24uf8" path="res://themes/editor.tres" id="1_jnnbh"]
 [ext_resource type="Script" path="res://scenes/editor/editor.gd" id="3_61eku"]
 
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_8sdkn"]
@@ -13,8 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/background_color = Color(0.129412, 0.129412, 0.129412, 1)
-theme_override_fonts/font = ExtResource("1_0yaxl")
+theme = ExtResource("1_jnnbh")
 wrap_mode = 1
 scroll_smooth = true
 caret_blink = true
