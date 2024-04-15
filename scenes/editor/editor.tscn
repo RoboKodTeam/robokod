@@ -15,7 +15,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/background_color = Color(0.129412, 0.129412, 0.129412, 1)
 theme_override_fonts/font = ExtResource("1_0yaxl")
-placeholder_text = "А Ви ризикові починати з чистого листа)"
 wrap_mode = 1
 scroll_smooth = true
 caret_blink = true

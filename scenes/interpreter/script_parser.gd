@@ -24,6 +24,8 @@ static func _extract_statements_from(text: String) -> Array[Statement]:
 		if line.is_empty() or line.begins_with("#"):
 			continue
 
+		# Replace each tab to 4 whitespace chars
+		line = line.replace("\t", "    ")
 		# Get only meaningful words
 		var words = line.split(" ", false)
 

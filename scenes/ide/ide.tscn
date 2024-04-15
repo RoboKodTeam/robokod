@@ -85,11 +85,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("8_dbuh6")
 
-[node name="Emulator" type="TabBar" parent="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer"]
+[node name="EmulatorTab" type="TabBar" parent="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer"]
 layout_mode = 2
 theme = ExtResource("8_dbuh6")
 
-[node name="LevelContainer" type="Container" parent="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/Emulator"]
+[node name="LevelContainer" type="Container" parent="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/EmulatorTab"]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 1
@@ -143,46 +143,31 @@ grow_vertical = 2
 theme = ExtResource("8_dbuh6")
 drag_to_rearrange_enabled = true
 
-[node name="LevelTab" type="TabBar" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer"]
+[node name="LevelScriptTab" type="TabBar" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("8_dbuh6")
 
-[node name="Editor" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer/LevelTab" instance=ExtResource("1_i4rgn")]
+[node name="Editor" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer/LevelScriptTab" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
-text = "#
-# Гра починається з головної функції. Тут можна запрограмувати дії гравця щоб пройти рівень. Усі дії гравець виконує послідовно, але будьте обережними, щоб він не врізався в стінку чи не впав!
-#
-
-function start(player):
-    player.right(2)
-    player.down(2)
-    player.right()
-
-
-#
-# Щоб гравець реагував на різні непередбачувані події в грі використовуйте функцію ігрового тіку. Таким чином можна дочекатися певної умови за допомогою if і відповісти на неї. Наприклад, якщо в поле зору потрапить жук, гравець одразу піде його зібрати!
-#
-
-function tik(player):
-    if player.canSeeBugs():
-        player.collectBugs()"
+placeholder_text = "А Ви ризикові починати з чистого листа. У будь-якому випадку, удачі й натхнення"
 syntax_highlighter = SubResource("CodeHighlighter_chm3h")
 perform_idle_syntax_check = true
 
-[node name="Documentation" type="TabBar" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer"]
+[node name="DocsTab" type="TabBar" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer"]
 visible = false
 layout_mode = 2
 theme = ExtResource("8_dbuh6")
 
-[node name="Editor" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer/Documentation" instance=ExtResource("1_i4rgn")]
+[node name="Editor" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer/DocsTab" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
-text = "Тут могла бути ваша документація)"
+text = "# Тут могла бути ваша документація"
+editable = false
 syntax_highlighter = SubResource("CodeHighlighter_eitos")
 
 [connection signal="pressed" from="VSplitContainer/WindowBar/WindowControls/MinimizeButton" to="." method="_on_minimize_button_pressed"]
 [connection signal="pressed" from="VSplitContainer/WindowBar/WindowControls/CloseButton" to="." method="_on_close_button_pressed"]
-[connection signal="resized" from="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/Emulator" to="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/Emulator/LevelContainer" method="_on_emulator_resized"]
+[connection signal="resized" from="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/EmulatorTab" to="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/EmulatorTab/LevelContainer" method="_on_emulator_resized"]
 [connection signal="pressed" from="VSplitContainer/WindowContent/EmulatorBox/FlowControls/RunButton" to="." method="_on_run_button_pressed"]
 [connection signal="pressed" from="VSplitContainer/WindowContent/EmulatorBox/FlowControls/RerunButton" to="." method="_on_rerun_button_pressed"]
 [connection signal="pressed" from="VSplitContainer/WindowContent/EmulatorBox/FlowControls/StopButton" to="." method="_on_stop_button_pressed"]

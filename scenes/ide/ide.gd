@@ -1,7 +1,8 @@
 extends Control
 
 @onready var level_container = %LevelContainer
-@onready var level_tab = %LevelTab
+@onready var level_script_tab = %LevelScriptTab
+@onready var level_script_editor = %LevelScriptTab/Editor
 
 @onready var run_button = %RunButton
 @onready var rerun_button = %RerunButton
@@ -17,7 +18,8 @@ func open_level(resource, title):
 	var instance = resource.instantiate()
 	level_container.level = instance
 
-	level_tab.name = title
+	level_script_tab.name = title
+	level_script_editor.text = Strings.LEVEL1_CODE
 
 
 func _on_run_button_pressed():
