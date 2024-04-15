@@ -52,6 +52,7 @@ texture = ExtResource("4_susuq")
 expand_mode = 2
 
 [node name="WindowTitle" type="Label" parent="VSplitContainer/WindowBar/WindowCredentials"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "IFNTUOG Educational Game - Level 1"
 
@@ -86,10 +87,11 @@ grow_vertical = 2
 theme = ExtResource("8_dbuh6")
 
 [node name="EmulatorTab" type="TabBar" parent="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("8_dbuh6")
 
-[node name="LevelContainer" type="Container" parent="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/EmulatorTab"]
+[node name="Emulator" type="Container" parent="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/EmulatorTab"]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 1
@@ -154,6 +156,7 @@ placeholder_text = "А Ви ризикові починати з чистого 
 syntax_highlighter = SubResource("CodeHighlighter_chm3h")
 
 [node name="DocsTab" type="TabBar" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme = ExtResource("8_dbuh6")
@@ -166,7 +169,7 @@ syntax_highlighter = SubResource("CodeHighlighter_eitos")
 
 [connection signal="pressed" from="VSplitContainer/WindowBar/WindowControls/MinimizeButton" to="." method="_on_minimize_button_pressed"]
 [connection signal="pressed" from="VSplitContainer/WindowBar/WindowControls/CloseButton" to="." method="_on_close_button_pressed"]
-[connection signal="resized" from="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/EmulatorTab" to="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/EmulatorTab/LevelContainer" method="_on_emulator_resized"]
+[connection signal="resized" from="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/EmulatorTab" to="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/EmulatorTab/Emulator" method="_on_emulator_resized"]
 [connection signal="pressed" from="VSplitContainer/WindowContent/EmulatorBox/FlowControls/RunButton" to="." method="_on_run_button_pressed"]
 [connection signal="pressed" from="VSplitContainer/WindowContent/EmulatorBox/FlowControls/RerunButton" to="." method="_on_rerun_button_pressed"]
 [connection signal="pressed" from="VSplitContainer/WindowContent/EmulatorBox/FlowControls/StopButton" to="." method="_on_stop_button_pressed"]

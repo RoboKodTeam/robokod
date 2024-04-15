@@ -1,5 +1,15 @@
 extends Node
 
+const TAB_EMULATOR = "Виконавець коду"
+const TAB_EDITOR = "Редактор коду"
+const TAB_DOCS = "Документація"
+
+var PROGRAM_TITLE = (
+	ProjectSettings.get_setting("application/config/name")
+	+ " v"
+	+ ProjectSettings.get_setting("application/config/version")
+)
+
 const KEYWORDS_FUNCTION = ["function", "функція"]
 const KEYWORDS_IF = ["if", "якщо"]
 const KEYWORDS_ELSE = ["else", "інакше"]
