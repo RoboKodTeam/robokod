@@ -19,7 +19,9 @@ func open_level(resource, title):
 	level_container.level = instance
 
 	level_script_tab.name = title
-	level_script_editor.text = Strings.LEVEL1_CODE
+
+	var sample_file = FileAccess.open("res://values/samples/level1.txt", FileAccess.READ)
+	level_script_editor.text = sample_file.get_as_text()
 
 
 func _on_run_button_pressed():
