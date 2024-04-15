@@ -152,7 +152,6 @@ theme = ExtResource("8_dbuh6")
 layout_mode = 1
 placeholder_text = "А Ви ризикові починати з чистого листа. У будь-якому випадку, удачі й натхнення"
 syntax_highlighter = SubResource("CodeHighlighter_chm3h")
-perform_idle_syntax_check = true
 
 [node name="DocsTab" type="TabBar" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer"]
 visible = false
