@@ -25,7 +25,7 @@ func _on_idle_timer_timeout():
 func _format_code():
 	if text.count("\t") > 0:
 		# Save scroll progress
-		var scroll_progress = Vector2i(scroll_horizontal, scroll_vertical)
+		var scroll_progress = Vector2(scroll_horizontal, scroll_vertical)
 		# Save caret position
 		var caret_pos = Vector2i(get_caret_column(), get_caret_line())
 		var caret_line = get_line(caret_pos.y)
