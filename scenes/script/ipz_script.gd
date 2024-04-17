@@ -1,5 +1,4 @@
 class_name IPZScript
-extends Object
 
 var script_block: CodeBlock = null
 
@@ -99,7 +98,7 @@ static func _collapse_code_block(
 ) -> CodeBlock:
 	Log.log("Collapsing code block at level", level_to_process)
 
-	var out = CodeBlock.new(main)
+	var out = IPZScript._new_code_block(main)
 
 	var last: Statement = null
 	while iterator.has_next():
@@ -134,6 +133,39 @@ static func _collapse_code_block(
 	return out
 
 
+static func _new_code_block(main: Statement):
+	return CodeBlock.new(main)
+
+
+func execute_script():
+	Log.log("Beginning script execution")
+
+	IPZScript._execute(script_block)
+
+	Log.info("Execution finished")
+
+
+static func _execute(statement: Statement):
+	# Identify the executable statement by the first word
+	var command = statement.words[0]
+
+	# Identify whether the command is a block
+	if statement is CodeBlock:
+		if statement.is_function():
+			Log.log("Processing function block:", statement.words)
+			# Execute child statements as if a function is just a group
+			for s: Statement in statement.children:
+				_execute(s)
+		else:
+			if statement.is_if():
+				Log.log("Processing expression block:", statement.words)
+			else:
+				Log.warn("Ignoring unexpected block:", statement.words)
+	# Proceed to execution of a single statement otherwise
+	else:
+		Log.log("Processing signle:", statement)
+
+
 class Notice:
 	var statement: Statement
 	var message: String
@@ -141,20 +173,6 @@ class Notice:
 	func _init(p_statement: Statement, p_message: String):
 		statement = p_statement
 		message = p_message
-
-
-class Statement:
-	var line_number: int
-	var level: int
-	var words: PackedStringArray
-
-	func _init(p_line_number: int, p_level: int, p_words: PackedStringArray):
-		line_number = p_line_number
-		level = p_level
-		words = p_words
-
-	func to_printable():
-		return {line_number = line_number, level = level, words = words}
 
 
 class StatementsArrayIterator:
@@ -172,20 +190,3 @@ class StatementsArrayIterator:
 
 	func increment():
 		_pos += 1
-
-
-class CodeBlock:
-	extends Statement
-
-	var children: Array[Statement] = []
-
-	func _init(main: Statement):
-		line_number = main.line_number
-		level = main.level
-		words = main.words
-
-	func add(statement: Statement):
-		children.push_back(statement)
-
-	func to_printable():
-		return {line = line_number, level = level, words = words, children = children}
