@@ -87,7 +87,7 @@ static func _collapse(statements: Array[Statement]) -> CodeBlock:
 	var iterator = StatementsArrayIterator.new(statements)
 
 	# Collapse everything into the root block
-	var root_statement = Statement.new(-1, -1, ["root:"])
+	var root_statement = Statement.new(-1, -1, ["function", "root():"])
 	var root_block = _collapse_code_block(iterator, root_statement, 0)
 
 	Log.info("Collapsed code blocks in root:", root_block.children.size())
