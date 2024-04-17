@@ -352,12 +352,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_53k6a")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"walk_horizontal",
 "speed": 6.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5ry5"]
-size = Vector2(40, 23)
+size = Vector2(20, 21)
 
 [node name="Drone" type="CharacterBody2D"]
 z_index = 2
@@ -368,9 +368,9 @@ script = ExtResource("1_ud4pi")
 position = Vector2(0, -7)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_sequy")
-animation = &"walk"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -15)
+position = Vector2(0, -16.5)
 shape = SubResource("RectangleShape2D_x5ry5")

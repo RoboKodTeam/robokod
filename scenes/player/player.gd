@@ -40,7 +40,7 @@ func _physics_process(_delta: float):
 		target = grid_to_coord(position_grid)
 		print("Moving from ", position, " to ", target)
 
-		sprite.play("walk")
+		sprite.play("walk_horizontal")
 		sprite.flip_h = direction.x < 0
 
 		velocity = position.direction_to(target) * speed

@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://boxe6jeyf084p"]
 
-[ext_resource type="PackedScene" uid="uid://cwuma4lb1vdyv" path="res://scenes/player/skins/robot.tscn" id="1_g36yi"]
+[ext_resource type="PackedScene" uid="uid://jbhvvpc3no3i" path="res://scenes/player/skins/drone.tscn" id="1_l7pll"]
 
 [node name="Player" type="Node2D"]
 
-[node name="Robot" parent="." instance=ExtResource("1_g36yi")]
+[node name="Drone" parent="." instance=ExtResource("1_l7pll")]

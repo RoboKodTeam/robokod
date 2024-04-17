@@ -240,7 +240,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_m0jky")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"walk_horizontal",
 "speed": 8.0
 }]
 
@@ -256,7 +256,7 @@ script = ExtResource("1_1owsm")
 position = Vector2(0, -33)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_olvkg")
-animation = &"turn_off"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
