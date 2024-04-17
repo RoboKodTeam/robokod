@@ -31,7 +31,7 @@ func _get_direction():
 	return direction
 
 
-func _physics_process(_delta):
+func _physics_process(_delta: float):
 	var direction = _get_direction()
 
 	if direction != Vector2.ZERO:

@@ -23,7 +23,7 @@ func _ready():
 	open_level(level1_resource, "Рівень 1")
 
 
-func open_level(level_resource, title):
+func open_level(level_resource: Resource, title: String):
 	# Setup emulator
 	emulator.level = level_resource.instantiate()
 

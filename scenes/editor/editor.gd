@@ -8,7 +8,7 @@ extends CodeEdit
 var _lines_with_errors = []
 
 
-func _input(_event):
+func _input(_event: InputEvent):
 	if editable:
 		# Restart idle timer every time any input is given
 		idle_timer.start()
