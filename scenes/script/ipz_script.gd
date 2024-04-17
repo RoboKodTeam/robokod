@@ -98,7 +98,7 @@ static func _collapse_code_block(
 ) -> CodeBlock:
 	Log.log("Collapsing code block at level", level_to_process)
 
-	var out = IPZScript._new_code_block(main)
+	var out = IPZScriptUtils.get_code_block(main)
 
 	var last: Statement = null
 	while iterator.has_next():
@@ -133,10 +133,6 @@ static func _collapse_code_block(
 	return out
 
 
-static func _new_code_block(main: Statement):
-	return CodeBlock.new(main)
-
-
 func execute_script():
 	Log.log("Beginning script execution")
 
@@ -146,24 +142,24 @@ func execute_script():
 
 
 static func _execute(statement: Statement):
-	# Identify the executable statement by the first word
-	var command = statement.words[0]
-
 	# Identify whether the command is a block
+	if statement is FunctionCodeBlock:
+		Log.log("Processing function block:", statement.words)
+		# Execute child statements as if a function is just a group
+		for s: Statement in statement.children:
+			_execute(s)
+		return
+
+	if statement is IfCodeBlock:
+		Log.log("Processing if block:", statement.words)
+		return
+
 	if statement is CodeBlock:
-		if statement.is_function():
-			Log.log("Processing function block:", statement.words)
-			# Execute child statements as if a function is just a group
-			for s: Statement in statement.children:
-				_execute(s)
-		else:
-			if statement.is_if():
-				Log.log("Processing expression block:", statement.words)
-			else:
-				Log.warn("Ignoring unexpected block:", statement.words)
+		Log.warn("Ignoring unexpected block:", statement.words)
+		return
+
 	# Proceed to execution of a single statement otherwise
-	else:
-		Log.log("Processing signle:", statement)
+	Log.log("Not processing single statement:", statement)
 
 
 class Notice:
