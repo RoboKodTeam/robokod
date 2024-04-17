@@ -53,9 +53,7 @@ func _validate_syntax():
 	_clear_errors()
 
 	var script = IPZScript.new()
-	script.parse(text)
-
-	var notices = script.validate()
+	var notices = script.parse(text)
 	for notice in notices:
 		_mark_line_as_flawed(notice.statement.line_number, notice.message)
 

@@ -1,12 +1,25 @@
 class_name IPZScript
 extends Object
 
-var _statements: Array[Statement] = []
-var _pos: int = 0
+var functions: Array[Statement] = []
 
 
-func parse(text: String):
+func parse(text: String) -> Array[Notice]:
+	var statements = IPZScript._parse_statements(text)
+
+	var notices = IPZScript._validate(statements)
+
+	# No notices - proceed to grouping
+	if notices.is_empty():
+		functions = IPZScript._collapse(statements)
+
+	return notices
+
+
+static func _parse_statements(text: String) -> Array[Statement]:
 	Log.log("Extracting code statements")
+
+	var out: Array[Statement] = []
 
 	var line_n = -1
 	for line in text.split("\n"):
@@ -31,52 +44,68 @@ func parse(text: String):
 		var statement = Statement.new(line_n, statement_level, words)
 		Log.log("  - statement:", statement)
 
-		_statements.push_back(statement)
+		out.push_back(statement)
+
+	Log.log("Collected statements:", out.size())
+	return out
 
 
-func validate() -> Array:
+static func _validate(statements: Array[Statement]) -> Array[Notice]:
 	Log.log("Validating statements")
 
-	var out = []
+	var out: Array[Notice] = []
 
 	var last: Statement = null
-	for current in _statements:
+	for current in statements:
 		if last != null:
 			# Check for colon after keywords
 			if Strings.KEYWORDS.has(last.words[0]):
 				if not last.words[-1].ends_with(":"):
-					out.push_back({statement = last, message = Strings.ERROR_COLON_MISSING})
+					out.push_back(Notice.new(last, Strings.ERROR_COLON_MISSING))
 					continue
 
 			# Check for next line indentation after colon
 			if last.words[-1].ends_with(":"):
 				if last.level >= current.level:
-					out.push_back({statement = current, message = Strings.ERROR_COLON_INDENT})
+					out.push_back(Notice.new(current, Strings.ERROR_COLON_INDENT))
 					continue
 
 			# Only allow functions as top-level statements
 			if current.level == 0:
 				if not Strings.KEYWORDS_FUNCTION.has(current.words[0]):
-					out.push_back({statement = current, message = Strings.ERROR_NOT_FUNCTION})
+					out.push_back(Notice.new(current, Strings.ERROR_NOT_FUNCTION))
 
 		last = current
 
-	Log.log("Collected", out.size(), "notices")
+	Log.log("Collected notices:", out.size())
 	return out
 
 
-func collapse_statements() -> Array[Statement]:
-	_pos = 0
-	var anonymous_parent = _collapse_code_block(Statement.new(), 0)
-	return anonymous_parent.children
+static func _collapse(statements: Array[Statement]) -> Array[Statement]:
+	Log.log("Collapsing code blocks")
+
+	var iterator = StatementsArrayIterator.new(statements)
+
+	# Begin parsing from the root statement
+	var root_block = _collapse_code_block(iterator, Statement.new(), 0)
+	# Return children of the root code block
+	var out = root_block.children
+
+	Log.log("Collapsed root code blocks:", out.size())
+
+	return out
 
 
-func _collapse_code_block(main: Statement, level_to_process: int) -> CodeBlock:
+static func _collapse_code_block(
+	iterator: StatementsArrayIterator, main: Statement, level_to_process: int
+) -> CodeBlock:
+	Log.log("Collapsing code block at level", level_to_process)
+
 	var out = CodeBlock.new(main)
 
 	var last: Statement = null
-	while _pos < _statements.size():
-		var next = _statements[_pos]
+	while iterator.has_next():
+		var next = iterator.next()
 
 		# End of code block reached
 		if next.level < level_to_process:
@@ -92,12 +121,12 @@ func _collapse_code_block(main: Statement, level_to_process: int) -> CodeBlock:
 			last = next
 
 			# Increment current statement index
-			_pos += 1
+			iterator.increment()
 			continue
 
 		# Code block statements begin
 		if next.level > level_to_process:
-			last = _collapse_code_block(last, next.level)
+			last = _collapse_code_block(iterator, last, next.level)
 			continue
 
 	# Save the last cached statement
@@ -105,6 +134,15 @@ func _collapse_code_block(main: Statement, level_to_process: int) -> CodeBlock:
 		out.children.push_back(last)
 
 	return out
+
+
+class Notice:
+	var statement: Statement
+	var message: String
+
+	func _init(p_statement: Statement, p_message: String):
+		statement = p_statement
+		message = p_message
 
 
 class Statement:
@@ -119,6 +157,23 @@ class Statement:
 
 	func to_printable():
 		return {line_number = line_number, level = level, words = words}
+
+
+class StatementsArrayIterator:
+	var _array: Array[Statement]
+	var _pos = 0
+
+	func _init(array: Array[Statement]):
+		_array = array
+
+	func has_next() -> bool:
+		return _pos < _array.size()
+
+	func next() -> Statement:
+		return _array[_pos]
+
+	func increment():
+		_pos += 1
 
 
 class CodeBlock:
