@@ -1,7 +1,7 @@
 class_name IPZScript
 extends Object
 
-var functions: Array[Statement] = []
+var script_block: CodeBlock = null
 
 
 func parse(text: String) -> Array[Notice]:
@@ -11,7 +11,7 @@ func parse(text: String) -> Array[Notice]:
 
 	# No notices - proceed to grouping
 	if notices.is_empty():
-		functions = IPZScript._collapse(statements)
+		script_block = IPZScript._collapse(statements)
 
 	return notices
 
@@ -46,7 +46,7 @@ static func _parse_statements(text: String) -> Array[Statement]:
 
 		out.push_back(statement)
 
-	Log.log("Collected statements:", out.size())
+	Log.info("Collected statements:", out.size())
 	return out
 
 
@@ -77,23 +77,21 @@ static func _validate(statements: Array[Statement]) -> Array[Notice]:
 
 		last = current
 
-	Log.log("Collected notices:", out.size())
+	Log.info("Collected notices:", out.size())
 	return out
 
 
-static func _collapse(statements: Array[Statement]) -> Array[Statement]:
+static func _collapse(statements: Array[Statement]) -> CodeBlock:
 	Log.log("Collapsing code blocks")
 
 	var iterator = StatementsArrayIterator.new(statements)
 
-	# Begin parsing from the root statement
-	var root_block = _collapse_code_block(iterator, Statement.new(), 0)
-	# Return children of the root code block
-	var out = root_block.children
+	# Collapse everything into the root block
+	var root_statement = Statement.new(-1, -1, ["root:"])
+	var root_block = _collapse_code_block(iterator, root_statement, 0)
 
-	Log.log("Collapsed root code blocks:", out.size())
-
-	return out
+	Log.info("Collapsed code blocks in root:", root_block.children.size())
+	return root_block
 
 
 static func _collapse_code_block(
@@ -150,7 +148,7 @@ class Statement:
 	var level: int
 	var words: PackedStringArray
 
-	func _init(p_line_number: int = 0, p_level: int = 0, p_words: PackedStringArray = []):
+	func _init(p_line_number: int, p_level: int, p_words: PackedStringArray):
 		line_number = p_line_number
 		level = p_level
 		words = p_words
