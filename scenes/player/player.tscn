@@ -1,22 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://jbhvvpc3no3i"]
+[gd_scene load_steps=2 format=3 uid="uid://boxe6jeyf084p"]
 
-[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_o3v2h"]
-[ext_resource type="SpriteFrames" uid="uid://bo8a36g0di0h8" path="res://scenes/player/skins/drone.tres" id="2_hr3wb"]
+[ext_resource type="PackedScene" uid="uid://cwuma4lb1vdyv" path="res://scenes/player/skins/robot.tscn" id="1_g36yi"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5ry5"]
-size = Vector2(34, 38)
+[node name="Player" type="Node2D"]
 
-[node name="Player" type="CharacterBody2D"]
-z_index = 2
-scale = Vector2(0.5, 0.5)
-collision_layer = 2
-script = ExtResource("1_o3v2h")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("2_hr3wb")
-animation = &"idle"
-autoplay = "idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -19)
-shape = SubResource("RectangleShape2D_x5ry5")
+[node name="Robot" parent="." instance=ExtResource("1_g36yi")]

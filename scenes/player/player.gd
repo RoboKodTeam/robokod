@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 50
+@export var speed = 120
 
 @export var tile_size: int = 32
 var tile_center = Vector2(int(tile_size / 2), tile_size / 2)
@@ -36,10 +36,13 @@ func _physics_process(_delta: float):
 
 	if direction != Vector2.ZERO:
 		position_grid += direction
+
 		target = grid_to_coord(position_grid)
 		print("Moving from ", position, " to ", target)
 
 		sprite.play("walk")
+		sprite.flip_h = direction.x < 0
+
 		velocity = position.direction_to(target) * speed
 
 	if position.distance_to(target) > 1:
