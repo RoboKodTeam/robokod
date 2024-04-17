@@ -9,7 +9,7 @@ var level: Node2D:
 		add_child(value)
 	get:
 		var children = get_children()
-		return null if children.size() < 1 else children[0]
+		return null if children.is_empty() else children[0]
 
 
 func _get_maximum_content_size():
@@ -49,3 +49,7 @@ func _notification(what):
 
 func _on_emulator_resized():
 	queue_sort()
+
+
+func get_player() -> Player:
+	return level.get_player() if level else null
