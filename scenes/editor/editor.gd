@@ -52,7 +52,7 @@ func _format_code():
 func _validate_syntax():
 	_clear_errors()
 
-	var script = CustomScript.new()
+	var script = IPZScript.new()
 	script.parse(text)
 
 	var notices = script.validate()

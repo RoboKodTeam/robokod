@@ -1,4 +1,4 @@
-class_name CustomScript
+class_name IPZScript
 extends Object
 
 var statements: Array[Statement] = []
