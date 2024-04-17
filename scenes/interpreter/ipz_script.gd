@@ -1,8 +1,8 @@
 class_name IPZScript
 extends Object
 
-var statements: Array[Statement] = []
-var pos: int = 0
+var _statements: Array[Statement] = []
+var _pos: int = 0
 
 
 func parse(text: String):
@@ -31,7 +31,7 @@ func parse(text: String):
 		var statement = Statement.new(line_n, statement_level, words)
 		Log.log("  - statement:", statement)
 
-		statements.push_back(statement)
+		_statements.push_back(statement)
 
 
 func validate() -> Array:
@@ -40,7 +40,7 @@ func validate() -> Array:
 	var out = []
 
 	var last: Statement = null
-	for current in statements:
+	for current in _statements:
 		if last != null:
 			# Check for colon after keywords
 			if Strings.KEYWORDS.has(last.words[0]):
@@ -66,6 +66,7 @@ func validate() -> Array:
 
 
 func collapse_statements() -> Array[Statement]:
+	_pos = 0
 	var anonymous_parent = _collapse_code_block(Statement.new(), 0)
 	return anonymous_parent.children
 
@@ -74,8 +75,8 @@ func _collapse_code_block(main: Statement, level_to_process: int) -> CodeBlock:
 	var out = CodeBlock.new(main)
 
 	var last: Statement = null
-	while pos < statements.size():
-		var next = statements[pos]
+	while _pos < _statements.size():
+		var next = _statements[_pos]
 
 		# End of code block reached
 		if next.level < level_to_process:
@@ -91,7 +92,7 @@ func _collapse_code_block(main: Statement, level_to_process: int) -> CodeBlock:
 			last = next
 
 			# Increment current statement index
-			pos += 1
+			_pos += 1
 			continue
 
 		# Code block statements begin
@@ -111,13 +112,13 @@ class Statement:
 	var level: int
 	var words: PackedStringArray
 
-	func _init(p_line: int = 0, p_level: int = 0, p_words: PackedStringArray = []):
-		line_number = p_line
+	func _init(p_line_number: int = 0, p_level: int = 0, p_words: PackedStringArray = []):
+		line_number = p_line_number
 		level = p_level
 		words = p_words
 
 	func to_printable():
-		return {line = line_number, level = level, words = words}
+		return {line_number = line_number, level = level, words = words}
 
 
 class CodeBlock:
