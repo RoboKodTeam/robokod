@@ -12,6 +12,7 @@ extends Control
 @onready var editor_tab = %LevelScriptTab
 @onready var editor = %LevelScriptTab/Editor
 @onready var docs_tab = %DocsTab
+@onready var docs = %DocsTab/Editor
 
 
 func _ready():
@@ -22,6 +23,8 @@ func _ready():
 	var level1_resource = preload("res://scenes/levels/level1.tscn")
 	open_level(level1_resource, "Рівень 1")
 
+	docs.text = IDEUtils.read_text_file("res://values/samples/docs.txt")
+
 
 func open_level(level_resource: Resource, title: String):
 	# Setup emulator
@@ -31,8 +34,7 @@ func open_level(level_resource: Resource, title: String):
 	window_title.text = Strings.PROGRAM_TITLE + " | " + title
 
 	# Add sample code to the editor
-	var sample_file = FileAccess.open("res://values/samples/level1.txt", FileAccess.READ)
-	editor.text = sample_file.get_as_text()
+	editor.text = IDEUtils.read_text_file("res://values/samples/level1.txt")
 
 
 func _on_run_button_pressed():
