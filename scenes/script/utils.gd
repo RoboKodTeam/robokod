@@ -4,10 +4,10 @@ class_name IPZScriptUtils
 static func get_code_block(main: Statement):
 	var command = main.words[0]
 
-	if Strings.KEYWORDS_FUNCTION.has(command):
+	if command in Strings.KEYWORDS_FUNCTION:
 		return FunctionCodeBlock.new(main)
 
-	if Strings.KEYWORDS_IF.has(command):
+	if command in Strings.KEYWORDS_IF:
 		return IfCodeBlock.new(main)
 
 	Log.warn("Code block at line", main.line_number, "unidentified:", main.words)

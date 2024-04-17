@@ -58,7 +58,7 @@ static func _validate(statements: Array[Statement]) -> Array[Notice]:
 	for current in statements:
 		if last != null:
 			# Check for colon after keywords
-			if Strings.KEYWORDS.has(last.words[0]):
+			if last.words[0] in Strings.KEYWORDS:
 				if not last.words[-1].ends_with(":"):
 					out.push_back(Notice.new(last, Strings.ERROR_COLON_MISSING))
 					continue
@@ -71,7 +71,7 @@ static func _validate(statements: Array[Statement]) -> Array[Notice]:
 
 			# Only allow functions as top-level statements
 			if current.level == 0:
-				if not Strings.KEYWORDS_FUNCTION.has(current.words[0]):
+				if current.words[0] not in Strings.KEYWORDS_FUNCTION:
 					out.push_back(Notice.new(current, Strings.ERROR_NOT_FUNCTION))
 
 		last = current
