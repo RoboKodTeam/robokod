@@ -16,56 +16,63 @@ signal movement_finished
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
-func вверх(s_steps: String = ""):
+# Exposed player movement function
+func up(s_steps: String = "1"):
+	return await _move(s_steps, Vector2(0, -1))
+
+
+# Exposed player movement function
+func вверх(s_steps: String = "1"):
 	return await up(s_steps)
 
 
-func up(s_steps: String = ""):
-	var steps = IPZScriptUtils.string_to_int_or_default(s_steps, 1)
-	var direction = Vector2(0, -steps)
-	return await _move(direction)
+# Exposed player movement function
+func down(s_steps: String = "1"):
+	return await _move(s_steps, Vector2(0, 1))
 
 
-func вниз(s_steps: String = ""):
+# Exposed player movement function
+func вниз(s_steps: String = "1"):
 	return await down(s_steps)
 
 
-func down(s_steps: String = ""):
-	var steps = IPZScriptUtils.string_to_int_or_default(s_steps, 1)
-	var direction = Vector2(0, steps)
-	return await _move(direction)
+# Exposed player movement function
+func left(s_steps: String = "1"):
+	return await _move(s_steps, Vector2(-1, 0))
 
 
-func вліво(s_steps: String = ""):
+# Exposed player movement function
+func вліво(s_steps: String = "1"):
 	return await left(s_steps)
 
 
-func left(s_steps: String = ""):
-	var steps = IPZScriptUtils.string_to_int_or_default(s_steps, 1)
-	var direction = Vector2(-steps, 0)
-	return await _move(direction)
+# Exposed player movement function
+func right(s_steps: String = "1"):
+	return await _move(s_steps, Vector2(1, 0))
 
 
-func вправо(s_steps: String = ""):
+# Exposed player movement function
+func вправо(s_steps: String = "1"):
 	return await right(s_steps)
 
 
-func right(s_steps: String = ""):
-	var steps = IPZScriptUtils.string_to_int_or_default(s_steps, 1)
-	var direction = Vector2(steps, 0)
-	return await _move(direction)
+func _move(s_steps: String, direction: Vector2):
+	# Parse steps argument
+	var steps = RoboScriptUtils.string_to_int(s_steps, 0)
+	# Calculate directed movement vector
+	var movement = direction * steps
+	# Update player grid position
+	position_grid += movement
 
-
-func _move(direction: Vector2):
-	position_grid += direction
-
+	# Translate new position to target
 	target = grid_to_coord(position_grid)
 	Log.log("Moving from", position, "to", target)
 
 	is_moving = true
 	sprite.play("walk_horizontal")
-	sprite.flip_h = direction.x < 0
+	sprite.flip_h = movement.x < 0
 
+	# Wait for _physics_process(delta) function to finish movement
 	return await movement_finished
 
 
