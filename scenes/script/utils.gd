@@ -1,4 +1,4 @@
-class_name IPZScriptUtils
+class_name RoboScriptUtils
 
 
 static func get_code_block(main: Statement) -> CodeBlock:
@@ -14,9 +14,9 @@ static func get_code_block(main: Statement) -> CodeBlock:
 	return CodeBlock.new(main)
 
 
-static func string_to_int_or_default(string: String, default: int) -> int:
+static func string_to_int(string: String, or_else: int) -> int:
 	var as_int = string as int
 	if string == str(as_int):
 		return as_int
 
-	return default
+	return or_else

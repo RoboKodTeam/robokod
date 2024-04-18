@@ -50,10 +50,10 @@ func _format_code():
 		scroll_horizontal = scroll_progress.x
 
 
-func _ensure_valid_script() -> IPZScript:
+func _ensure_valid_script() -> RoboScript:
 	_clear_errors()
 
-	var script = IPZScript.new()
+	var script = RoboScript.new()
 	var notices = script.parse(text)
 
 	if notices.is_empty():
@@ -93,7 +93,7 @@ func begin_script_execution(env: ScriptEnvironment) -> bool:
 
 	_executing = true
 	idle_timer.stop()
-	
+
 	Log.log("Beginning script execution")
 	script.begin_execution(env)
 

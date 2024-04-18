@@ -1,16 +1,16 @@
-class_name IPZScript
+class_name RoboScript
 
 var script_block: CodeBlock = null
 
 
 func parse(text: String) -> Array[Notice]:
-	var statements = IPZScript._parse_statements(text)
+	var statements = RoboScript._parse_statements(text)
 
-	var notices = IPZScript._validate(statements)
+	var notices = RoboScript._validate(statements)
 
 	# No notices - proceed to grouping
 	if notices.is_empty():
-		script_block = IPZScript._collapse(statements)
+		script_block = RoboScript._collapse(statements)
 
 	return notices
 
@@ -98,7 +98,7 @@ static func _collapse_code_block(
 ) -> CodeBlock:
 	Log.log("Collapsing code block at level", level_to_process)
 
-	var out = IPZScriptUtils.get_code_block(main)
+	var out = RoboScriptUtils.get_code_block(main)
 
 	var last: Statement = null
 	while iterator.has_next():
