@@ -1,8 +1,9 @@
 # Godot 4+ specific ignores
-.godot/
+/.godot/
 
 # OS specific
 desktop.ini
 
 # Temp files
+/build/
 *~*
