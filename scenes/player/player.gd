@@ -16,10 +16,18 @@ signal movement_finished
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
+func вверх(s_steps: String = ""):
+	return await up(s_steps)
+
+
 func up(s_steps: String = ""):
 	var steps = IPZScriptUtils.string_to_int_or_default(s_steps, 1)
 	var direction = Vector2(0, -steps)
 	return await _move(direction)
+
+
+func вниз(s_steps: String = ""):
+	return await down(s_steps)
 
 
 func down(s_steps: String = ""):
@@ -28,10 +36,18 @@ func down(s_steps: String = ""):
 	return await _move(direction)
 
 
+func вліво(s_steps: String = ""):
+	return await left(s_steps)
+
+
 func left(s_steps: String = ""):
 	var steps = IPZScriptUtils.string_to_int_or_default(s_steps, 1)
 	var direction = Vector2(-steps, 0)
 	return await _move(direction)
+
+
+func вправо(s_steps: String = ""):
+	return await right(s_steps)
 
 
 func right(s_steps: String = ""):
