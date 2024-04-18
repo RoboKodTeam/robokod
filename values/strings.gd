@@ -15,6 +15,7 @@ const KEYWORDS_IF = ["if", "якщо"]
 const KEYWORDS_ELSE = ["else", "інакше"]
 const KEYWORDS = KEYWORDS_FUNCTION + KEYWORDS_IF + KEYWORDS_ELSE
 const PLAYERS = ["player", "гравець"]
+const FUNCTIONS_START = ["start", "почати"]
 
 const ERROR_COLON_MISSING = "Укінці рядка потрібна двокрапка"
 const ERROR_COLON_INDENT = "Після двокрапки потрібно відступити вправо"

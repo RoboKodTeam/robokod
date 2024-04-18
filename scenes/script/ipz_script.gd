@@ -86,7 +86,7 @@ static func _collapse(statements: Array[Statement]) -> CodeBlock:
 	var iterator = StatementsArrayIterator.new(statements)
 
 	# Collapse everything into the root block
-	var root_statement = Statement.new(-1, -1, ["function", "root():"])
+	var root_statement = Statement.new(-1, -1, ["function", "root:"])
 	var root_block = _collapse_code_block(iterator, root_statement, 0)
 
 	Log.info("Collapsed code blocks in root:", root_block.children.size())
@@ -133,33 +133,20 @@ static func _collapse_code_block(
 	return out
 
 
-func execute_script():
-	Log.log("Beginning script execution")
+func begin_execution(env: ScriptEnvironment):
+	for statement in script_block.children:
+		if statement is FunctionCodeBlock:
+			if statement.is_start():
+				Log.info("Executing start function")
 
-	IPZScript._execute(script_block)
+				var notice = await statement.execute(env)
+				if notice:
+					Log.error(notice.message, "at line", notice.statement.line_number)
 
-	Log.info("Execution finished")
+				Log.info("Execution finished")
+				return
 
-
-static func _execute(statement: Statement):
-	# Identify whether the command is a block
-	if statement is FunctionCodeBlock:
-		Log.log("Processing function block:", statement.words)
-		# Execute child statements as if a function is just a group
-		for s: Statement in statement.children:
-			_execute(s)
-		return
-
-	if statement is IfCodeBlock:
-		Log.log("Processing if block:", statement.words)
-		return
-
-	if statement is CodeBlock:
-		Log.warn("Ignoring unexpected block:", statement.words)
-		return
-
-	# Proceed to execution of a single statement otherwise
-	Log.log("Not processing single statement:", statement)
+	Log.info("Start function not found")
 
 
 class StatementsArrayIterator:
