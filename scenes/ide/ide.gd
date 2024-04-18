@@ -38,6 +38,11 @@ func open_level(level_resource: Resource, title: String):
 
 
 func _on_run_button_pressed():
+	var player = emulator.get_player()
+	if not player:
+		Log.error("Player not found")
+		return
+
 	run_button.hide()
 	rerun_button.show()
 	stop_button.show()
