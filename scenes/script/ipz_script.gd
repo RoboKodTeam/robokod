@@ -162,15 +162,6 @@ static func _execute(statement: Statement):
 	Log.log("Not processing single statement:", statement)
 
 
-class Notice:
-	var statement: Statement
-	var message: String
-
-	func _init(p_statement: Statement, p_message: String):
-		statement = p_statement
-		message = p_message
-
-
 class StatementsArrayIterator:
 	var _array: Array[Statement]
 	var _pos = 0
