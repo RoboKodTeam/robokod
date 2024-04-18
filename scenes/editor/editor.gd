@@ -6,10 +6,11 @@ extends CodeEdit
 @export var validate_syntax_on_idle: bool = true
 
 var _lines_with_errors = []
+var _executing = false
 
 
 func _input(_event: InputEvent):
-	if editable:
+	if editable and not _executing:
 		# Restart idle timer every time any input is given
 		idle_timer.start()
 
@@ -19,7 +20,7 @@ func _on_idle_timer_timeout():
 		_format_code()
 
 	if validate_syntax_on_idle:
-		_validate_syntax()
+		_ensure_valid_script()
 
 
 func _format_code():
@@ -49,13 +50,20 @@ func _format_code():
 		scroll_horizontal = scroll_progress.x
 
 
-func _validate_syntax():
+func _ensure_valid_script() -> IPZScript:
 	_clear_errors()
 
 	var script = IPZScript.new()
 	var notices = script.parse(text)
+
+	if notices.is_empty():
+		return script
+
+	# TODO: Create a popup or a panel for notices
 	for notice in notices:
 		_mark_line_as_flawed(notice.statement.line_number, notice.message)
+
+	return null
 
 
 func _clear_errors():
@@ -74,3 +82,20 @@ func _mark_line_as_flawed(line_number: int, message: String):
 		set_code_hint_draw_below(false)
 
 	_lines_with_errors.push_back(line_number)
+
+
+# Return false if script execution was prevented by active notices
+func begin_script_execution(env: ScriptEnvironment) -> bool:
+	var script = _ensure_valid_script()
+	if not script:
+		Log.warn("Script has not passed validity checks, execution prevented")
+		return false
+
+	_executing = true
+	idle_timer.stop()
+	
+	Log.log("Beginning script execution")
+	script.begin_execution(env)
+
+	_executing = false
+	return true
