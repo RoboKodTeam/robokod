@@ -1,12 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dw0lmhpqi6r72"]
+[gd_scene load_steps=6 format=3 uid="uid://dw0lmhpqi6r72"]
 
-[ext_resource type="Script" path="res://scenes/level/level.gd" id="1_cdyj5"]
-[ext_resource type="Texture2D" uid="uid://l6ixf866ghhh" path="res://assets/map/map.png" id="1_q20nl"]
-[ext_resource type="Script" path="res://scenes/level/tilemap.gd" id="3_28jnp"]
-[ext_resource type="PackedScene" uid="uid://boxe6jeyf084p" path="res://scenes/player/player.tscn" id="4_2s8ij"]
+[ext_resource type="Script" path="res://scenes/level/level.gd" id="1_h5wv8"]
+[ext_resource type="Texture2D" uid="uid://l6ixf866ghhh" path="res://assets/map/map.png" id="2_uxghe"]
+[ext_resource type="PackedScene" uid="uid://btyu5c5hxfyoj" path="res://scenes/player/controller.tscn" id="3_0i3bd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_emivj"]
-texture = ExtResource("1_q20nl")
+texture = ExtResource("2_uxghe")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -103,7 +102,7 @@ physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_emivj")
 
 [node name="Level 1" type="Node2D"]
-script = ExtResource("1_cdyj5")
+script = ExtResource("1_h5wv8")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_mbv2b")
@@ -116,7 +115,6 @@ layer_1/tile_data = PackedInt32Array(65546, 262146, 1, 65540, 262146, 2, 65544, 
 layer_2/name = "Walls_Top"
 layer_2/z_index = 3
 layer_2/tile_data = PackedInt32Array(0, 2, 0, 65536, 196610, 1, 131072, 2, 2, 196608, 196610, 1, 262144, 2, 2, 327680, 196610, 1, 393216, 196610, 1, 458752, 196610, 1, 524288, 2, 3, 1, 65538, 0, 524289, 65538, 0, 2, 65538, 0, 524290, 65538, 0, 3, 65538, 0, 524291, 65538, 0, 4, 65538, 0, 524292, 65538, 0, 5, 65538, 0, 327685, 131074, 2, 524293, 65538, 0, 6, 65538, 0, 327686, 65538, 0, 524294, 65538, 0, 7, 65538, 0, 196615, 65538, 2, 262151, 2, 2, 327687, 65538, 3, 524295, 65538, 0, 8, 65538, 0, 327688, 65538, 0, 524296, 65538, 0, 9, 65538, 0, 327689, 65538, 0, 524297, 65538, 0, 10, 65538, 0, 327690, 65538, 0, 524298, 65538, 0, 11, 196610, 0, 65547, 196610, 1, 131083, 2, 2, 196619, 196610, 1, 262155, 196610, 1, 327691, 196610, 2, 393227, 2, 2, 458763, 2, 2, 524299, 196610, 3)
-script = ExtResource("3_28jnp")
 
-[node name="PlayerContainer" parent="." instance=ExtResource("4_2s8ij")]
-position = Vector2(304, 80)
+[node name="PlayerController" parent="." instance=ExtResource("3_0i3bd")]
+player_position_grid = Vector2i(9, 3)

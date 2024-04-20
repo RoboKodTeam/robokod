@@ -22,7 +22,7 @@ func _ready():
 	editor_tab.name = Strings.TAB_EDITOR
 	docs_tab.name = Strings.TAB_DOCS
 
-	var level1_resource = preload("res://scenes/levels/level1.tscn")
+	var level1_resource = preload("res://scenes/level/level1.tscn")
 	open_level(level1_resource, "Рівень 1")
 
 	docs.text = IDEUtils.read_text_file("res://values/samples/docs.txt")
