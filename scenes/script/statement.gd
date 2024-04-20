@@ -11,7 +11,7 @@ func _init(p_line_number: int, p_level: int, p_words: PackedStringArray):
 	words = p_words
 
 
-func execute(env: ScriptEnvironment) -> Notice:
+func execute(context: ScriptExecutionContext) -> Notice:
 	var command = words[0]
 	var object_names = command.split(".")
 
@@ -23,7 +23,7 @@ func execute(env: ScriptEnvironment) -> Notice:
 
 	var entity_name = object_names[0]
 
-	var entity = env.get_entity(entity_name)
+	var entity = context.get_entity(entity_name)
 	if not entity:
 		return Notice.new(self, "Не вийшло знайти '" + entity_name + "'")
 

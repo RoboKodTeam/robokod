@@ -2,10 +2,10 @@ class_name IfCodeBlock
 extends CodeBlock
 
 
-func execute(env: ScriptEnvironment) -> Notice:
+func execute(context: ScriptExecutionContext) -> Notice:
 	# TODO: Implement expression checking
 	for statement in children:
-		var notice = await statement.execute(env)
+		var notice = await statement.execute(context)
 
 		if notice:
 			return notice

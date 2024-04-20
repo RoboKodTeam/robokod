@@ -1,16 +1,22 @@
+class_name Editor
 extends CodeEdit
 
 @onready var idle_timer = $IdleTimer
 
 @export var auto_format_on_idle: bool = true
 @export var validate_syntax_on_idle: bool = true
+var should_run_checks: bool = true:
+	set(value):
+		should_run_checks = value
+
+		if not should_run_checks:
+			idle_timer.stop()
 
 var _lines_with_errors = []
-var _executing = false
 
 
 func _input(_event: InputEvent):
-	if editable and not _executing:
+	if editable and should_run_checks:
 		# Restart idle timer every time any input is given
 		idle_timer.start()
 
@@ -20,7 +26,7 @@ func _on_idle_timer_timeout():
 		_format_code()
 
 	if validate_syntax_on_idle:
-		_ensure_valid_script()
+		_validate_script()
 
 
 func _format_code():
@@ -50,20 +56,13 @@ func _format_code():
 		scroll_horizontal = scroll_progress.x
 
 
-func _ensure_valid_script() -> RoboScript:
+func _validate_script():
 	_clear_errors()
 
-	var script = RoboScript.new()
-	var notices = script.parse(text)
-
-	if notices.is_empty():
-		return script
-
-	# TODO: Create a popup or a panel for notices
-	for notice in notices:
+	var script = get_parsed_script()
+	for notice in script.notices:
+		# TODO: Create a popup or a panel for notices
 		_mark_line_as_flawed(notice.statement.line_number, notice.message)
-
-	return null
 
 
 func _clear_errors():
@@ -84,18 +83,7 @@ func _mark_line_as_flawed(line_number: int, message: String):
 	_lines_with_errors.push_back(line_number)
 
 
-# Return false if script execution was prevented by active notices
-func begin_script_execution(env: ScriptEnvironment) -> bool:
-	var script = _ensure_valid_script()
-	if not script:
-		Log.warn("Script has not passed validity checks, execution prevented")
-		return false
-
-	_executing = true
-	idle_timer.stop()
-
-	Log.log("Beginning script execution")
-	script.begin_execution(env)
-
-	_executing = false
-	return true
+func get_parsed_script() -> RoboScript:
+	var script = RoboScript.new()
+	script.parse(text)
+	return script

@@ -1,6 +1,7 @@
+class_name Emulator
 extends Container
 
-var level: Node2D:
+var level: Level:
 	set(value):
 		for child in get_children():
 			remove_child(child)
@@ -49,7 +50,3 @@ func _notification(what):
 
 func _on_emulator_resized():
 	queue_sort()
-
-
-func get_player() -> Player:
-	return level.get_player() if level else null

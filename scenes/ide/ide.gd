@@ -38,21 +38,10 @@ func open_level(level_resource: Resource, title: String):
 
 
 func _on_run_button_pressed():
-	var env = ScriptEnvironment.new()
-
-	var player = emulator.get_player()
-	if not player:
-		Log.error("Player not found")
-		return
-
 	run_button.hide()
 	rerun_button.show()
 	stop_button.show()
 
-	env.put_entity(Strings.PLAYERS, player)
-
-	Log.log("Asking editor to begin script execution")
-	editor.begin_script_execution(env)
 
 	_on_stop_button_pressed()
 

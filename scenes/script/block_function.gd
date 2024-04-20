@@ -2,9 +2,9 @@ class_name FunctionCodeBlock
 extends CodeBlock
 
 
-func execute(env: ScriptEnvironment) -> Notice:
+func execute(context: ScriptExecutionContext) -> Notice:
 	for statement in children:
-		var notice = await statement.execute(env)
+		var notice = await statement.execute(context)
 
 		if notice:
 			return notice

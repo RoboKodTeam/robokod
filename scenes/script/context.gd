@@ -1,4 +1,4 @@
-class_name ScriptEnvironment
+class_name ScriptExecutionContext
 
 var _entities: Dictionary = {}
 
