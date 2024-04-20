@@ -19,13 +19,13 @@ func prepare_context():
 		Log.error("No level loaded into the emulator")
 		return
 
-	var player = level.get_player()
-	if not player:
+	var player_controller = level.player_controller
+	if not player_controller:
 		Log.error("No player found on the level")
 		return
 
 	_context.reset()
-	_context.put_entity(Strings.PLAYERS, player)
+	_context.put_entity(Strings.PLAYERS, player_controller)
 
 
 func run():
