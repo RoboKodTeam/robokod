@@ -41,4 +41,3 @@ func run():
 	await script.begin_execution(_context)
 
 	_editor.should_run_checks = true
-	return

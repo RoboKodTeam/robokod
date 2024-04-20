@@ -1,4 +1,15 @@
-class_name RoboScriptUtils
+class_name Utils
+
+const _TILE_HALF = Vector2(0.5, 0.5)
+
+
+static func coord_to_grid(coord: Vector2) -> Vector2i:
+	var out = coord / Dimens.TILE_SIZE - _TILE_HALF
+	return Vector2i(roundi(out.x), roundi(out.y))
+
+
+static func grid_to_coord(grid: Vector2i) -> Vector2:
+	return (Vector2(grid) + _TILE_HALF) * Dimens.TILE_SIZE
 
 
 static func string_to_int(string: String, or_else: int) -> int:
