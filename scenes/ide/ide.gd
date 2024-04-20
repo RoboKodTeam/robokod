@@ -14,6 +14,8 @@ extends Control
 @onready var docs_tab = %DocsTab
 @onready var docs = %DocsTab/Editor
 
+@onready var executor = ScriptExecutor.new(emulator, editor)
+
 
 func _ready():
 	emulator_tab.name = Strings.TAB_EMULATOR
@@ -42,6 +44,8 @@ func _on_run_button_pressed():
 	rerun_button.show()
 	stop_button.show()
 
+	executor.prepare_context()
+	await executor.run()
 
 	_on_stop_button_pressed()
 
