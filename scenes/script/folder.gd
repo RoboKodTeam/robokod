@@ -19,7 +19,7 @@ static func _group_into_code_block(
 ) -> CodeBlock:
 	Log.log("Folding code block at level", level_to_process)
 
-	var out = RoboScriptUtils.get_code_block(main)
+	var out = RoboScriptFolder.get_code_block(main)
 
 	var last: Statement = null
 	while iterator.has_next():
@@ -52,6 +52,19 @@ static func _group_into_code_block(
 		out.children.push_back(last)
 
 	return out
+
+
+static func get_code_block(main: Statement) -> CodeBlock:
+	var command = main.words[0]
+
+	if command in Strings.KEYWORDS_FUNCTION:
+		return FunctionCodeBlock.new(main)
+
+	if command in Strings.KEYWORDS_IF:
+		return IfCodeBlock.new(main)
+
+	Log.warn("Code block at line", main.line_number, "unidentified:", main.words)
+	return CodeBlock.new(main)
 
 
 class StatementsArrayIterator:
