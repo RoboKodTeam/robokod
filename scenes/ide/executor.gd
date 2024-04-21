@@ -3,7 +3,7 @@ class_name ScriptExecutor
 var _emulator: Emulator
 var _editor: Editor
 
-var _context = ScriptExecutionContext.new()
+var _context: ScriptExecutionContext = null
 
 
 func _init(emulator: Emulator, editor: Editor):
@@ -13,8 +13,7 @@ func _init(emulator: Emulator, editor: Editor):
 
 func prepare_context():
 	Log.log("Preparing execution context")
-	# TODO: Maybe don't reuse the same context object
-	_context.reset()
+	_context = ScriptExecutionContext.new()
 
 	_context.put_entity(Strings.PLAYERS, _get_player_entity())
 
@@ -23,12 +22,12 @@ func _get_player_entity() -> ContextEntity:
 	var level = _emulator.level
 	if not level:
 		Log.error("No level loaded into the emulator")
-		return
+		return null
 
 	var player = level.player
 	if not player:
 		Log.error("No player found on the level")
-		return
+		return null
 
 	# Put player into the appropriate adapter
 	var player_adapter = PlayerAdapter.new(player)
@@ -36,6 +35,10 @@ func _get_player_entity() -> ContextEntity:
 
 
 func run():
+	if not _context:
+		Log.error("Context is not initialized")
+		return
+
 	var script = _editor.get_parsed_script()
 	if not script:
 		Log.warn("Script has not passed validity checks, execution prevented")
