@@ -19,8 +19,8 @@ func prepare_context():
 		Log.error("No level loaded into the emulator")
 		return
 
-	var player_controller = level.player_controller
-	if not player_controller:
+	var player = level.player
+	if not player:
 		Log.error("No player found on the level")
 		return
 
