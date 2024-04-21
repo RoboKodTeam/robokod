@@ -57,6 +57,8 @@ func _on_rerun_button_pressed():
 
 
 func _on_stop_button_pressed():
+	_executor.interrupt()
+
 	run_button.show()
 	rerun_button.hide()
 	stop_button.hide()

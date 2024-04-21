@@ -4,6 +4,7 @@ var _emulator: Emulator
 var _editor: Editor
 
 var _context: ScriptExecutionContext = null
+var _interrupted = false
 
 
 func _init(emulator: Emulator, editor: Editor):
@@ -15,10 +16,12 @@ func prepare_context():
 	Log.log("Preparing execution context")
 	_context = ScriptExecutionContext.new()
 
-	_context.put_entity(Strings.PLAYERS, _get_player_entity())
+	# Put player into the appropriate adapter and put into context
+	var player_adapter = PlayerAdapter.new(_get_player())
+	_context.put_entity(Strings.PLAYERS, player_adapter)
 
 
-func _get_player_entity() -> ContextEntity:
+func _get_player() -> Node2D:
 	var level = _emulator.level
 	if not level:
 		Log.error("No level loaded into the emulator")
@@ -29,9 +32,7 @@ func _get_player_entity() -> ContextEntity:
 		Log.error("No player found on the level")
 		return null
 
-	# Put player into the appropriate adapter
-	var player_adapter = PlayerAdapter.new(player)
-	return player_adapter
+	return player
 
 
 func run():
@@ -44,14 +45,24 @@ func run():
 		Log.warn("Script has not passed validity checks, execution prevented")
 		return
 
+	_interrupted = false
 	# Temporarily pause any editor checks to improve performance
 	_editor.should_run_checks = false
 
 	Log.log("Asking editor to begin script execution")
-	await script.begin_execution(_context)
+	var notice = await script.execute(_context)
 
 	# TODO: Show notices to the user
 	if notice and not _interrupted:
 		Log.error(notice.message, "at line", notice.statement.line_number)
 
 	_editor.should_run_checks = true
+
+
+func interrupt():
+	if not _context:
+		Log.error("Context is not initialized")
+		return
+
+	_context.reset()
+	_interrupted = true
