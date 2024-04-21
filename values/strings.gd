@@ -21,5 +21,5 @@ const ERROR_COLON_MISSING = "Укінці рядка потрібна двокр
 const ERROR_COLON_INDENT = "Після двокрапки потрібно відступити вправо"
 const ERROR_NOT_FUNCTION = "Цей рядок повинен мати відступ, інакше він не попадає в межі функції"
 
-const NOTICE_PLAYER_COLLIDED = "Гравець зіткнувся з перешкодою"
 const NOTICE_PLAYER_ALREADY_IN_AIR = "Гравець уже в повітрі"
+const NOTICE_PLAYER_COLLIDED_WITH_OBSTACLE = "Гравець зіткнувся з перешкодою"

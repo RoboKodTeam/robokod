@@ -3,11 +3,7 @@ extends ContextEntity
 
 
 func take_off(_ignored: String = ""):
-	var took_off_successfully = await _entity.take_off()
-
-	# Return error message if already in air
-	if not took_off_successfully:
-		return Strings.NOTICE_PLAYER_ALREADY_IN_AIR
+	return await _entity.take_off()
 
 
 func злетіти(s_ignored: String = ""):
@@ -57,8 +53,4 @@ func _move(s_steps: String, direction: Vector2i):
 	var steps_delta = direction * steps
 
 	# Pass the vector to the entity
-	var moved_successfully = await _entity.move_by(steps_delta)
-
-	# Return error message if collided
-	if not moved_successfully:
-		return Strings.NOTICE_PLAYER_COLLIDED
+	return await _entity.move_by(steps_delta)

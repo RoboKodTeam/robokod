@@ -17,7 +17,8 @@ var _player: Player
 		return Utils.coord_to_grid(_player.position)
 
 
-func take_off() -> bool:
+func take_off():
+	# Pass optional result
 	return await _player.take_off()
 
 
@@ -30,5 +31,5 @@ func move_by(position_grid_delta: Vector2i):
 
 	# Translate grid movement vector to delta
 	var target = Utils.grid_to_coord(target_grid)
-	# Return movement result
+	# Pass optional result
 	return await _player.move_to(target)
