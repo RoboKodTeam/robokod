@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpccb62c88nsd"
-path="res://.godot/imported/idle.png-9b732fb83b0727a5dadbdf7dbbfecf27.ctex"
+uid="uid://gtg7odiy8x8v"
+path="res://.godot/imported/walk.png-b52ed07571025676f756c15db1ab97f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/drone/idle.png"
-dest_files=["res://.godot/imported/idle.png-9b732fb83b0727a5dadbdf7dbbfecf27.ctex"]
+source_file="res://assets/copter/walk.png"
+dest_files=["res://.godot/imported/walk.png-b52ed07571025676f756c15db1ab97f5.ctex"]
 
 [params]
 
