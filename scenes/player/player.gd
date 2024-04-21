@@ -5,12 +5,25 @@ extends CharacterBody2D
 
 @onready var target = Vector2(position)
 
+var in_the_air = false
 var is_alive = true
 var is_moving = false
 signal movement_finished
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+
+func take_off() -> bool:
+	if in_the_air:
+		# Already in the air
+		return false
+
+	in_the_air = true
+	sprite.play("take_off")
+	await sprite.animation_finished
+
+	# Took off successfully
+	return true
 
 
 func move_to(new_target: Vector2) -> bool:

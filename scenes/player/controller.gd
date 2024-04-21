@@ -17,6 +17,10 @@ var _player: Player
 		return Utils.coord_to_grid(_player.position)
 
 
+func take_off() -> bool:
+	return await _player.take_off()
+
+
 # Alias with applied conversions to grid coordinates
 func move_by(position_grid_delta: Vector2i):
 	# Get new target

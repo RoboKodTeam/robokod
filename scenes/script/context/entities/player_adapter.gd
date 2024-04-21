@@ -2,6 +2,18 @@ class_name PlayerAdapter
 extends ContextEntity
 
 
+func take_off(_ignored: String = ""):
+	var took_off_successfully = await _entity.take_off()
+
+	# Return error message if already in air
+	if not took_off_successfully:
+		return Strings.NOTICE_PLAYER_ALREADY_IN_AIR
+
+
+func злетіти(s_ignored: String = ""):
+	return await take_off(s_ignored)
+
+
 func up(s_steps: String = "1"):
 	return await _move(s_steps, Vector2i(0, -1))
 
