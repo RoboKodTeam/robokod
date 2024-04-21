@@ -24,8 +24,12 @@ func prepare_context():
 		Log.error("No player found on the level")
 		return
 
+	# TODO: Maybe don't reuse the same context object
 	_context.reset()
-	_context.put_entity(Strings.PLAYERS, player_controller)
+
+	# Put player into the appropriate adapter
+	var player_adapter = PlayerAdapter.new(player)
+	_context.put_entity(Strings.PLAYERS, player_adapter)
 
 
 func run():

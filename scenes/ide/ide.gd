@@ -44,7 +44,9 @@ func _on_run_button_pressed():
 	rerun_button.show()
 	stop_button.show()
 
+	# Prepare context for the script to run within
 	executor.prepare_context()
+	# Await for executor to finish
 	await executor.run()
 
 	_on_stop_button_pressed()
