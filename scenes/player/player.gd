@@ -32,7 +32,8 @@ func move_to(new_target: Vector2):
 	target = new_target
 
 	# Wait for _physics_process(delta) function to finish movement
-	await movement_finished
+	# Return error message if passed
+	return await movement_finished
 
 
 func _physics_process(delta: float):

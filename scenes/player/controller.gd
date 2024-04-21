@@ -70,4 +70,5 @@ func _move(s_steps: String, direction: Vector2i):
 
 	# Translate grid movement vector to delta
 	var target = Utils.grid_to_coord(target_grid)
-	await _player.move_to(target)
+	# Return error message if passed
+	return await _player.move_to(target)
