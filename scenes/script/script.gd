@@ -13,10 +13,10 @@ func parse(text: String):
 		_script_block = RoboScriptFolder.fold(statements)
 
 
-func begin_execution(context: ScriptExecutionContext):
+func execute(context: ScriptExecutionContext) -> Notice:
 	if not _script_block:
 		Log.warn("Script has not passed validity checks, execution prevented")
-		return
+		return null
 
 	for statement in _script_block.children:
 		if statement is FunctionCodeBlock:
@@ -25,9 +25,10 @@ func begin_execution(context: ScriptExecutionContext):
 
 				var notice = await statement.execute(context)
 				if notice:
-					Log.error(notice.message, "at line", notice.statement.line_number)
+					return notice
 
 				Log.info("Execution finished")
-				return
+				return null
 
 	Log.info("Start function not found")
+	return null

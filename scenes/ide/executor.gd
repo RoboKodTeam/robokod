@@ -50,4 +50,8 @@ func run():
 	Log.log("Asking editor to begin script execution")
 	await script.begin_execution(_context)
 
+	# TODO: Show notices to the user
+	if notice and not _interrupted:
+		Log.error(notice.message, "at line", notice.statement.line_number)
+
 	_editor.should_run_checks = true
