@@ -359,7 +359,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5ry5"]
 size = Vector2(20, 21)
 
-[node name="Drone" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 z_index = 2
 collision_layer = 2
 script = ExtResource("1_82ej6")
@@ -371,5 +371,6 @@ sprite_frames = SubResource("SpriteFrames_sequy")
 animation = &"take_off"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -16.5)
 shape = SubResource("RectangleShape2D_x5ry5")
