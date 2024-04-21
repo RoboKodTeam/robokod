@@ -20,3 +20,5 @@ const FUNCTIONS_START = ["start", "почати"]
 const ERROR_COLON_MISSING = "Укінці рядка потрібна двокрапка"
 const ERROR_COLON_INDENT = "Після двокрапки потрібно відступити вправо"
 const ERROR_NOT_FUNCTION = "Цей рядок повинен мати відступ, інакше він не попадає в межі функції"
+
+const NOTICE_PLAYER_COLLIDED = "Гравець зіткнувся з перешкодою"

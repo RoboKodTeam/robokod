@@ -12,11 +12,8 @@ signal movement_finished
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
-func move_to(new_target: Vector2):
-	# Return if player is dead
-	if not is_alive:
-		return
 
+func move_to(new_target: Vector2) -> bool:
 	Log.log("Moving from", position, "to", new_target)
 
 	is_moving = true
@@ -32,7 +29,6 @@ func move_to(new_target: Vector2):
 	target = new_target
 
 	# Wait for _physics_process(delta) function to finish movement
-	# Return error message if passed
 	return await movement_finished
 
 
@@ -54,10 +50,11 @@ func _physics_process(delta: float):
 		is_alive = false
 		is_moving = false
 		sprite.play("death")
-		movement_finished.emit("Гравець зіткнувся з перешкодою")
+		# Player collided with some obstacle
+		movement_finished.emit(false)
 
 	# Finish player moving
 	if is_moving:
 		is_moving = false
 		sprite.play("idle")
-		movement_finished.emit()
+		movement_finished.emit(true)

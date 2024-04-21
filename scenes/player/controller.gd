@@ -26,5 +26,5 @@ func move_by(position_grid_delta: Vector2i):
 
 	# Translate grid movement vector to delta
 	var target = Utils.grid_to_coord(target_grid)
-	# Return error message if passed
+	# Return movement result
 	return await _player.move_to(target)

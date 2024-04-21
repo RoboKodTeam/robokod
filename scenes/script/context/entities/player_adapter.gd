@@ -45,5 +45,8 @@ func _move(s_steps: String, direction: Vector2i):
 	var steps_delta = direction * steps
 
 	# Pass the vector to the entity
-	# Return error message if passed
-	return await _entity.move_by(steps_delta)
+	var moved_successfully = await _entity.move_by(steps_delta)
+
+	# Return error message if collided
+	if not moved_successfully:
+		return Strings.NOTICE_PLAYER_COLLIDED
