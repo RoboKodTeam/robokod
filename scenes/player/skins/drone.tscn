@@ -282,7 +282,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_s6b71")
 }],
 "loop": false,
-"name": &"turn_off",
+"name": &"land",
 "speed": 9.0
 }, {
 "frames": [{
@@ -335,7 +335,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_2vr47")
 }],
 "loop": false,
-"name": &"turn_on",
+"name": &"take_off",
 "speed": 9.0
 }, {
 "frames": [{
@@ -365,11 +365,10 @@ collision_layer = 2
 script = ExtResource("1_ud4pi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -10)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_sequy")
-animation = &"idle"
-autoplay = "idle"
+animation = &"take_off"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16.5)
