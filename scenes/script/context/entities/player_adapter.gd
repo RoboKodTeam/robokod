@@ -35,9 +35,6 @@ func вправо(s_steps: String = "1"):
 
 
 func _move(s_steps: String, direction: Vector2i):
-	if not _entity:
-		return
-
 	# Parse steps argument
 	var steps = Utils.string_to_int(s_steps, 0)
 	# Calculate directed movement vector

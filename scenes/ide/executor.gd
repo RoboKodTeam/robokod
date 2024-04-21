@@ -13,7 +13,13 @@ func _init(emulator: Emulator, editor: Editor):
 
 func prepare_context():
 	Log.log("Preparing execution context")
+	# TODO: Maybe don't reuse the same context object
+	_context.reset()
 
+	_context.put_entity(Strings.PLAYERS, _get_player_entity())
+
+
+func _get_player_entity() -> ContextEntity:
 	var level = _emulator.level
 	if not level:
 		Log.error("No level loaded into the emulator")
@@ -24,12 +30,9 @@ func prepare_context():
 		Log.error("No player found on the level")
 		return
 
-	# TODO: Maybe don't reuse the same context object
-	_context.reset()
-
 	# Put player into the appropriate adapter
 	var player_adapter = PlayerAdapter.new(player)
-	_context.put_entity(Strings.PLAYERS, player_adapter)
+	return player_adapter
 
 
 func run():
