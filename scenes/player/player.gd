@@ -24,6 +24,8 @@ func take_off():
 
 
 func move_to(new_target: Vector2):
+	if not in_the_air:
+		return Strings.NOTICE_PLAYER_NOT_IN_AIR_YET
 
 	Log.log("Moving from", position, "to", new_target)
 
