@@ -1,6 +1,10 @@
 # Godot 4+ specific ignores
 /.godot/
 
+# Plugins and dependencies
+/.plugged/
+/addons/
+
 # OS specific
 desktop.ini
 
