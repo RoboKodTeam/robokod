@@ -7,6 +7,9 @@
 !/addons/gd-plug
 !/addons/godot-git-plugin
 
+# Custom preference files
+/console.properties
+
 # OS specific
 desktop.ini
 
