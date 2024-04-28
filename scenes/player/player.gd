@@ -15,11 +15,19 @@ signal movement_finished
 
 func take_off():
 	if in_the_air:
-		# Already in the air
 		return Strings.NOTICE_PLAYER_ALREADY_IN_AIR
 
 	in_the_air = true
 	sprite.play("take_off")
+	await sprite.animation_finished
+
+
+func land():
+	if not in_the_air:
+		return Strings.NOTICE_PLAYER_NOT_IN_AIR_YET
+
+	in_the_air = false
+	sprite.play("land")
 	await sprite.animation_finished
 
 

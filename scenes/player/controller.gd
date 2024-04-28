@@ -22,6 +22,11 @@ func take_off():
 	return await _player.take_off()
 
 
+func land():
+	# Pass optional result
+	return await _player.land()
+
+
 # Alias with applied conversions to grid coordinates
 func move_by(position_grid_delta: Vector2i):
 	# Get new target

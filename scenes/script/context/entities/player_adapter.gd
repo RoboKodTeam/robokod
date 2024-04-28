@@ -6,8 +6,16 @@ func take_off(_ignored: String = ""):
 	return await _entity.take_off()
 
 
-func злетіти(s_ignored: String = ""):
-	return await take_off(s_ignored)
+func злетіти(_ignored: String = ""):
+	return await take_off()
+
+
+func land(_ignored: String = ""):
+	return await _entity.land()
+
+
+func сісти(_ignored: String = ""):
+	return await land()
 
 
 func up(s_steps: String = "1"):
