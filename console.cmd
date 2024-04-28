@@ -10,20 +10,23 @@ if not exist "C:\Program Files (x86)" (
 
 pushd "%~dp0"
 
-set $CONSOLE_PROPS=console.properties
+set $FALSE=0
+set $TRUE=1
 
-title Project Command Prompt v1.2
+set $PROPS=console.properties
+
+title Project Command Prompt v1.3
 cls
 
 
 
 rem Read custom console properties if available
-for /f "delims=" %%i in ('type "%$CONSOLE_PROPS%" 2^>nul') do call set %%i
+for /f "delims=" %%i in ('type "%$PROPS%" 2^>nul') do call set %%i
 
 rem Ensure engine root is specified
 if not exist "%$ENGINE_ROOT%" (
     echo.^(x^) Engine root not found
-    echo.    Use %$CONSOLE_PROPS% to set the root dir as follows: $ENGINE_ROOT=[path]
+    echo.    Use %$PROPS% to set the root dir as follows: $ENGINE_ROOT=[path]
     exit /b
 )
 
@@ -36,6 +39,23 @@ for %%i in ("%$ENGINE_ROOT%\*win64_console.exe") do set $ENGINE_CONSOLE=%%~nxi
 
 rem Append engine root to the path
 path %$ENGINE_ROOT%;%PATH%
+
+
+rem Check native VCS availability
+git>nul 2>nul
+if !errorLevel! == 9009 (
+       set isGitAvailable=%$FALSE%
+) else set isGitAvailable=%$TRUE%
+
+rem Append VCS root to the path
+rem Must not include brackets
+if "%isGitAvailable%" == "%$FALSE%" if exist "%$VCS_ROOT%" path %$VCS_ROOT%;%PATH%
+
+rem Check VCS availability again
+git>nul 2>nul
+if !errorLevel! == 9009 (
+       set isGitAvailable=%$FALSE%
+) else set isGitAvailable=%$TRUE%
 
 
 rem Setup custom command shortcuts
@@ -53,20 +73,19 @@ echo.^(i^) Welcome to the Project Command Prompt
 echo.    Here's a quick help below to help you out
 echo.
 
-git>nul 2>nul
-if %errorLevel% NEQ 9009 (
+if "%isGitAvailable%" == "%$TRUE%" (
     echo.    git                                access the VCS
     echo.    git branch --all                   show all local and remote branches
     echo.    git switch -c demo origin/demo     create and switch to a specific remote branch
     echo.    git fetch                          fetch updates
     echo.    git pull                           update current branch
     echo.
+    echo.    plug                               access plugin manager
+    echo.    plug install                       install dependencies
+    echo.    plug uninstall                     uninstall dependencies
+    echo.
 )
 
-echo.    plug                               access plugin manager
-echo.    plug install                       install dependencies
-echo.    plug uninstall                     uninstall dependencies
-echo.
 echo.    editor                             open the project in the editor
 echo.    editor-opengl3                     open the project in the editor with OpenGL ES 3 support
 echo.
