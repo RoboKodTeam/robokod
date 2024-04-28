@@ -3,6 +3,8 @@ extends "res://addons/gd-plug/plug.gd"
 
 func _plugging():
 	# [Godot Engine UI]
+	# gd-plug UI integration
+	plug("imjp94/gd-plug-ui")
 	# Automatic script formatting
 	plug("ryan-haskell/gdformat-on-save")
 	# ToDo editor tab
