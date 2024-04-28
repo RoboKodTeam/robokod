@@ -3,7 +3,9 @@
 
 # Plugins and dependencies
 /.plugged/
-/addons/
+/addons/*
+!/addons/gd-plug
+!/addons/godot-git-plugin
 
 # OS specific
 desktop.ini
