@@ -46,7 +46,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/format_on_save/plugin.cfg", "res://addons/log/plugin.cfg", "res://addons/script-dock/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/format_on_save/plugin.cfg", "res://addons/log/plugin.cfg")
 
 [file_customization]
 
