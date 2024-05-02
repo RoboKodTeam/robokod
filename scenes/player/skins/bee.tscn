@@ -256,9 +256,7 @@ script = ExtResource("1_7syx3")
 position = Vector2(0, -10)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_sequy")
-animation = &"death"
-frame = 5
-frame_progress = 1.0
+animation = &"take_off"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16.5)
