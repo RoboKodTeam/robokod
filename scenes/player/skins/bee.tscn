@@ -1,9 +1,34 @@
-[gd_scene load_steps=31 format=3 uid="uid://b3cbjcm5ylnw"]
+[gd_scene load_steps=38 format=3 uid="uid://b3cbjcm5ylnw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_7syx3"]
+[ext_resource type="Texture2D" uid="uid://ciiofppjeuo1q" path="res://assets/bee/death.png" id="2_lo8on"]
 [ext_resource type="Texture2D" uid="uid://de6f1pvc1uix0" path="res://assets/bee/idle.png" id="2_wet34"]
 [ext_resource type="Texture2D" uid="uid://bmiaicu2y7xu5" path="res://assets/bee/land.png" id="3_sofbp"]
 [ext_resource type="Texture2D" uid="uid://cdu1nb86w7re5" path="res://assets/bee/walk.png" id="4_lu6m3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wk35j"]
+atlas = ExtResource("2_lo8on")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbrpi"]
+atlas = ExtResource("2_lo8on")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wme4l"]
+atlas = ExtResource("2_lo8on")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhf7d"]
+atlas = ExtResource("2_lo8on")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jm6h3"]
+atlas = ExtResource("2_lo8on")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4twe"]
+atlas = ExtResource("2_lo8on")
+region = Rect2(240, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n4kne"]
 atlas = ExtResource("2_wet34")
@@ -103,7 +128,25 @@ region = Rect2(144, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sequy"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wk35j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbrpi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wme4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhf7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jm6h3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4twe")
+}],
 "loop": false,
 "name": &"death",
 "speed": 9.0
