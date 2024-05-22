@@ -14,7 +14,7 @@ config/name="РобоКод"
 config/version="0.1.0"
 run/main_scene="res://scenes/ide/ide.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/logo/logo.svg"
 
 [autoload]
 
