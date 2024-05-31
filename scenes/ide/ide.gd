@@ -22,17 +22,17 @@ func _ready():
 	editor_tab.name = Strings.TAB_EDITOR
 	docs_tab.name = Strings.TAB_DOCS
 
-	var level_name = "Рівень 1"
-	var level_sample = Utils.read_text_file("res://values/samples/level1.txt")
-	var level_resource = preload("res://scenes/level/level1.tscn")
-	open_level(level_name, level_sample, level_resource)
-
 	docs.text = Utils.read_text_file("res://values/samples/docs.txt")
 
 
-func open_level(title: String, level_sample: String, level_resource: Resource):
+func open_level(level_name: String, level_sample: String, level_resource: Resource):
+	Log.info("Opening level")
+	Log.info("  - level_name:    ", level_name)
+	Log.info("  - level_sample:  ", level_sample)
+	Log.info("  - level_resource:", level_resource)
+
 	# Update window title
-	window_title_bar.title = Strings.PROGRAM_NAME + " | " + title
+	window_title_bar.title = Strings.PROGRAM_NAME + " | " + level_name
 	# Add sample code to the editor
 	editor.text = level_sample
 	# Setup emulator

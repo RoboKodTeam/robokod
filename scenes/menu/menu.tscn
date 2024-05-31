@@ -57,3 +57,5 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme = ExtResource("3_2p7e2")
 text = "Settings"
+
+[connection signal="pressed" from="VSplitContainer/BackgroundPanel/CenterContainer/MenuButtons/AdventureButton" to="." method="_on_adventure_button_pressed"]
