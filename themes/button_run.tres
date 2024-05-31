@@ -1,69 +1,10 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://cl1dlavvcxhae"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dy0l4"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.3)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_281tm"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.75)
-draw_center = false
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lt33"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.225, 0.225, 0.225, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nymlk"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xn1sc"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[ext_resource type="StyleBox" uid="uid://b3mp4cibnbquu" path="res://themes/button/box_disabled.tres" id="1_xwlx3"]
+[ext_resource type="StyleBox" uid="uid://c84fibfi4ae0r" path="res://themes/button/box_focus.tres" id="2_wxn80"]
+[ext_resource type="StyleBox" uid="uid://dfhpfy0y0812i" path="res://themes/button/box_hover.tres" id="3_f418u"]
+[ext_resource type="StyleBox" uid="uid://de1gkn3xs6yei" path="res://themes/button/box_normal.tres" id="4_dp6x3"]
+[ext_resource type="StyleBox" uid="uid://cajsiqkwuiusu" path="res://themes/button/box_pressed.tres" id="5_lk4sr"]
 
 [resource]
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
@@ -83,8 +24,8 @@ Button/constants/h_separation = 4
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 16
-Button/styles/disabled = SubResource("StyleBoxFlat_dy0l4")
-Button/styles/focus = SubResource("StyleBoxFlat_281tm")
-Button/styles/hover = SubResource("StyleBoxFlat_0lt33")
-Button/styles/normal = SubResource("StyleBoxFlat_nymlk")
-Button/styles/pressed = SubResource("StyleBoxFlat_xn1sc")
+Button/styles/disabled = ExtResource("1_xwlx3")
+Button/styles/focus = ExtResource("2_wxn80")
+Button/styles/hover = ExtResource("3_f418u")
+Button/styles/normal = ExtResource("4_dp6x3")
+Button/styles/pressed = ExtResource("5_lk4sr")
