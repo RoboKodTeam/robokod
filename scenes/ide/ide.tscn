@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://c8srtbtnoy6kp"]
+[gd_scene load_steps=16 format=3 uid="uid://c8srtbtnoy6kp"]
 
 [ext_resource type="PackedScene" uid="uid://h7jxouflro7b" path="res://scenes/editor/editor.tscn" id="1_i4rgn"]
 [ext_resource type="Script" path="res://scenes/ide/emulator.gd" id="1_j2mda"]
 [ext_resource type="Script" path="res://scenes/editor/highlighter/init.gd" id="1_vh56v"]
 [ext_resource type="Script" path="res://scenes/ide/ide.gd" id="1_y1i8u"]
+[ext_resource type="Theme" uid="uid://chj84vkt4bh5u" path="res://themes/split_container.tres" id="2_4yct5"]
 [ext_resource type="Texture2D" uid="uid://d3aihr36gcahs" path="res://assets/ui/play_arrow_FILL0_wght400_GRAD0_opsz24.svg" id="2_34dbq"]
 [ext_resource type="PackedScene" uid="uid://ct057knhhefxu" path="res://scenes/ui/window_title_bar.tscn" id="2_840d0"]
 [ext_resource type="Texture2D" uid="uid://cxxmjyskwsxy8" path="res://assets/ui/replay_FILL0_wght400_GRAD0_opsz24.svg" id="3_ncn61"]
@@ -35,6 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_4yct5")
 dragger_visibility = 1
 
 [node name="WindowTitleBar" parent="VSplitContainer" instance=ExtResource("2_840d0")]
@@ -42,6 +44,7 @@ layout_mode = 2
 
 [node name="WindowContent" type="HSplitContainer" parent="VSplitContainer"]
 layout_mode = 2
+theme = ExtResource("2_4yct5")
 split_offset = 1280
 
 [node name="EmulatorBox" type="Control" parent="VSplitContainer/WindowContent"]
