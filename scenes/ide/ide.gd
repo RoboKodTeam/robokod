@@ -1,6 +1,6 @@
 extends Control
 
-@onready var window_title = %WindowTitle
+@onready var window_title_bar = $VSplitContainer/WindowTitleBar
 
 @onready var emulator_tab = %EmulatorTab
 @onready var emulator = %Emulator
@@ -33,7 +33,7 @@ func open_level(level_resource: Resource, title: String):
 	emulator.level = level_resource.instantiate()
 
 	# Update window title
-	window_title.text = Strings.PROGRAM_TITLE + " | " + title
+	window_title_bar.title = Strings.PROGRAM_NAME + " | " + title
 
 	# Add sample code to the editor
 	editor.text = IDEUtils.read_text_file("res://values/samples/level1.txt")
@@ -62,13 +62,3 @@ func _on_stop_button_pressed():
 	run_button.show()
 	rerun_button.hide()
 	stop_button.hide()
-
-
-func _on_minimize_button_pressed():
-	Log.info("Minimizing window...")
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MINIMIZED)
-
-
-func _on_close_button_pressed():
-	Log.info("Closing application...")
-	get_tree().quit()

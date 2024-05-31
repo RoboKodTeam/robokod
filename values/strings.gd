@@ -1,10 +1,12 @@
 extends Node
 
-var PROGRAM_TITLE = (
-	ProjectSettings.get_setting("application/config/name")
-	+ " v"
-	+ ProjectSettings.get_setting("application/config/version")
-)
+var PROGRAM_NAME = ProjectSettings.get_setting("application/config/name")
+var PROGRAM_VERSION = ProjectSettings.get_setting("application/config/version")
+#var PROGRAM_TITLE = PROGRAM_NAME + " v" + PROGRAM_VERSION
+
+const MENU_BTN_ADVENTURE = "Пригода"
+const MENU_BTN_CONSTRUCTOR = "Конструктор"
+const MENU_BTN_SETTINGS = "Налаштування"
 
 const TAB_EMULATOR = "Виконавець коду"
 const TAB_EDITOR = "Редактор коду"
