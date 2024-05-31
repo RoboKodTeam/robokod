@@ -20,6 +20,7 @@ expand_mode = 2
 
 [node name="TitleLabel" type="Label" parent="WindowCredentials"]
 layout_mode = 2
+text = "TitleLabel"
 
 [node name="WindowControls" type="HBoxContainer" parent="."]
 layout_mode = 2
