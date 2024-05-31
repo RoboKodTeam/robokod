@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://bb0rcqppqq1x5"]
+
+[ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_23kc7"]
+[ext_resource type="Theme" uid="uid://chj84vkt4bh5u" path="res://themes/split_container.tres" id="2_n0dcn"]
+[ext_resource type="PackedScene" uid="uid://ct057knhhefxu" path="res://scenes/ui/window_title_bar.tscn" id="2_tu1kk"]
+[ext_resource type="Theme" uid="uid://d0t821eaekm7f" path="res://themes/button_menu.tres" id="3_2p7e2"]
+[ext_resource type="StyleBox" uid="uid://bfsujfyi0vvd1" path="res://themes/panel_menu.tres" id="4_gea31"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_23kc7")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_n0dcn")
+dragger_visibility = 1
+
+[node name="WindowTitleBar" parent="VSplitContainer" instance=ExtResource("2_tu1kk")]
+layout_mode = 2
+
+[node name="BackgroundPanel" type="PanelContainer" parent="VSplitContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_gea31")
+
+[node name="CenterContainer" type="CenterContainer" parent="VSplitContainer/BackgroundPanel"]
+layout_mode = 2
+
+[node name="MenuButtons" type="VBoxContainer" parent="VSplitContainer/BackgroundPanel/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="AdventureButton" type="Button" parent="VSplitContainer/BackgroundPanel/CenterContainer/MenuButtons"]
+custom_minimum_size = Vector2(400, 120)
+layout_mode = 2
+theme = ExtResource("3_2p7e2")
+text = "Adventure"
+
+[node name="ConstructorButton" type="Button" parent="VSplitContainer/BackgroundPanel/CenterContainer/MenuButtons"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("3_2p7e2")
+text = "Constructor"
+
+[node name="SettingsButton" type="Button" parent="VSplitContainer/BackgroundPanel/CenterContainer/MenuButtons"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("3_2p7e2")
+text = "Settings"
