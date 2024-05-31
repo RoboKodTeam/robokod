@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_23kc7"]
 [ext_resource type="Theme" uid="uid://chj84vkt4bh5u" path="res://themes/split_container.tres" id="2_n0dcn"]
 [ext_resource type="PackedScene" uid="uid://ct057knhhefxu" path="res://scenes/ui/window_title_bar.tscn" id="2_tu1kk"]
-[ext_resource type="Theme" uid="uid://d0t821eaekm7f" path="res://themes/button_menu.tres" id="3_2p7e2"]
-[ext_resource type="StyleBox" uid="uid://bfsujfyi0vvd1" path="res://themes/panel_menu.tres" id="4_gea31"]
+[ext_resource type="Theme" uid="uid://d0t821eaekm7f" path="res://themes/menu/menu_button.tres" id="3_2p7e2"]
+[ext_resource type="StyleBox" uid="uid://bfsujfyi0vvd1" path="res://themes/menu/box_menu_panel.tres" id="4_gea31"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
