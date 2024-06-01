@@ -1,0 +1,10 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://br1msp6plpgwr"]
+
+[ext_resource type="FontFile" uid="uid://bylysp813blnp" path="res://fonts/JetBrainsMono-Variable.ttf" id="1_y2i4a"]
+
+[resource]
+base_font = ExtResource("1_y2i4a")
+variation_opentype = {
+2003265652: 600
+}
+spacing_glyph = 12
