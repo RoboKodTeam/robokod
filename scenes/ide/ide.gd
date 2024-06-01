@@ -31,7 +31,7 @@ func open_level(level_name: String, level_sample: String, level_resource: Resour
 	Log.info("  - level_resource:", level_resource)
 
 	# Update window title
-	window_title_bar.title = Strings.PROGRAM_NAME + " | " + level_name
+	window_title_bar.title = level_name
 	# Add sample code to the editor
 	editor.text = level_sample
 	# Setup emulator
