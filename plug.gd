@@ -11,6 +11,8 @@ func _plugging():
 	plug("ryan-haskell/gdformat-on-save")
 	# ToDo editor tab
 	plug("OrigamiDev-Pete/TODO_Manager", {"exclude": ["addons/Todo_Manager/doc"]})
+	# Project time tracker
+	plug("victormajida/project-time-tracker")
 
 	# [Development and debugging]
 	# Event logger
