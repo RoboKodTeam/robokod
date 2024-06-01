@@ -9,6 +9,8 @@ func _plugging():
 	plug("MakovWait/godot-script-tabs")
 	# Automatic script formatting
 	plug("ryan-haskell/gdformat-on-save")
+	# Signal visualizer
+	plug("Ericdowney/SignalVisualizer")
 	# ToDo editor tab
 	plug("OrigamiDev-Pete/TODO_Manager", {"exclude": ["addons/Todo_Manager/doc"]})
 	# Project time tracker
@@ -17,7 +19,6 @@ func _plugging():
 	# [Development and debugging]
 	# Event logger
 	plug("russmatney/log.gd", {"include": ["addons/log"]})
-
 
 # Managed manually
 # imjp94/gd-plug

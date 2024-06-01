@@ -20,6 +20,7 @@ config/icon="res://assets/logo/logo.svg"
 
 Strings="*res://values/strings.gd"
 Dimens="*res://values/dimens.gd"
+Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
 
 [debug]
 
