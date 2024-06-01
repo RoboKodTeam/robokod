@@ -28,7 +28,7 @@ func _draw():
 	# Set level bubble text
 	label.text = _level_id
 	# Apply alpha when button is disabled
-	label.label_settings.font_color = Color(label_color, 0.3 if disabled else 1)
+	label.label_settings.font_color = Color(label_color, 0.3 if disabled else 1.0)
 
 
 func _on_pressed():
