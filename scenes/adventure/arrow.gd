@@ -10,9 +10,12 @@ extends Path2D
 		queue_redraw()
 
 
-func _draw():
-	# Duplicate curve to allow external modifications
+func _ready():
+	# Create a copy for each instance
 	curve = curve.duplicate()
+
+
+func _draw():
 	line.points = curve.get_baked_points()
 
 	# Update colors

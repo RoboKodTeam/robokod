@@ -19,11 +19,16 @@ var _level_id:
 @export var level_resource: PackedScene
 
 
-func _draw():
-	label.text = _level_id
+func _ready():
+	# Create a copy for each instance
+	label.label_settings = label.label_settings.duplicate()
 
-	label_color.a = 0.3 if disabled else 1
-	label.label_settings.font_color = label_color
+
+func _draw():
+	# Set level bubble text
+	label.text = _level_id
+	# Apply alpha when button is disabled
+	label.label_settings.font_color = Color(label_color, 0.3 if disabled else 1)
 
 
 func _on_pressed():
