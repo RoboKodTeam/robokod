@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c76sotynxqllu"]
+
+[ext_resource type="Script" path="res://scenes/adventure/level_bubble.gd" id="1_0desb"]
+[ext_resource type="Theme" uid="uid://bpnwyaacfnji5" path="res://themes/button/level_bubble.tres" id="1_k3awd"]
+[ext_resource type="FontFile" uid="uid://bylysp813blnp" path="res://fonts/JetBrainsMono-Variable.ttf" id="2_ucjwr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jwb8n"]
+font = ExtResource("2_ucjwr")
+font_size = 72
+
+[node name="LevelBubble" type="Button"]
+offset_right = 128.0
+offset_bottom = 128.0
+theme = ExtResource("1_k3awd")
+script = ExtResource("1_0desb")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "99"
+label_settings = SubResource("LabelSettings_jwb8n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
