@@ -11,6 +11,8 @@ func _plugging():
 	plug("ryan-haskell/gdformat-on-save")
 	# Signal visualizer
 	plug("Ericdowney/SignalVisualizer")
+	# Find in files dialog
+	plug("MakovWait/godot-find-everywhere")
 	# ToDo editor tab
 	plug("OrigamiDev-Pete/TODO_Manager", {"exclude": ["addons/Todo_Manager/doc"]})
 	# Project time tracker
