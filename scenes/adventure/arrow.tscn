@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bujj37xq4sf6y"]
+
+[ext_resource type="Script" path="res://scenes/adventure/arrow.gd" id="1_bjci8"]
+[ext_resource type="Texture2D" uid="uid://ulqkvuut0qe1" path="res://assets/ui/point_arrow_left.svg" id="2_s7vfg"]
+
+[sub_resource type="Curve2D" id="Curve2D_s8t12"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 50.1682, 15.6574, 100, 0)
+}
+point_count = 2
+
+[node name="Arrow" type="Path2D"]
+curve = SubResource("Curve2D_s8t12")
+script = ExtResource("1_bjci8")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 4.29688, 0, 9.22852, 0, 12.262, 0, 15.625, 0, 19.281, 0, 23.1934, 0, 27.3254, 0, 31.6406, 0, 36.1023, 0, 40.6738, 0, 45.3186, 0, 50, 0, 54.6814, 0, 59.3262, 0, 63.8977, 0, 68.3594, 0, 72.6746, 0, 76.8066, 0, 80.719, 0, 84.375, 0, 87.738, 0, 90.7715, 0, 95.7031, 0, 100, 0)
+width = 6.0
+begin_cap_mode = 2
+end_cap_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(100, 0)
+texture = ExtResource("2_s7vfg")
+flip_h = true
