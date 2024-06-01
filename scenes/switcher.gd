@@ -1,6 +1,7 @@
 extends Node
 
 var _SCENE_MAIN = ProjectSettings.get_setting("application/run/main_scene")
+const _SCENE_MENU = "res://scenes/menu/menu.tscn"
 const _SCENE_IDE = "res://scenes/ide/ide.tscn"
 
 var _current_scene = null
@@ -16,6 +17,11 @@ func _ready():
 	# Get initial Main Scene
 	var root = get_tree().root
 	_current_scene = root.get_child(root.get_child_count() - 1)
+
+
+func goto_menu():
+	Log.info("Switching to scene: Menu")
+	_goto_scene(_SCENE_MENU)
 
 
 func goto_ide(level_name, level_sample, level_resource):

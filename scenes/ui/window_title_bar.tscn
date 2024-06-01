@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct057knhhefxu"]
+[gd_scene load_steps=7 format=3 uid="uid://ct057knhhefxu"]
 
 [ext_resource type="Script" path="res://scenes/ui/window_title_bar.gd" id="1_gv55n"]
 [ext_resource type="Texture2D" uid="uid://e1myeud1fbid" path="res://assets/ui/stop_FILL0_wght400_GRAD0_opsz24.svg" id="1_oeab1"]
 [ext_resource type="Theme" uid="uid://wkh0bbgm7eao" path="res://themes/button/button.tres" id="2_c50px"]
 [ext_resource type="Texture2D" uid="uid://cwt4ri3vi3hg5" path="res://assets/ui/minimize_FILL0_wght400_GRAD0_opsz24.svg" id="3_61t0x"]
-[ext_resource type="Texture2D" uid="uid://chxlvstomijdq" path="res://assets/ui/close_FILL0_wght400_GRAD0_opsz24 (1).svg" id="4_ajc2g"]
+[ext_resource type="Texture2D" uid="uid://chxlvstomijdq" path="res://assets/ui/close_FILL0_wght400_GRAD0_opsz24.svg" id="4_ajc2g"]
+[ext_resource type="Texture2D" uid="uid://5wkthbpq5agt" path="res://assets/ui/logout_24dp_FILL0_wght400_GRAD0_opsz24.svg" id="5_i6gyl"]
 
 [node name="WindowTitleBar" type="HBoxContainer"]
 script = ExtResource("1_gv55n")
@@ -31,10 +32,16 @@ layout_mode = 2
 theme = ExtResource("2_c50px")
 icon = ExtResource("3_61t0x")
 
+[node name="BackButton" type="Button" parent="WindowControls"]
+layout_mode = 2
+theme = ExtResource("2_c50px")
+icon = ExtResource("5_i6gyl")
+
 [node name="CloseButton" type="Button" parent="WindowControls"]
 layout_mode = 2
 theme = ExtResource("2_c50px")
 icon = ExtResource("4_ajc2g")
 
 [connection signal="pressed" from="WindowControls/MinimizeButton" to="." method="_on_minimize_button_pressed"]
+[connection signal="pressed" from="WindowControls/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="WindowControls/CloseButton" to="." method="_on_close_button_pressed"]
