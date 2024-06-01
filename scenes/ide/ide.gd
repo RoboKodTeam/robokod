@@ -28,7 +28,6 @@ func _ready():
 func open_level(level_name: String, level_sample: String, level_resource: Resource):
 	Log.info("Opening level")
 	Log.info("  - level_name:    ", level_name)
-	Log.info("  - level_sample:  ", level_sample)
 	Log.info("  - level_resource:", level_resource)
 
 	# Update window title
