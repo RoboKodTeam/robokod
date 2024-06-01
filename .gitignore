@@ -9,6 +9,7 @@
 
 # Custom preference files
 /console.properties
+/ptt.json
 
 # OS specific
 desktop.ini
