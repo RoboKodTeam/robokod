@@ -14,9 +14,4 @@ func _ready():
 
 
 func _on_adventure_button_pressed():
-	var level_name = "Рівень 1"
-	var level_sample = Utils.read_text_file("res://values/samples/level1.txt")
-	var level_resource = preload("res://scenes/level/level1.tscn")
-
-	# Open IDE scene and load the required level
 	SceneSwitcher.goto_adventure_scene()

@@ -8,6 +8,8 @@ const MENU_BTN_ADVENTURE = "Пригода"
 const MENU_BTN_CONSTRUCTOR = "Конструктор"
 const MENU_BTN_SETTINGS = "Налаштування"
 
+const LEVEL_NAME = "Рівень %s"
+
 const TAB_EMULATOR = "Виконавець коду"
 const TAB_EDITOR = "Редактор коду"
 const TAB_DOCS = "Документація"

@@ -16,3 +16,11 @@ var _level_id:
 
 func _draw():
 	label.text = _level_id
+
+
+func _on_pressed():
+	var level_name = Strings.LEVEL_NAME % _level_id
+	var level_sample = Utils.read_text_file("res://values/samples/level%s.txt" % _level_id)
+
+	# Open IDE scene and load the required level
+	SceneSwitcher.goto_ide_scene(level_name, level_sample, level_resource)
