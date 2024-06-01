@@ -1,11 +1,13 @@
 extends Control
 
-@onready var adventure_button = %MenuButtons/AdventureButton
-@onready var constructor_button = %MenuButtons/ConstructorButton
-@onready var settings_button = %MenuButtons/SettingsButton
+@onready var program_name_label = %ProgramNameLabel
+@onready var adventure_button = %AdventureButton
+@onready var constructor_button = %ConstructorButton
+@onready var settings_button = %SettingsButton
 
 
 func _ready():
+	program_name_label.text = Strings.PROGRAM_NAME
 	adventure_button.text = Strings.MENU_BTN_ADVENTURE
 	constructor_button.text = Strings.MENU_BTN_CONSTRUCTOR
 	settings_button.text = Strings.MENU_BTN_SETTINGS

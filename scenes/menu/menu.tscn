@@ -1,10 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://bb0rcqppqq1x5"]
+[gd_scene load_steps=13 format=3 uid="uid://bb0rcqppqq1x5"]
 
 [ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_23kc7"]
 [ext_resource type="Theme" uid="uid://chj84vkt4bh5u" path="res://themes/split_container.tres" id="2_n0dcn"]
 [ext_resource type="PackedScene" uid="uid://ct057knhhefxu" path="res://scenes/ui/window_title_bar.tscn" id="2_tu1kk"]
 [ext_resource type="Theme" uid="uid://d0t821eaekm7f" path="res://themes/menu/menu_button.tres" id="3_2p7e2"]
 [ext_resource type="StyleBox" uid="uid://bfsujfyi0vvd1" path="res://themes/menu/box_menu_panel.tres" id="4_gea31"]
+[ext_resource type="Texture2D" uid="uid://c0beovhslg1q5" path="res://assets/logo/logo.svg" id="5_tc2vl"]
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="6_ig2ay"]
+[ext_resource type="FontFile" uid="uid://bylysp813blnp" path="res://fonts/JetBrainsMono-Variable.ttf" id="6_rufnm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbx83"]
+shader = ExtResource("6_ig2ay")
+shader_parameter/radius = 60.0
+shader_parameter/steps = 8
+shader_parameter/vertex_expand = 1.0
+
+[sub_resource type="FontVariation" id="FontVariation_gvypj"]
+base_font = ExtResource("6_rufnm")
+variation_opentype = {
+2003265652: 600
+}
+spacing_glyph = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_2rsvw"]
+font = SubResource("FontVariation_gvypj")
+font_size = 72
+shadow_size = 16
+shadow_color = Color(0.968221, 0.816487, 0.538951, 0.207843)
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3k4u3"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -35,27 +60,57 @@ theme_override_styles/panel = ExtResource("4_gea31")
 [node name="CenterContainer" type="CenterContainer" parent="VSplitContainer/BackgroundPanel"]
 layout_mode = 2
 
-[node name="MenuButtons" type="VBoxContainer" parent="VSplitContainer/BackgroundPanel/CenterContainer"]
-unique_name_in_owner = true
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplitContainer/BackgroundPanel/CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="AdventureButton" type="Button" parent="VSplitContainer/BackgroundPanel/CenterContainer/MenuButtons"]
+[node name="Control" type="MarginContainer" parent="VSplitContainer/BackgroundPanel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = -20
+
+[node name="LogoBlur" type="TextureRect" parent="VSplitContainer/BackgroundPanel/CenterContainer/VBoxContainer/Control"]
+material = SubResource("ShaderMaterial_gbx83")
+layout_mode = 2
+texture = ExtResource("5_tc2vl")
+expand_mode = 4
+
+[node name="Logo" type="TextureRect" parent="VSplitContainer/BackgroundPanel/CenterContainer/VBoxContainer/Control"]
+layout_mode = 2
+texture = ExtResource("5_tc2vl")
+expand_mode = 4
+
+[node name="ProgramNameLabel" type="Label" parent="VSplitContainer/BackgroundPanel/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "РобоКод"
+label_settings = SubResource("LabelSettings_2rsvw")
+horizontal_alignment = 1
+justification_flags = 0
+
+[node name="HSeparator" type="HSeparator" parent="VSplitContainer/BackgroundPanel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3k4u3")
+
+[node name="AdventureButton" type="Button" parent="VSplitContainer/BackgroundPanel/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 120)
 layout_mode = 2
 theme = ExtResource("3_2p7e2")
 text = "Adventure"
 
-[node name="ConstructorButton" type="Button" parent="VSplitContainer/BackgroundPanel/CenterContainer/MenuButtons"]
+[node name="ConstructorButton" type="Button" parent="VSplitContainer/BackgroundPanel/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme = ExtResource("3_2p7e2")
 text = "Constructor"
 
-[node name="SettingsButton" type="Button" parent="VSplitContainer/BackgroundPanel/CenterContainer/MenuButtons"]
+[node name="SettingsButton" type="Button" parent="VSplitContainer/BackgroundPanel/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme = ExtResource("3_2p7e2")
 text = "Settings"
 
-[connection signal="pressed" from="VSplitContainer/BackgroundPanel/CenterContainer/MenuButtons/AdventureButton" to="." method="_on_adventure_button_pressed"]
+[connection signal="pressed" from="VSplitContainer/BackgroundPanel/CenterContainer/VBoxContainer/AdventureButton" to="." method="_on_adventure_button_pressed"]
