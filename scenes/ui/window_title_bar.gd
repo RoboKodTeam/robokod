@@ -5,8 +5,6 @@ extends HBoxContainer
 var title: String = "":
 	set(value):
 		title = value
-
-		_title_label.NOTIFICATION_READY
 		_title_label.text = value
 
 
