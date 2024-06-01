@@ -1,6 +1,6 @@
 extends Control
 
-@onready var window_title = %WindowTitle
+@onready var window_title_bar = $VSplitContainer/WindowTitleBar
 
 @onready var emulator_tab = %EmulatorTab
 @onready var emulator = %Emulator
@@ -22,21 +22,20 @@ func _ready():
 	editor_tab.name = Strings.TAB_EDITOR
 	docs_tab.name = Strings.TAB_DOCS
 
-	var level1_resource = preload("res://scenes/level/level1.tscn")
-	open_level(level1_resource, "Рівень 1")
-
-	docs.text = IDEUtils.read_text_file("res://values/samples/docs.txt")
+	docs.text = Utils.read_text_file("res://values/samples/docs.txt")
 
 
-func open_level(level_resource: Resource, title: String):
-	# Setup emulator
-	emulator.level = level_resource.instantiate()
+func open_level(level_name: String, level_sample: String, level_resource: Resource):
+	Log.info("Opening level")
+	Log.info("  - level_name:    ", level_name)
+	Log.info("  - level_resource:", level_resource)
 
 	# Update window title
-	window_title.text = Strings.PROGRAM_TITLE + " | " + title
-
+	window_title_bar.title = Strings.PROGRAM_NAME + " | " + level_name
 	# Add sample code to the editor
-	editor.text = IDEUtils.read_text_file("res://values/samples/level1.txt")
+	editor.text = level_sample
+	# Setup emulator
+	emulator.level = level_resource.instantiate()
 
 
 func _on_run_button_pressed():
@@ -62,13 +61,3 @@ func _on_stop_button_pressed():
 	run_button.show()
 	rerun_button.hide()
 	stop_button.hide()
-
-
-func _on_minimize_button_pressed():
-	Log.info("Minimizing window...")
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MINIMIZED)
-
-
-func _on_close_button_pressed():
-	Log.info("Closing application...")
-	get_tree().quit()

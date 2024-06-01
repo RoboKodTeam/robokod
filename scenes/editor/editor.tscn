@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://h7jxouflro7b"]
 
-[ext_resource type="Script" path="res://scenes/editor/highlighter/init.gd" id="1_5ej1p"]
-[ext_resource type="Theme" uid="uid://butn6iid24uf8" path="res://themes/editor.tres" id="1_jnnbh"]
+[ext_resource type="Script" path="res://scenes/editor/highlighter.gd" id="1_5ej1p"]
+[ext_resource type="Theme" uid="uid://butn6iid24uf8" path="res://themes/editor/editor.tres" id="1_jnnbh"]
 [ext_resource type="Script" path="res://scenes/editor/editor.gd" id="3_61eku"]
 
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_8sdkn"]

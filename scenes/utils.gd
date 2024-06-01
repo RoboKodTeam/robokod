@@ -18,3 +18,8 @@ static func string_to_int(string: String, or_else: int) -> int:
 		return as_int
 
 	return or_else
+
+
+static func read_text_file(path: String):
+	var file = FileAccess.open(path, FileAccess.READ)
+	return file.get_as_text()

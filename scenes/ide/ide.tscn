@@ -1,19 +1,18 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8srtbtnoy6kp"]
+[gd_scene load_steps=16 format=3 uid="uid://c8srtbtnoy6kp"]
 
 [ext_resource type="PackedScene" uid="uid://h7jxouflro7b" path="res://scenes/editor/editor.tscn" id="1_i4rgn"]
 [ext_resource type="Script" path="res://scenes/ide/emulator.gd" id="1_j2mda"]
-[ext_resource type="Script" path="res://scenes/editor/highlighter/init.gd" id="1_vh56v"]
+[ext_resource type="Script" path="res://scenes/editor/highlighter.gd" id="1_vh56v"]
 [ext_resource type="Script" path="res://scenes/ide/ide.gd" id="1_y1i8u"]
-[ext_resource type="Texture2D" uid="uid://cwt4ri3vi3hg5" path="res://assets/ui/minimize_FILL0_wght400_GRAD0_opsz24.svg" id="2_2u16r"]
+[ext_resource type="Theme" uid="uid://chj84vkt4bh5u" path="res://themes/split_container.tres" id="2_4yct5"]
 [ext_resource type="Texture2D" uid="uid://d3aihr36gcahs" path="res://assets/ui/play_arrow_FILL0_wght400_GRAD0_opsz24.svg" id="2_34dbq"]
-[ext_resource type="Texture2D" uid="uid://chxlvstomijdq" path="res://assets/ui/close_FILL0_wght400_GRAD0_opsz24 (1).svg" id="2_ubh4m"]
-[ext_resource type="Theme" uid="uid://wkh0bbgm7eao" path="res://themes/button.tres" id="3_gi6lv"]
+[ext_resource type="PackedScene" uid="uid://ct057knhhefxu" path="res://scenes/ui/window_title_bar.tscn" id="2_840d0"]
 [ext_resource type="Texture2D" uid="uid://cxxmjyskwsxy8" path="res://assets/ui/replay_FILL0_wght400_GRAD0_opsz24.svg" id="3_ncn61"]
-[ext_resource type="Theme" uid="uid://cl1dlavvcxhae" path="res://themes/button_run.tres" id="3_uk233"]
+[ext_resource type="Theme" uid="uid://cl1dlavvcxhae" path="res://themes/ide/button_run.tres" id="3_uk233"]
 [ext_resource type="Texture2D" uid="uid://e1myeud1fbid" path="res://assets/ui/stop_FILL0_wght400_GRAD0_opsz24.svg" id="4_susuq"]
-[ext_resource type="Theme" uid="uid://btexrjlaoasqy" path="res://themes/button_green.tres" id="6_v4vvh"]
-[ext_resource type="Theme" uid="uid://h0u1573k3goc" path="res://themes/button_red.tres" id="7_kghbk"]
-[ext_resource type="Theme" uid="uid://dl5g2chlcmb3e" path="res://themes/tabs.tres" id="8_dbuh6"]
+[ext_resource type="Theme" uid="uid://btexrjlaoasqy" path="res://themes/ide/button_green.tres" id="6_v4vvh"]
+[ext_resource type="Theme" uid="uid://h0u1573k3goc" path="res://themes/ide/button_red.tres" id="7_kghbk"]
+[ext_resource type="Theme" uid="uid://dl5g2chlcmb3e" path="res://themes/ide/tabs.tres" id="8_dbuh6"]
 
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_chm3h"]
 script = ExtResource("1_vh56v")
@@ -37,41 +36,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_4yct5")
 dragger_visibility = 1
 
-[node name="WindowBar" type="HBoxContainer" parent="VSplitContainer"]
+[node name="WindowTitleBar" parent="VSplitContainer" instance=ExtResource("2_840d0")]
 layout_mode = 2
-
-[node name="WindowCredentials" type="HBoxContainer" parent="VSplitContainer/WindowBar"]
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="ProgramIcon" type="TextureRect" parent="VSplitContainer/WindowBar/WindowCredentials"]
-layout_mode = 2
-texture = ExtResource("4_susuq")
-expand_mode = 2
-
-[node name="WindowTitle" type="Label" parent="VSplitContainer/WindowBar/WindowCredentials"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "IFNTUOG Educational Game - Level 1"
-
-[node name="WindowControls" type="HBoxContainer" parent="VSplitContainer/WindowBar"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="MinimizeButton" type="Button" parent="VSplitContainer/WindowBar/WindowControls"]
-layout_mode = 2
-theme = ExtResource("3_gi6lv")
-icon = ExtResource("2_2u16r")
-
-[node name="CloseButton" type="Button" parent="VSplitContainer/WindowBar/WindowControls"]
-layout_mode = 2
-theme = ExtResource("3_gi6lv")
-icon = ExtResource("2_ubh4m")
 
 [node name="WindowContent" type="HSplitContainer" parent="VSplitContainer"]
 layout_mode = 2
+theme = ExtResource("2_4yct5")
 split_offset = 1280
 
 [node name="EmulatorBox" type="Control" parent="VSplitContainer/WindowContent"]
@@ -166,8 +139,6 @@ layout_mode = 1
 editable = false
 syntax_highlighter = SubResource("CodeHighlighter_eitos")
 
-[connection signal="pressed" from="VSplitContainer/WindowBar/WindowControls/MinimizeButton" to="." method="_on_minimize_button_pressed"]
-[connection signal="pressed" from="VSplitContainer/WindowBar/WindowControls/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="resized" from="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/EmulatorTab" to="VSplitContainer/WindowContent/EmulatorBox/EmulatorTabContainer/EmulatorTab/Emulator" method="_on_emulator_resized"]
 [connection signal="pressed" from="VSplitContainer/WindowContent/EmulatorBox/FlowControls/RunButton" to="." method="_on_run_button_pressed"]
 [connection signal="pressed" from="VSplitContainer/WindowContent/EmulatorBox/FlowControls/RerunButton" to="." method="_on_rerun_button_pressed"]
