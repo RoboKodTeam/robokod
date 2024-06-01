@@ -1,8 +1,8 @@
 extends Node
 
-var _SCENE_MAIN = ProjectSettings.get_setting("application/run/main_scene")
-const _SCENE_MENU = "res://scenes/menu/menu.tscn"
-const _SCENE_IDE = "res://scenes/ide/ide.tscn"
+var _SCENE_PATH_MAIN = ProjectSettings.get_setting("application/run/main_scene")
+const _SCENE_PATH_MENU = "res://scenes/menu/menu.tscn"
+const _SCENE_PATH_IDE = "res://scenes/ide/ide.tscn"
 
 var _current_scene = null
 var _current_scene_path:
@@ -19,20 +19,19 @@ func _ready():
 	_current_scene = root.get_child(root.get_child_count() - 1)
 
 
-func goto_menu():
+func goto_menu_scene():
 	Log.info("Switching to scene: Menu")
-	_goto_scene(_SCENE_MENU)
+	_goto_scene(_SCENE_PATH_MENU)
 
 
-func goto_ide(level_name, level_sample, level_resource):
+func goto_ide_scene(level_name, level_sample, level_resource):
 	Log.info("Switching to scene: IDE")
 
+	# When IDE scene is fully loaded, open the required level
+	var and_then = func(): _current_scene.open_level(level_name, level_sample, level_resource)
+
 	# Actually load the scene
-	_goto_scene(
-		_SCENE_IDE,
-		# When IDE scene is fully loaded, open the required level
-		func(): _current_scene.open_level(level_name, level_sample, level_resource)
-	)
+	_goto_scene(_SCENE_PATH_IDE, and_then)
 
 
 func _goto_scene(scene_path: String, and_then: Callable = func(): pass):
@@ -61,11 +60,10 @@ func _deferred_goto_scene(scene_path: String, and_then: Callable):
 	# Make it compatible with the SceneTree.change_scene() API
 	tree.current_scene = _current_scene
 
-	# Execute and_then actions
+	# Notify all callables scene is loaded
 	and_then.call()
-	# Return signal to allow all callables to be executed
 	scene_loaded.emit()
 
 
 func is_scene_main():
-	return _SCENE_MAIN == _current_scene_path
+	return _SCENE_PATH_MAIN == _current_scene_path

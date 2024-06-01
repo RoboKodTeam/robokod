@@ -19,4 +19,4 @@ func _on_adventure_button_pressed():
 	var level_resource = preload("res://scenes/level/level1.tscn")
 
 	# Open IDE scene and load the required level
-	SceneSwitcher.goto_ide(level_name, level_sample, level_resource)
+	SceneSwitcher.goto_adventure_scene()
