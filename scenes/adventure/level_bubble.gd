@@ -1,5 +1,5 @@
 @tool
-extends Control
+extends Button
 
 @onready var label = $Label
 
@@ -11,11 +11,19 @@ var _level_id:
 	get:
 		return str(level_number)
 
+@export var label_color = Color(1, 1, 1, 1):
+	set(value):
+		label_color = value
+		queue_redraw()
+
 @export var level_resource: PackedScene
 
 
 func _draw():
 	label.text = _level_id
+
+	label_color.a = 0.3 if disabled else 1
+	label.label_settings.font_color = label_color
 
 
 func _on_pressed():
