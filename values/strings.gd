@@ -12,6 +12,7 @@ const LEVEL_NAME = "Рівень %s"
 
 const TAB_EMULATOR = "Виконавець коду"
 const TAB_EDITOR = "Редактор коду"
+const TAB_EDITOR_PLACEHOLDER = "А Ви ризикові починати з чистого листа. У будь-якому випадку, удачі й натхнення"
 const TAB_DOCS = "Документація"
 
 const KEYWORDS_FUNCTION = ["function", "функція"]

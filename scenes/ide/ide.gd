@@ -1,6 +1,6 @@
 extends Control
 
-@onready var window_title_bar = $VSplitContainer/WindowTitleBar
+@onready var window_title_bar = %WindowTitleBar
 
 @onready var emulator_tab = %EmulatorTab
 @onready var emulator = %Emulator
@@ -20,6 +20,7 @@ extends Control
 func _ready():
 	emulator_tab.name = Strings.TAB_EMULATOR
 	editor_tab.name = Strings.TAB_EDITOR
+	editor.placeholder_text = Strings.TAB_EDITOR_PLACEHOLDER
 	docs_tab.name = Strings.TAB_DOCS
 
 	docs.text = Utils.read_text_file("res://values/samples/docs.txt")

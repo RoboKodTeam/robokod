@@ -26,23 +26,18 @@ bg_color = Color(0.129412, 0.129412, 0.129412, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0.305882, 0.317647, 0.341176, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b554f"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-draw_center = false
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 expand_margin_left = 2.0
 expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u8pej"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mc5q"]
 content_margin_left = 10.0
@@ -111,7 +106,7 @@ TabContainer/constants/outline_size = 0
 TabContainer/constants/side_margin = 8
 TabContainer/font_sizes/font_size = 17
 TabContainer/styles/panel = SubResource("StyleBoxFlat_wute4")
-TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_b554f")
+TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_u8pej")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_3mc5q")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_3x1rm")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_i7g4h")

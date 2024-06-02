@@ -125,7 +125,6 @@ theme = ExtResource("8_dbuh6")
 
 [node name="Editor" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer/LevelScriptTab" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
-placeholder_text = "А Ви ризикові починати з чистого листа. У будь-якому випадку, удачі й натхнення"
 syntax_highlighter = SubResource("CodeHighlighter_chm3h")
 
 [node name="DocsTab" type="TabBar" parent="VSplitContainer/WindowContent/EditorBox/EditorTabContainer"]
