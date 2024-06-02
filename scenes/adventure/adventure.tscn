@@ -1,0 +1,223 @@
+[gd_scene load_steps=15 format=3 uid="uid://jmmg640b8evh"]
+
+[ext_resource type="PackedScene" uid="uid://ct057knhhefxu" path="res://scenes/ui/window_title_bar.tscn" id="1_fregt"]
+[ext_resource type="StyleBox" uid="uid://bfsujfyi0vvd1" path="res://themes/menu/box_menu_panel.tres" id="2_ctlnj"]
+[ext_resource type="PackedScene" uid="uid://c76sotynxqllu" path="res://scenes/adventure/level_bubble.tscn" id="3_1r46r"]
+[ext_resource type="PackedScene" uid="uid://bujj37xq4sf6y" path="res://scenes/adventure/arrow.tscn" id="4_0yahw"]
+[ext_resource type="PackedScene" uid="uid://dw0lmhpqi6r72" path="res://scenes/level/level1.tscn" id="5_a560p"]
+
+[sub_resource type="Curve2D" id="Curve2D_ewm40"]
+_data = {
+"points": PackedVector2Array(-26.8122, -73.03, 0, 0, 1740.48, 137, -110.866, 152.427, 110.866, -152.427, 1731.48, -174)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_7p23m"]
+_data = {
+"points": PackedVector2Array(-26.8122, -73.03, 0, 0, 1348.48, 179, -154.488, 115.764, 154.488, -115.764, 1687.48, 184)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_jf8l8"]
+_data = {
+"points": PackedVector2Array(-26.8122, -73.03, 0, 0, 1363.24, 123, -150.509, -145.838, 150.509, 145.838, 1355.24, 410)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_xb3we"]
+_data = {
+"points": PackedVector2Array(-26.8122, -73.03, 0, 0, 1102.24, -94, -65.56, -174.154, 65.56, 174.154, 1342, 60)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_7gjtu"]
+_data = {
+"points": PackedVector2Array(-26.8122, -73.03, 0, 0, 861.242, 123, -163.723, 29.723, 163.723, -29.723, 1040, -86)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_recgs"]
+_data = {
+"points": PackedVector2Array(-26.8122, -73.03, 0, 0, 936.242, 453, 60.9191, 118.447, -60.9191, -118.447, 895, 179)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_ntgh5"]
+_data = {
+"points": PackedVector2Array(-26.8122, -73.03, 0, 0, 619.242, 596, -108.978, 192.069, 108.978, -192.069, 908, 511)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_6eo1d"]
+_data = {
+"points": PackedVector2Array(-26.8122, -73.03, 0, 0, 468.242, 296, -150.509, -94.8685, 150.509, 94.8685, 491.242, 553)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_4c02v"]
+_data = {
+"points": PackedVector2Array(-60.7916, 21.3574, 0, 0, 140, 170, -116.529, -145.838, 116.529, 145.838, 395, 240)
+}
+point_count = 2
+
+[node name="Adventure" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+dragger_visibility = 1
+
+[node name="WindowTitleBar" parent="VSplitContainer" instance=ExtResource("1_fregt")]
+layout_mode = 2
+
+[node name="BackgroundPanel" type="PanelContainer" parent="VSplitContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_ctlnj")
+
+[node name="Control" type="Control" parent="VSplitContainer/BackgroundPanel"]
+layout_mode = 2
+
+[node name="LevelBubble10" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("3_1r46r")]
+layout_mode = 0
+offset_left = 1678.0
+offset_top = 228.0
+offset_right = 1806.0
+offset_bottom = 356.0
+disabled = true
+level_number = 10
+
+[node name="Arrow9-10" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("4_0yahw")]
+position = Vector2(-30.4838, 522)
+curve = SubResource("Curve2D_ewm40")
+color = Color(0.580392, 0.580392, 0.580392, 1)
+
+[node name="LevelBubble9" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("3_1r46r")]
+layout_mode = 0
+offset_left = 1644.0
+offset_top = 599.0
+offset_right = 1772.0
+offset_bottom = 727.0
+disabled = true
+level_number = 9
+
+[node name="Arrow8-9" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("4_0yahw")]
+position = Vector2(-30.4838, 522)
+curve = SubResource("Curve2D_7p23m")
+color = Color(0.580392, 0.580392, 0.580392, 1)
+
+[node name="LevelBubble8" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("3_1r46r")]
+layout_mode = 0
+offset_left = 1254.0
+offset_top = 641.0
+offset_right = 1382.0
+offset_bottom = 769.0
+disabled = true
+level_number = 8
+
+[node name="Arrow7-8" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("4_0yahw")]
+position = Vector2(-85, 250)
+curve = SubResource("Curve2D_jf8l8")
+color = Color(0.580392, 0.580392, 0.580392, 1)
+
+[node name="LevelBubble7" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("3_1r46r")]
+layout_mode = 0
+offset_left = 1216.24
+offset_top = 306.0
+offset_right = 1344.24
+offset_bottom = 434.0
+disabled = true
+level_number = 7
+
+[node name="Arrow6-7" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("4_0yahw")]
+position = Vector2(-85, 250)
+curve = SubResource("Curve2D_xb3we")
+color = Color(0.580392, 0.580392, 0.580392, 1)
+
+[node name="LevelBubble6" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("3_1r46r")]
+layout_mode = 0
+offset_left = 954.242
+offset_top = 93.0
+offset_right = 1082.24
+offset_bottom = 221.0
+disabled = true
+level_number = 6
+
+[node name="Arrow5-6" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("4_0yahw")]
+position = Vector2(-85, 250)
+curve = SubResource("Curve2D_7gjtu")
+color = Color(0.580392, 0.580392, 0.580392, 1)
+
+[node name="LevelBubble5" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("3_1r46r")]
+layout_mode = 0
+offset_left = 711.242
+offset_top = 310.0
+offset_right = 839.242
+offset_bottom = 438.0
+disabled = true
+level_number = 5
+
+[node name="Arrow4-5" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("4_0yahw")]
+position = Vector2(-85, 250)
+curve = SubResource("Curve2D_recgs")
+color = Color(0.580392, 0.580392, 0.580392, 1)
+
+[node name="LevelBubble4" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("3_1r46r")]
+layout_mode = 0
+offset_left = 788.242
+offset_top = 639.0
+offset_right = 916.242
+offset_bottom = 767.0
+disabled = true
+level_number = 4
+
+[node name="Arrow3-4" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("4_0yahw")]
+position = Vector2(-85, 250)
+curve = SubResource("Curve2D_ntgh5")
+color = Color(0.580392, 0.580392, 0.580392, 1)
+
+[node name="LevelBubble3" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("3_1r46r")]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 782.0
+offset_right = 597.0
+offset_bottom = 910.0
+disabled = true
+level_number = 3
+
+[node name="Arrow2-3" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("4_0yahw")]
+position = Vector2(-15.2419, 261)
+curve = SubResource("Curve2D_6eo1d")
+color = Color(0.580392, 0.580392, 0.580392, 1)
+
+[node name="LevelBubble2" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("3_1r46r")]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 487.0
+offset_right = 519.0
+offset_bottom = 615.0
+disabled = true
+level_number = 2
+
+[node name="Arrow1-2" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("4_0yahw")]
+position = Vector2(21, 259)
+curve = SubResource("Curve2D_4c02v")
+color = Color(0.580392, 0.580392, 0.580392, 1)
+
+[node name="LevelBubble1" parent="VSplitContainer/BackgroundPanel/Control" instance=ExtResource("3_1r46r")]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 366.0
+offset_right = 224.0
+offset_bottom = 494.0
+level_number = 1
+level_resource = ExtResource("5_a560p")

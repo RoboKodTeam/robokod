@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bb0rcqppqq1x5"]
+[gd_scene load_steps=12 format=3 uid="uid://bb0rcqppqq1x5"]
 
 [ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_23kc7"]
 [ext_resource type="Theme" uid="uid://chj84vkt4bh5u" path="res://themes/split_container.tres" id="2_n0dcn"]
@@ -7,7 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://bfsujfyi0vvd1" path="res://themes/menu/box_menu_panel.tres" id="4_gea31"]
 [ext_resource type="Texture2D" uid="uid://c0beovhslg1q5" path="res://assets/logo/logo.svg" id="5_tc2vl"]
 [ext_resource type="Shader" path="res://shaders/blur.gdshader" id="6_ig2ay"]
-[ext_resource type="FontFile" uid="uid://bylysp813blnp" path="res://fonts/JetBrainsMono-Variable.ttf" id="6_rufnm"]
+[ext_resource type="FontVariation" uid="uid://br1msp6plpgwr" path="res://fonts/font_menu_title.tres" id="7_qh8dk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gbx83"]
 shader = ExtResource("6_ig2ay")
@@ -15,15 +15,8 @@ shader_parameter/radius = 60.0
 shader_parameter/steps = 8
 shader_parameter/vertex_expand = 1.0
 
-[sub_resource type="FontVariation" id="FontVariation_gvypj"]
-base_font = ExtResource("6_rufnm")
-variation_opentype = {
-2003265652: 600
-}
-spacing_glyph = 12
-
 [sub_resource type="LabelSettings" id="LabelSettings_2rsvw"]
-font = SubResource("FontVariation_gvypj")
+font = ExtResource("7_qh8dk")
 font_size = 72
 shadow_size = 16
 shadow_color = Color(0.968221, 0.816487, 0.538951, 0.207843)

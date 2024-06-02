@@ -28,7 +28,7 @@ func _on_minimize_button_pressed():
 
 
 func _on_back_button_pressed():
-	SceneSwitcher.goto_menu()
+	SceneSwitcher.goto_menu_scene()
 
 
 func _on_close_button_pressed():
