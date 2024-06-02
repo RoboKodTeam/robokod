@@ -9,6 +9,7 @@ extends Control
 @onready var rerun_button = %RerunButton
 @onready var stop_button = %StopButton
 
+@onready var log_tab = %LogTab
 @onready var editor_tab = %LevelScriptTab
 @onready var editor = %LevelScriptTab/Editor
 @onready var docs_tab = %DocsTab
@@ -19,6 +20,7 @@ extends Control
 
 func _ready():
 	emulator_tab.name = Strings.TAB_EMULATOR
+	log_tab.name = Strings.TAB_LOG
 	editor_tab.name = Strings.TAB_EDITOR
 	editor.placeholder_text = Strings.TAB_EDITOR_PLACEHOLDER
 	docs_tab.name = Strings.TAB_DOCS

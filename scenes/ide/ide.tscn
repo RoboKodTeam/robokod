@@ -115,6 +115,7 @@ layout_mode = 2
 theme = ExtResource("8_dbuh6")
 
 [node name="LogTab" type="TabBar" parent="VSplitContainer/WindowContent/VSplitContainer/LogTabContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("8_dbuh6")
 
