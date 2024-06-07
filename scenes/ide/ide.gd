@@ -15,6 +15,8 @@ extends Control
 @onready var docs_tab = %DocsTab
 @onready var docs = %DocsTab/Editor
 
+var _current_level_resource = null
+
 @onready var _executor = ScriptExecutor.new(emulator, editor)
 
 
@@ -38,13 +40,21 @@ func open_level(level_name: String, level_sample: String, level_resource: Resour
 	# Add sample code to the editor
 	editor.text = level_sample
 	# Setup emulator
-	emulator.level = level_resource.instantiate()
+	_current_level_resource = level_resource
+	_load_level_into_emulator()
+
+
+func _load_level_into_emulator():
+	if _current_level_resource:
+		emulator.level = _current_level_resource.instantiate()
 
 
 func _on_run_button_pressed():
 	run_button.hide()
 	rerun_button.show()
 	stop_button.show()
+
+	_load_level_into_emulator()
 
 	# Prepare context for the script to run within
 	_executor.prepare_context()
@@ -55,7 +65,7 @@ func _on_run_button_pressed():
 
 
 func _on_rerun_button_pressed():
-	pass
+	_on_run_button_pressed()
 
 
 func _on_stop_button_pressed():

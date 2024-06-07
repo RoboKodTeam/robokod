@@ -144,7 +144,7 @@ layout_mode = 1
 editable = false
 syntax_highlighter = SubResource("CodeHighlighter_eitos")
 
-[connection signal="resized" from="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox/EmulatorTabContainer/EmulatorTab" to="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox/EmulatorTabContainer/EmulatorTab/Emulator" method="_on_emulator_resized"]
+[connection signal="resized" from="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox/EmulatorTabContainer/EmulatorTab/Emulator" to="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox/EmulatorTabContainer/EmulatorTab/Emulator" method="_on_resized"]
 [connection signal="pressed" from="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox/FlowControls/RunButton" to="." method="_on_run_button_pressed"]
 [connection signal="pressed" from="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox/FlowControls/RerunButton" to="." method="_on_rerun_button_pressed"]
 [connection signal="pressed" from="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox/FlowControls/StopButton" to="." method="_on_stop_button_pressed"]

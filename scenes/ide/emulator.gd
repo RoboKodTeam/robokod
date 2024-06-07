@@ -8,9 +8,25 @@ var level: Level:
 
 		Log.info("Setting level")
 		add_child(value)
+		queue_sort()
 	get:
 		var children = get_children()
 		return null if children.is_empty() else children[0]
+
+
+func _notification(what):
+	if what == NOTIFICATION_SORT_CHILDREN:
+		# Must re-sort the children
+		for child in get_children():
+			var content_scale = _get_relative_content_scale()
+			child.scale *= content_scale
+
+			var content_position = _get_content_position()
+			child.position = content_position
+
+
+func _on_resized():
+	queue_sort()
 
 
 func _get_maximum_content_size():
@@ -35,18 +51,3 @@ func _get_content_position():
 	var available_size = get_parent_area_size()
 	var min_size = _get_maximum_content_size()
 	return (available_size - min_size) / 2
-
-
-func _notification(what):
-	if what == NOTIFICATION_SORT_CHILDREN:
-		# Must re-sort the children
-		for child in get_children():
-			var content_scale = _get_relative_content_scale()
-			child.scale *= content_scale
-
-			var content_position = _get_content_position()
-			child.position = content_position
-
-
-func _on_emulator_resized():
-	queue_sort()
