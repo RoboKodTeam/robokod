@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://2tcfr5a271dw"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://2tcfr5a271dw"]
 
 [ext_resource type="FontFile" uid="uid://bylysp813blnp" path="res://fonts/JetBrainsMono-Variable.ttf" id="1_o15pb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jvwh2"]
 
 [resource]
 RichTextLabel/fonts/bold_font = ExtResource("1_o15pb")
@@ -8,3 +10,4 @@ RichTextLabel/fonts/bold_italics_font = ExtResource("1_o15pb")
 RichTextLabel/fonts/italics_font = ExtResource("1_o15pb")
 RichTextLabel/fonts/mono_font = ExtResource("1_o15pb")
 RichTextLabel/fonts/normal_font = ExtResource("1_o15pb")
+RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_jvwh2")
