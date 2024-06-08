@@ -1,8 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://c8srtbtnoy6kp"]
 
-[ext_resource type="PackedScene" uid="uid://h7jxouflro7b" path="res://scenes/editor/editor.tscn" id="1_i4rgn"]
-[ext_resource type="Script" path="res://scenes/ide/emulator.gd" id="1_j2mda"]
-[ext_resource type="Script" path="res://scenes/editor/highlighter.gd" id="1_vh56v"]
+[ext_resource type="PackedScene" uid="uid://h7jxouflro7b" path="res://scenes/ide/editor/editor.tscn" id="1_i4rgn"]
+[ext_resource type="Script" path="res://scenes/ide/editor/highlighter.gd" id="1_vh56v"]
 [ext_resource type="Script" path="res://scenes/ide/ide.gd" id="1_y1i8u"]
 [ext_resource type="Theme" uid="uid://chj84vkt4bh5u" path="res://themes/split_container.tres" id="2_4yct5"]
 [ext_resource type="Texture2D" uid="uid://d3aihr36gcahs" path="res://assets/ui/play_arrow_FILL0_wght400_GRAD0_opsz24.svg" id="2_34dbq"]
@@ -10,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cxxmjyskwsxy8" path="res://assets/ui/replay_FILL0_wght400_GRAD0_opsz24.svg" id="3_ncn61"]
 [ext_resource type="Theme" uid="uid://cl1dlavvcxhae" path="res://themes/ide/button_run.tres" id="3_uk233"]
 [ext_resource type="Texture2D" uid="uid://e1myeud1fbid" path="res://assets/ui/stop_FILL0_wght400_GRAD0_opsz24.svg" id="4_susuq"]
+[ext_resource type="PackedScene" uid="uid://biu228ac6txxw" path="res://scenes/ide/emulator/emulator.tscn" id="5_d2dpo"]
 [ext_resource type="Theme" uid="uid://btexrjlaoasqy" path="res://themes/ide/button_green.tres" id="6_v4vvh"]
 [ext_resource type="Theme" uid="uid://h0u1573k3goc" path="res://themes/ide/button_red.tres" id="7_kghbk"]
 [ext_resource type="Theme" uid="uid://dl5g2chlcmb3e" path="res://themes/ide/tabs.tres" id="8_dbuh6"]
@@ -70,16 +70,9 @@ unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("8_dbuh6")
 
-[node name="Emulator" type="Container" parent="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox/EmulatorTabContainer/EmulatorTab"]
+[node name="Emulator" parent="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox/EmulatorTabContainer/EmulatorTab" instance=ExtResource("5_d2dpo")]
 unique_name_in_owner = true
-clip_contents = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_j2mda")
 
 [node name="FlowControls" type="HFlowContainer" parent="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox"]
 layout_mode = 1
@@ -148,7 +141,6 @@ layout_mode = 1
 editable = false
 syntax_highlighter = SubResource("CodeHighlighter_eitos")
 
-[connection signal="resized" from="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox/EmulatorTabContainer/EmulatorTab/Emulator" to="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox/EmulatorTabContainer/EmulatorTab/Emulator" method="_on_resized"]
 [connection signal="pressed" from="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox/FlowControls/RunButton" to="." method="_on_run_button_pressed"]
 [connection signal="pressed" from="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox/FlowControls/RerunButton" to="." method="_on_rerun_button_pressed"]
 [connection signal="pressed" from="VSplitContainer/WindowContent/VSplitContainer/EmulatorBox/FlowControls/StopButton" to="." method="_on_stop_button_pressed"]
