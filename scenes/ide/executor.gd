@@ -35,28 +35,26 @@ func _get_player() -> Node2D:
 	return player
 
 
-func run():
+func run() -> bool:
 	if not _context:
 		Log.error("Context is not initialized")
-		return
+		return false
 
 	var script = _editor.get_parsed_script()
 	if not script:
 		Log.warn("Script has not passed validity checks, execution prevented")
-		return
+		return false
 
 	_interrupted = false
 	# Temporarily pause any editor checks to improve performance
 	_editor.should_run_checks = false
 
 	Log.log("Asking editor to begin script execution")
-	var notice = await script.execute(_context)
-
-	# TODO: Show notices to the user
-	if notice and not _interrupted:
-		Log.error(notice.message, "at line", notice.statement.line_number)
+	var execution_successful: bool = await script.execute(_context)
 
 	_editor.should_run_checks = true
+	# Execution was successful
+	return execution_successful
 
 
 func interrupt():

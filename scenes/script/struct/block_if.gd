@@ -2,12 +2,13 @@ class_name IfCodeBlock
 extends CodeBlock
 
 
-func execute(context: ScriptExecutionContext) -> Notice:
+func execute(context: ScriptExecutionContext) -> bool:
 	# TODO: Implement expression checking
 	for statement in children:
-		var notice = await statement.execute(context)
+		var execution_successful: bool = await statement.execute(context)
 
-		if notice:
-			return notice
+		if not execution_successful:
+			return false
 
-	return null
+	# Execution was successful
+	return true

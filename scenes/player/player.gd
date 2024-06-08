@@ -13,27 +13,32 @@ signal movement_finished
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
-func take_off():
+func take_off() -> bool:
 	if in_the_air:
-		return Strings.NOTICE_PLAYER_ALREADY_IN_AIR
+		UserLog.error(Strings.ERROR_PLAYER_ALREADY_IN_AIR)
+		return false
 
 	in_the_air = true
 	sprite.play("take_off")
 	await sprite.animation_finished
+	return true
 
 
-func land():
+func land() -> bool:
 	if not in_the_air:
-		return Strings.NOTICE_PLAYER_NOT_IN_AIR_YET
+		UserLog.error(Strings.ERROR_PLAYER_NOT_IN_AIR_YET)
+		return false
 
 	in_the_air = false
 	sprite.play("land")
 	await sprite.animation_finished
+	return true
 
 
-func move_to(new_target: Vector2):
+func move_to(new_target: Vector2) -> bool:
 	if not in_the_air:
-		return Strings.NOTICE_PLAYER_NOT_IN_AIR_YET
+		UserLog.error(Strings.ERROR_PLAYER_NOT_IN_AIR_YET)
+		return false
 
 	Log.log("Moving from", position, "to", new_target)
 
@@ -71,10 +76,12 @@ func _physics_process(delta: float):
 		is_alive = false
 		is_moving = false
 		sprite.play("death")
-		movement_finished.emit(Strings.NOTICE_PLAYER_COLLIDED_WITH_OBSTACLE)
+
+		UserLog.error(Strings.ERROR_PLAYER_COLLIDED_WITH_OBSTACLE)
+		movement_finished.emit(false)
 
 	# Finish player moving
 	if is_moving:
 		is_moving = false
 		sprite.play("idle")
-		movement_finished.emit()
+		movement_finished.emit(true)

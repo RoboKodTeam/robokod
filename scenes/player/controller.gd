@@ -17,22 +17,22 @@ var _player: Player
 		return Utils.coord_to_grid(_player.position)
 
 
-func take_off():
+func take_off() -> bool:
 	# Pass optional result
 	return await _player.take_off()
 
 
-func land():
+func land() -> bool:
 	# Pass optional result
 	return await _player.land()
 
 
 # Alias with applied conversions to grid coordinates
-func move_by(position_grid_delta: Vector2i):
+func move_by(position_grid_delta: Vector2i) -> bool:
 	# Get new target
 	var target_grid = position_grid + position_grid_delta
 
-	Log.log("Moving from", position_grid, "to", target_grid)
+	UserLog.info(Strings.INFO_PLAYER_MOVING % [position_grid, target_grid])
 
 	# Translate grid movement vector to delta
 	var target = Utils.grid_to_coord(target_grid)
