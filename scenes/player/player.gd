@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed = 6600
+const speed = 6600
 
 @onready var target = Vector2(position)
 

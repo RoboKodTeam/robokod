@@ -1,13 +1,12 @@
 extends Node2D
 
+var _player: Player
 @export var player_scene: PackedScene:
 	set(value):
 		player_scene = value
 
 		_player = player_scene.instantiate()
 		add_child(_player)
-
-var _player: Player
 
 # Alias with applied conversions to grid coordinates
 @export var position_grid: Vector2i:
@@ -18,12 +17,10 @@ var _player: Player
 
 
 func take_off() -> bool:
-	# Pass optional result
 	return await _player.take_off()
 
 
 func land() -> bool:
-	# Pass optional result
 	return await _player.land()
 
 

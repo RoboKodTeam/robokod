@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://btyu5c5hxfyoj"]
+
+[ext_resource type="Script" path="res://scenes/player/holder.gd" id="1_giywn"]
+[ext_resource type="PackedScene" uid="uid://b3cbjcm5ylnw" path="res://scenes/player/skins/bee.tscn" id="2_ije50"]
+
+[node name="PlayerHolder" type="Node2D"]
+script = ExtResource("1_giywn")
+player_scene = ExtResource("2_ije50")

@@ -2,7 +2,9 @@ class_name Level
 extends Node2D
 
 @onready var tile_map = $TileMap
-@onready var player = $PlayerGridController
+
+# Used by Executor
+@onready var player = $PlayerHolder
 
 
 func get_level_dimensions() -> Vector2:
