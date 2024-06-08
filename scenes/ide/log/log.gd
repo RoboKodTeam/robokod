@@ -32,14 +32,12 @@ func _append(level: int, message: String):
 
 
 func _get_level_string(level: int):
-	var name = "Unknown"
-
 	match level:
 		LEVEL_INFO:
-			name = "[color=GREEN]%s[/color]" % Strings.LOG_INFO
+			return "[color=GREEN]%s[/color]" % Strings.LOG_INFO
 		LEVEL_WARN:
-			name = "[color=ORANGE]%s[/color]" % Strings.LOG_WARN
+			return "[color=ORANGE]%s[/color]" % Strings.LOG_WARN
 		LEVEL_ERROR:
-			name = "[color=RED]%s[/color]" % Strings.LOG_ERROR
-
-	return name
+			return "[color=RED]%s[/color]" % Strings.LOG_ERROR
+		_:
+			return "UNKNOWN"
