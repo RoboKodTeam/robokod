@@ -128,12 +128,12 @@ layout_mode = 2
 theme = ExtResource("8_dbuh6")
 drag_to_rearrange_enabled = true
 
-[node name="LevelScriptTab" type="TabBar" parent="VSplitContainer/WindowContent/EditorTabContainer"]
+[node name="CodeTab" type="TabBar" parent="VSplitContainer/WindowContent/EditorTabContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("8_dbuh6")
 
-[node name="Editor" parent="VSplitContainer/WindowContent/EditorTabContainer/LevelScriptTab" instance=ExtResource("1_i4rgn")]
+[node name="Editor" parent="VSplitContainer/WindowContent/EditorTabContainer/CodeTab" instance=ExtResource("1_i4rgn")]
 layout_mode = 1
 syntax_highlighter = SubResource("CodeHighlighter_chm3h")
 

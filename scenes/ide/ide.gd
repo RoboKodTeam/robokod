@@ -9,25 +9,26 @@ extends Control
 @onready var rerun_button = %RerunButton
 @onready var stop_button = %StopButton
 
-@onready var log_tab = %LogTab
-@onready var editor_tab = %LevelScriptTab
-@onready var editor = %LevelScriptTab/Editor
+@onready var user_log_tab = %UserLogTab
+@onready var user_log = %UserLogTab/UserLog
+@onready var code_tab = %CodeTab
+@onready var code_editor = %CodeTab/Editor
 @onready var docs_tab = %DocsTab
-@onready var docs = %DocsTab/Editor
+@onready var docs_editor = %DocsTab/Editor
 
 var _current_level_resource = null
 
-@onready var _executor = ScriptExecutor.new(emulator, editor)
+@onready var _executor = ScriptExecutor.new(emulator, code_editor)
 
 
 func _ready():
 	emulator_tab.name = Strings.TAB_EMULATOR
-	log_tab.name = Strings.TAB_LOG
-	editor_tab.name = Strings.TAB_EDITOR
-	editor.placeholder_text = Strings.TAB_EDITOR_PLACEHOLDER
+	user_log_tab.name = Strings.TAB_LOG
+	code_tab.name = Strings.TAB_EDITOR
+	code_editor.placeholder_text = Strings.TAB_EDITOR_PLACEHOLDER
 	docs_tab.name = Strings.TAB_DOCS
 
-	docs.text = Utils.read_text_file("res://values/samples/docs.txt")
+	docs_editor.text = Utils.read_text_file("res://values/samples/docs.txt")
 
 
 func open_level(level_name: String, level_sample: String, level_resource: Resource):
@@ -38,7 +39,7 @@ func open_level(level_name: String, level_sample: String, level_resource: Resour
 	# Update window title
 	window_title_bar.title = level_name
 	# Add sample code to the editor
-	editor.text = level_sample
+	code_editor.text = level_sample
 	# Setup emulator
 	_current_level_resource = level_resource
 	_load_level_into_emulator()
