@@ -18,7 +18,7 @@ const TAB_DOCS = "Документація"
 
 const LOG_INFO = "Інформація"
 const LOG_WARN = "Зауваження"
-const LOG_ERROR = "Помилка"
+const LOG_ERROR = "Помилка   "
 
 const KEYWORDS_FUNCTION = ["function", "функція"]
 const KEYWORDS_IF = ["if", "якщо"]

@@ -52,13 +52,14 @@ func _filter_and_merge(messages) -> String:
 	var combined = null
 
 	for m in messages:
-		if _PLACEHOLDER == m:
+		var m_str = str(m)
+		if _PLACEHOLDER == m_str:
 			break
 
 		if not combined:
-			combined = str(m)
+			combined = m_str
 		else:
-			combined += " " + str(m)
+			combined += " " + m_str
 
 	return combined
 
