@@ -30,6 +30,8 @@ func _ready():
 
 	docs_editor.text = Utils.read_text_file("res://values/samples/docs.txt")
 
+	UserLog.out_node = user_log
+
 
 func open_level(level_name: String, level_sample: String, level_resource: Resource):
 	Log.info("Opening level")
