@@ -16,6 +16,10 @@ const TAB_EDITOR = "Редактор коду"
 const TAB_EDITOR_PLACEHOLDER = "А Ви ризикові починати з чистого листа. У будь-якому випадку, удачі й натхнення"
 const TAB_DOCS = "Документація"
 
+const LOG_INFO = "Інформація"
+const LOG_WARN = "Зауваження"
+const LOG_ERROR = "Помилка"
+
 const KEYWORDS_FUNCTION = ["function", "функція"]
 const KEYWORDS_IF = ["if", "якщо"]
 const KEYWORDS_ELSE = ["else", "інакше"]
