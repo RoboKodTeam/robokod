@@ -22,10 +22,12 @@ func execute(context: ScriptExecutionContext) -> bool:
 		if statement is FunctionCodeBlock:
 			if statement.is_start():
 				Log.info("Executing start function")
+				UserLog.info(Strings.INFO_BEGIN)
 
 				var execution_successful: bool = await statement.execute(context)
 
 				Log.info("Execution finished")
+				UserLog.info(Strings.INFO_END)
 				return execution_successful
 
 	Log.info("Start function not found")

@@ -16,24 +16,24 @@ func execute(context: ScriptExecutionContext) -> bool:
 	var object_names = command.split(".")
 
 	if object_names.size() < 2:
-		UserLog.error("У рядку", line_number, "замало слів")
+		UserLog.error(Strings.ERROR_NOT_ENOUGH_WORDS % line_number)
 		return false
 
 	if object_names.size() > 2:
-		UserLog.error("У рядку", line_number, "забагато слів")
+		UserLog.error(Strings.ERROR_TOO_MANY_WORDS % line_number)
 		return false
 
 	var entity_name = object_names[0]
 
 	var entity = context.get_entity(entity_name)
 	if not entity:
-		UserLog.error("Не вийшло знайти", entity_name)
+		UserLog.error(Strings.ERROR_UNABLE_TO_FIND_ENTITY % entity_name)
 		return false
 
 	var method_name = object_names[1]
 	# Core BUG: Doesn't work
 	#if entity.has_method(method_name):
-	#	UserLog.error("Не вийшло знайти функцію", method_name, "у", entity_name)
+	#	UserLog.error(Strings.UNABLE_TO_FIND_FUNCTION % [method_name, entity_name])
 	#	return false
 
 	var callable = Callable(entity, method_name)

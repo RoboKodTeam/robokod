@@ -32,7 +32,7 @@ func move_by(position_grid_delta: Vector2i) -> bool:
 	# Get new target
 	var target_grid = position_grid + position_grid_delta
 
-	Log.log("Moving from", position_grid, "to", target_grid)
+	UserLog.info(Strings.INFO_PLAYER_MOVING % [position_grid, target_grid])
 
 	# Translate grid movement vector to delta
 	var target = Utils.grid_to_coord(target_grid)

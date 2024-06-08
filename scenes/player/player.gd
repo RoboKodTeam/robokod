@@ -15,7 +15,7 @@ signal movement_finished
 
 func take_off() -> bool:
 	if in_the_air:
-		UserLog.error(Strings.NOTICE_PLAYER_ALREADY_IN_AIR)
+		UserLog.error(Strings.ERROR_PLAYER_ALREADY_IN_AIR)
 		return false
 
 	in_the_air = true
@@ -26,7 +26,7 @@ func take_off() -> bool:
 
 func land() -> bool:
 	if not in_the_air:
-		UserLog.error(Strings.NOTICE_PLAYER_NOT_IN_AIR_YET)
+		UserLog.error(Strings.ERROR_PLAYER_NOT_IN_AIR_YET)
 		return false
 
 	in_the_air = false
@@ -37,7 +37,7 @@ func land() -> bool:
 
 func move_to(new_target: Vector2) -> bool:
 	if not in_the_air:
-		UserLog.error(Strings.NOTICE_PLAYER_NOT_IN_AIR_YET)
+		UserLog.error(Strings.ERROR_PLAYER_NOT_IN_AIR_YET)
 		return false
 
 	Log.log("Moving from", position, "to", new_target)
@@ -77,7 +77,7 @@ func _physics_process(delta: float):
 		is_moving = false
 		sprite.play("death")
 
-		UserLog.error(Strings.NOTICE_PLAYER_COLLIDED_WITH_OBSTACLE)
+		UserLog.error(Strings.ERROR_PLAYER_COLLIDED_WITH_OBSTACLE)
 		movement_finished.emit(false)
 
 	# Finish player moving
