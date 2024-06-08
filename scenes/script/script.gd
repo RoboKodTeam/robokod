@@ -13,22 +13,20 @@ func parse(text: String):
 		_script_block = RoboScriptFolder.fold(statements)
 
 
-func execute(context: ScriptExecutionContext) -> Notice:
+func execute(context: ScriptExecutionContext) -> bool:
 	if not _script_block:
 		Log.warn("Script has not passed validity checks, execution prevented")
-		return null
+		return false
 
 	for statement in _script_block.children:
 		if statement is FunctionCodeBlock:
 			if statement.is_start():
 				Log.info("Executing start function")
 
-				var notice = await statement.execute(context)
-				if notice:
-					return notice
+				var execution_successful: bool = await statement.execute(context)
 
 				Log.info("Execution finished")
-				return null
+				return execution_successful
 
 	Log.info("Start function not found")
-	return null
+	return false

@@ -2,35 +2,35 @@ class_name PlayerAdapter
 extends ContextEntity
 
 
-func take_off(_ignored: String = ""):
+func take_off(_ignored: String = "") -> bool:
 	return await _entity.take_off()
 
 
-func злетіти(_ignored: String = ""):
+func злетіти(_ignored: String = "") -> bool:
 	return await take_off()
 
 
-func land(_ignored: String = ""):
+func land(_ignored: String = "") -> bool:
 	return await _entity.land()
 
 
-func сісти(_ignored: String = ""):
+func сісти(_ignored: String = "") -> bool:
 	return await land()
 
 
-func up(s_steps: String = "1"):
+func up(s_steps: String = "1") -> bool:
 	return await _move(s_steps, Vector2i(0, -1))
 
 
-func вверх(s_steps: String = "1"):
+func вверх(s_steps: String = "1") -> bool:
 	return await up(s_steps)
 
 
-func down(s_steps: String = "1"):
+func down(s_steps: String = "1") -> bool:
 	return await _move(s_steps, Vector2i(0, 1))
 
 
-func вниз(s_steps: String = "1"):
+func вниз(s_steps: String = "1") -> bool:
 	return await down(s_steps)
 
 

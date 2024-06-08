@@ -11,28 +11,30 @@ func _init(p_line_number: int, p_level: int, p_words: PackedStringArray):
 	words = p_words
 
 
-func execute(context: ScriptExecutionContext) -> Notice:
+func execute(context: ScriptExecutionContext) -> bool:
 	var command = words[0]
 	var object_names = command.split(".")
 
 	if object_names.size() < 2:
-		return Notice.new(self, "У цьому рядку замало слів")
+		UserLog.error("У рядку", line_number, "замало слів")
+		return false
 
 	if object_names.size() > 2:
-		return Notice.new(self, "У цьому рядку забагато слів")
+		UserLog.error("У рядку", line_number, "забагато слів")
+		return false
 
 	var entity_name = object_names[0]
 
 	var entity = context.get_entity(entity_name)
 	if not entity:
-		return Notice.new(self, "Не вийшло знайти '" + entity_name + "'")
+		UserLog.error("Не вийшло знайти", entity_name)
+		return false
 
 	var method_name = object_names[1]
 	# Core BUG: Doesn't work
 	#if entity.has_method(method_name):
-	#	return Notice.new(
-	#		self, "Не вийшло знайти функцію '" + method_name + "' у '" + entity_name + "'"
-	#	)
+	#	UserLog.error("Не вийшло знайти функцію", method_name, "у", entity_name)
+	#	return false
 
 	var callable = Callable(entity, method_name)
 
@@ -42,11 +44,9 @@ func execute(context: ScriptExecutionContext) -> Notice:
 
 	# Finally call the method of the entity
 	Log.log("Calling", method_name, "with", arguments)
-	var result = await callable.callv(arguments)
-	if result:
-		return Notice.new(self, result)
+	var execution_successful: bool = await callable.callv(arguments)
 
-	return null
+	return execution_successful
 
 
 func to_printable():

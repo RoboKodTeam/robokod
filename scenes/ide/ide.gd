@@ -62,7 +62,7 @@ func _on_run_button_pressed():
 	# Bind user log to the node
 	UserLog.out_node = user_log
 	# Await for executor to finish
-	await _executor.run()
+	var execution_successful: bool = await _executor.run()
 
 	# Do not reset buttons if execution was not successful to allow user reset
 	# the level

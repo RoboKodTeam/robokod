@@ -14,9 +14,9 @@ func add(statement: Statement):
 	children.push_back(statement)
 
 
-func execute(_context: ScriptExecutionContext) -> Notice:
+func execute(_context: ScriptExecutionContext) -> bool:
 	Log.error("No behavior defined for this code block")
-	return null
+	return false
 
 
 func to_printable():
