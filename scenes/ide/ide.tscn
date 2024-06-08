@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8srtbtnoy6kp"]
+[gd_scene load_steps=17 format=3 uid="uid://c8srtbtnoy6kp"]
 
 [ext_resource type="PackedScene" uid="uid://h7jxouflro7b" path="res://scenes/editor/editor.tscn" id="1_i4rgn"]
 [ext_resource type="Script" path="res://scenes/ide/emulator.gd" id="1_j2mda"]
@@ -13,6 +13,7 @@
 [ext_resource type="Theme" uid="uid://btexrjlaoasqy" path="res://themes/ide/button_green.tres" id="6_v4vvh"]
 [ext_resource type="Theme" uid="uid://h0u1573k3goc" path="res://themes/ide/button_red.tres" id="7_kghbk"]
 [ext_resource type="Theme" uid="uid://dl5g2chlcmb3e" path="res://themes/ide/tabs.tres" id="8_dbuh6"]
+[ext_resource type="PackedScene" uid="uid://cl1i4daphsvf3" path="res://scenes/ide/log/log.tscn" id="12_jfior"]
 
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_chm3h"]
 script = ExtResource("1_vh56v")
@@ -110,14 +111,17 @@ layout_mode = 2
 theme = ExtResource("7_kghbk")
 icon = ExtResource("4_susuq")
 
-[node name="LogTabContainer" type="TabContainer" parent="VSplitContainer/WindowContent/VSplitContainer"]
+[node name="UserLogTabContainer" type="TabContainer" parent="VSplitContainer/WindowContent/VSplitContainer"]
 layout_mode = 2
 theme = ExtResource("8_dbuh6")
 
-[node name="LogTab" type="TabBar" parent="VSplitContainer/WindowContent/VSplitContainer/LogTabContainer"]
+[node name="UserLogTab" type="TabBar" parent="VSplitContainer/WindowContent/VSplitContainer/UserLogTabContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("8_dbuh6")
+
+[node name="UserLog" parent="VSplitContainer/WindowContent/VSplitContainer/UserLogTabContainer/UserLogTab" instance=ExtResource("12_jfior")]
+layout_mode = 1
 
 [node name="EditorTabContainer" type="TabContainer" parent="VSplitContainer/WindowContent"]
 layout_mode = 2
