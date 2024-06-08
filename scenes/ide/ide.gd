@@ -30,8 +30,6 @@ func _ready():
 
 	docs_editor.text = Utils.read_text_file("res://values/samples/docs.txt")
 
-	UserLog.out_node = user_log
-
 
 func open_level(level_name: String, level_sample: String, level_resource: Resource):
 	Log.info("Opening level")
@@ -61,10 +59,15 @@ func _on_run_button_pressed():
 
 	# Prepare context for the script to run within
 	_executor.prepare_context()
+	# Bind user log to the node
+	UserLog.out_node = user_log
 	# Await for executor to finish
 	await _executor.run()
 
-	_on_stop_button_pressed()
+	# Do not reset buttons if execution was not successful to allow user reset
+	# the level
+	if execution_successful:
+		_on_stop_button_pressed()
 
 
 func _on_rerun_button_pressed():
@@ -72,7 +75,10 @@ func _on_rerun_button_pressed():
 
 
 func _on_stop_button_pressed():
+	# Stop everything still going on
 	_executor.interrupt()
+	# Unbind user log from the node
+	UserLog.out_node = null
 
 	run_button.show()
 	rerun_button.hide()

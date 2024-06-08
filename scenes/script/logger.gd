@@ -72,7 +72,8 @@ func _append(level: int, message: String):
 	# Combine into log entry
 	var entry = "[color=SILVER]%s[/color] %s %s" % [time, level_string, message]
 	# Pass it to the log frame
-	out_node.append(entry)
+	if out_node:
+		out_node.append(entry)
 
 
 func _get_level_string(level: int):
