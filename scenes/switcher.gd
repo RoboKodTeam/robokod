@@ -3,6 +3,7 @@ extends Node
 var _SCENE_PATH_MAIN = ProjectSettings.get_setting("application/run/main_scene")
 const _SCENE_PATH_MENU = "res://scenes/menu/menu.tscn"
 const _SCENE_PATH_ADVENTURE = "res://scenes/adventure/adventure.tscn"
+const _SCENE_PATH_CONSTRUCTOR = "res://scenes/constructor/constructor.tscn"
 const _SCENE_PATH_IDE = "res://scenes/ide/ide.tscn"
 
 var _current_scene = null
@@ -28,6 +29,11 @@ func goto_menu_scene():
 func goto_adventure_scene():
 	Log.info("Switching to scene: Adventure")
 	_goto_scene(_SCENE_PATH_ADVENTURE)
+
+
+func goto_constructor_scene():
+	Log.info("Switching to scene: Constructor")
+	_goto_scene(_SCENE_PATH_CONSTRUCTOR)
 
 
 func goto_ide_scene(level_name, level_sample, level_resource):
