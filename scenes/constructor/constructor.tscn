@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://c12dy5vd55u1v"]
+
+[ext_resource type="Theme" uid="uid://chj84vkt4bh5u" path="res://themes/split_container.tres" id="1_3snbk"]
+[ext_resource type="Script" path="res://scenes/constructor/constructor.gd" id="1_15us8"]
+[ext_resource type="PackedScene" uid="uid://ct057knhhefxu" path="res://scenes/ui/window_title_bar.tscn" id="2_0e1nh"]
+[ext_resource type="PackedScene" uid="uid://ca13xgemjnd1m" path="res://scenes/constructor/elements/library.tscn" id="3_2ywcu"]
+[ext_resource type="PackedScene" uid="uid://favqfjbk8cwg" path="res://scenes/level/level.tscn" id="5_tt3iy"]
+
+[node name="Constructor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_15us8")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+z_index = 100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3snbk")
+dragger_visibility = 1
+
+[node name="WindowTitleBar" parent="VSplitContainer" instance=ExtResource("2_0e1nh")]
+layout_mode = 2
+
+[node name="WindowContent" type="Control" parent="VSplitContainer"]
+layout_mode = 2
+
+[node name="ElementsLibrary" parent="VSplitContainer/WindowContent" instance=ExtResource("3_2ywcu")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -492.0
+offset_bottom = 284.0
+grow_horizontal = 0
+grow_vertical = 1
+size_flags_horizontal = 8
+
+[node name="Level" parent="." instance=ExtResource("5_tt3iy")]
+scale = Vector2(2, 2)
+
+[connection signal="gui_input" from="VSplitContainer/WindowContent" to="." method="_on_window_content_gui_input"]
+[connection signal="element_selected" from="VSplitContainer/WindowContent/ElementsLibrary" to="." method="_on_library_element_selected"]
