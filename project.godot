@@ -19,7 +19,6 @@ config/icon="res://assets/logo/logo.svg"
 [autoload]
 
 Strings="*res://values/strings.gd"
-Dimens="*res://values/dimens.gd"
 SceneSwitcher="*res://scenes/switcher.gd"
 UserLog="*res://scenes/script/logger.gd"
 Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
