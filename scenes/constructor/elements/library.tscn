@@ -77,10 +77,10 @@ atlas = ExtResource("3_a1uyb")
 atlas_coords = Vector2i(1, 1)
 layer = "walls_top"
 
-[node name="17" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+[node name="4" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
 layout_mode = 2
 atlas = ExtResource("3_a1uyb")
-atlas_coords = Vector2i(1, 4)
+atlas_coords = Vector2i(0, 1)
 layer = "walls_top"
 
 [node name="8" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
@@ -143,16 +143,16 @@ atlas = ExtResource("3_a1uyb")
 atlas_coords = Vector2i(2, 0)
 layer = "walls_top"
 
-[node name="4" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
-layout_mode = 2
-atlas = ExtResource("3_a1uyb")
-atlas_coords = Vector2i(0, 1)
-layer = "walls_top"
-
 [node name="13" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
 layout_mode = 2
 atlas = ExtResource("3_a1uyb")
 atlas_coords = Vector2i(1, 3)
+layer = "walls_top"
+
+[node name="17" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(1, 4)
 layer = "walls_top"
 
 [node name="WallsVertTab" type="TabBar" parent="TabContainer"]
