@@ -23,6 +23,11 @@ const LOG_INFO = "Інформація"
 const LOG_WARN = "Зауваження"
 const LOG_ERROR = "Помилка   "
 
+# Constructor
+const TAB_WALLS_TOP = "Стіни"
+const TAB_WALLS_VERT = "Внутрішні стіни"
+const TAB_FLOOR = "Підлога"
+
 # Parser
 const KEYWORDS_FUNCTION = ["function", "функція"]
 const KEYWORDS_IF = ["if", "якщо"]
