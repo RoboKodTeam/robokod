@@ -1,14 +1,6 @@
 extends Node2D
 
 var _character: Player
-@export var _character_scene: PackedScene:
-	set(value):
-		# FIXME: remove
-		Log.log("CREATING PLAYER")
-		_character_scene = value
-
-		_character = _character_scene.instantiate()
-		add_child(_character)
 
 # Alias with applied conversions to grid coordinates
 @export var _position_grid: Vector2i:
@@ -18,6 +10,20 @@ var _character: Player
 		_character.position = Utils.grid_to_coord(value)
 	get:
 		return Utils.coord_to_grid(_character.position)
+
+
+func _init():
+	_set_character()
+
+
+func _set_character():
+	var type: String = Preferences.player_character
+
+	Log.info("Loading character scene: %s.tscn" % type)
+	var scene = load("res://scenes/player/character/%s.tscn" % type)
+
+	_character = scene.instantiate()
+	add_child(_character)
 
 
 func take_off() -> bool:
