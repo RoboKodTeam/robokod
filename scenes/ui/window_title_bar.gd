@@ -1,7 +1,7 @@
-extends HBoxContainer
+extends MarginContainer
 
-@onready var _title_label = $WindowCredentials/TitleLabel
-@onready var _back_button = $WindowControls/BackButton
+@onready var _title_label = %TitleLabel
+@onready var _back_button = %BackButton
 
 var title: String = "":
 	set(value):
@@ -24,7 +24,11 @@ func _toggle_back_button_visibility():
 
 func _on_minimize_button_pressed():
 	Log.info("Minimizing window...")
+	Log.info("  - current mode:", DisplayServer.window_get_mode())
+
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MINIMIZED)
+
+	Log.info("  - new mode:    ", DisplayServer.window_get_mode())
 
 
 func _on_back_button_pressed():
