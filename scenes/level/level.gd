@@ -4,7 +4,7 @@ extends Node2D
 @onready var tile_map = $TileMap
 
 # Used by Executor
-@onready var player = $PlayerHolder
+@onready var player = $Player
 
 
 func get_level_dimensions() -> Vector2:
@@ -15,4 +15,6 @@ func get_level_dimensions() -> Vector2:
 	var tile_dimens = Vector2(map_rect.x * tile_size.x, map_rect.y * tile_size.y)
 	var map_dimens = Vector2(tile_dimens.x * map_scale.x, tile_dimens.y * map_scale.y)
 	var level_dimens = Vector2(map_dimens.x * scale.x, map_dimens.y * scale.y)
+
+	Log.log("Level dimensions:", level_dimens)
 	return level_dimens
