@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://c12dy5vd55u1v"]
+[gd_scene load_steps=11 format=3 uid="uid://c12dy5vd55u1v"]
 
 [ext_resource type="Theme" uid="uid://chj84vkt4bh5u" path="res://themes/split_container.tres" id="1_3snbk"]
 [ext_resource type="Script" path="res://scenes/constructor/constructor.gd" id="1_15us8"]
 [ext_resource type="PackedScene" uid="uid://ct057knhhefxu" path="res://scenes/ui/window_title_bar.tscn" id="2_0e1nh"]
 [ext_resource type="PackedScene" uid="uid://ca13xgemjnd1m" path="res://scenes/constructor/elements/library.tscn" id="3_2ywcu"]
+[ext_resource type="Theme" uid="uid://cl1dlavvcxhae" path="res://themes/ide/button_run.tres" id="5_dhad5"]
+[ext_resource type="Theme" uid="uid://dl5g2chlcmb3e" path="res://themes/ide/tabs.tres" id="5_q08vp"]
 [ext_resource type="PackedScene" uid="uid://favqfjbk8cwg" path="res://scenes/level/level.tscn" id="5_tt3iy"]
+[ext_resource type="Texture2D" uid="uid://d3aihr36gcahs" path="res://assets/ui/play_arrow_FILL0_wght400_GRAD0_opsz24.svg" id="6_bxhd1"]
+[ext_resource type="Theme" uid="uid://wkh0bbgm7eao" path="res://themes/button/button.tres" id="8_fmavw"]
+[ext_resource type="Texture2D" uid="uid://d1pi2i752sttl" path="res://assets/ui/ink_eraser_24dp_FILL0_wght400_GRAD0_opsz24.svg" id="9_4yd70"]
 
 [node name="Constructor" type="Control"]
 layout_mode = 3
@@ -32,20 +37,74 @@ layout_mode = 2
 [node name="WindowContent" type="Control" parent="VSplitContainer"]
 layout_mode = 2
 
-[node name="ElementsLibrary" parent="VSplitContainer/WindowContent" instance=ExtResource("3_2ywcu")]
-unique_name_in_owner = true
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplitContainer/WindowContent"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
-anchor_bottom = 0.0
+anchor_right = 1.0
 offset_left = -492.0
-offset_bottom = 284.0
+offset_bottom = 288.0
 grow_horizontal = 0
-grow_vertical = 1
-size_flags_horizontal = 8
+theme_override_constants/separation = 12
+
+[node name="ElementsLibrary" parent="VSplitContainer/WindowContent/VBoxContainer" instance=ExtResource("3_2ywcu")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(492, 284)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VSplitContainer/WindowContent/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="VSplitContainer/WindowContent/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_q08vp")
+
+[node name="Controls" type="TabBar" parent="VSplitContainer/WindowContent/VBoxContainer/Control/TabContainer"]
+layout_mode = 2
+theme = ExtResource("5_q08vp")
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer/WindowContent/VBoxContainer/Control/TabContainer/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplitContainer/WindowContent/VBoxContainer/Control/TabContainer/Controls/MarginContainer"]
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="VSplitContainer/WindowContent/VBoxContainer/Control/TabContainer/Controls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RunButton" type="Button" parent="VSplitContainer/WindowContent/VBoxContainer/Control/TabContainer/Controls/MarginContainer/VBoxContainer/HFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_dhad5")
+text = "Run"
+icon = ExtResource("6_bxhd1")
+
+[node name="ClearButton" type="Button" parent="VSplitContainer/WindowContent/VBoxContainer/Control/TabContainer/Controls/MarginContainer/VBoxContainer/HFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("8_fmavw")
+text = "Clear"
+icon = ExtResource("9_4yd70")
 
 [node name="Level" parent="." instance=ExtResource("5_tt3iy")]
 scale = Vector2(2, 2)
 
 [connection signal="gui_input" from="VSplitContainer/WindowContent" to="." method="_on_window_content_gui_input"]
-[connection signal="element_selected" from="VSplitContainer/WindowContent/ElementsLibrary" to="." method="_on_library_element_selected"]
+[connection signal="element_selected" from="VSplitContainer/WindowContent/VBoxContainer/ElementsLibrary" to="." method="_on_library_element_selected"]
+[connection signal="pressed" from="VSplitContainer/WindowContent/VBoxContainer/Control/TabContainer/Controls/MarginContainer/VBoxContainer/HFlowContainer/RunButton" to="." method="_on_run_button_pressed"]
+[connection signal="pressed" from="VSplitContainer/WindowContent/VBoxContainer/Control/TabContainer/Controls/MarginContainer/VBoxContainer/HFlowContainer/ClearButton" to="." method="_on_clear_button_pressed"]

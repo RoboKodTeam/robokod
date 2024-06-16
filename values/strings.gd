@@ -17,6 +17,7 @@ const TAB_LOG = "Журнал виконання"
 const TAB_EDITOR = "Редактор коду"
 const TAB_EDITOR_PLACEHOLDER = "А Ви ризикові починати з чистого листа. У будь-якому випадку, удачі й натхнення"
 const TAB_DOCS = "Документація"
+const BUTTON_RUN = "Запустити"
 
 # Log
 const LOG_INFO = "Інформація"
@@ -27,6 +28,7 @@ const LOG_ERROR = "Помилка   "
 const TAB_WALLS_TOP = "Стіни"
 const TAB_WALLS_VERT = "Внутрішні стіни"
 const TAB_FLOOR = "Підлога"
+const BUTTON_CLEAR = "Очистити"
 
 # Parser
 const KEYWORDS_FUNCTION = ["function", "функція"]
