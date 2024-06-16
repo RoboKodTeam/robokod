@@ -46,6 +46,7 @@ func open_level(level_name: String, level_sample: String, level_resource: Resour
 
 
 func _load_level_into_emulator():
+	Log.info("Loading level into emulator")
 	if _current_level_resource:
 		emulator.level = _current_level_resource.instantiate()
 

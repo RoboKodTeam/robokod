@@ -5,8 +5,6 @@ var _character: Player
 # Alias with applied conversions to grid coordinates
 @export var _position_grid: Vector2i:
 	set(value):
-		# FIXME: remove
-		Log.log("SETTING PLAYER POSITION")
 		_character.position = Utils.grid_to_coord(value)
 	get:
 		return Utils.coord_to_grid(_character.position)
