@@ -32,6 +32,7 @@ func _on_minimize_button_pressed():
 
 
 func _on_back_button_pressed():
+	UserLog.out_node = null
 	SceneSwitcher.goto_menu_scene()
 
 
