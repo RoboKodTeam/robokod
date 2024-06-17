@@ -27,6 +27,9 @@ func _ready():
 	code_tab.name = Strings.TAB_EDITOR
 	code_editor.placeholder_text = Strings.TAB_EDITOR_PLACEHOLDER
 	docs_tab.name = Strings.TAB_DOCS
+	run_button.text = Strings.BUTTON_RUN
+	rerun_button.text = Strings.BUTTON_RERUN
+	stop_button.text = Strings.BUTTON_STOP
 
 	docs_editor.text = Utils.read_text_file("res://values/samples/docs.txt")
 

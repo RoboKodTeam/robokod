@@ -19,6 +19,8 @@ const TAB_EDITOR = "Редактор коду"
 const TAB_EDITOR_PLACEHOLDER = "А Ви ризикові починати з чистого листа. У будь-якому випадку, удачі й натхнення"
 const TAB_DOCS = "Документація"
 const BUTTON_RUN = "Запустити"
+const BUTTON_RERUN = "Перезапустити"
+const BUTTON_STOP = "Зупинити"
 
 # Log
 const LOG_INFO = "Інформація"
