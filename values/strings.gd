@@ -12,6 +12,7 @@ const MENU_BTN_SETTINGS = "Налаштування"
 
 # IDE
 const LEVEL_NAME = "Рівень %s"
+const LEVEL_NAME_CUSTOM = "Власний рівень"
 const TAB_EMULATOR = "Виконавець коду"
 const TAB_LOG = "Журнал виконання"
 const TAB_EDITOR = "Редактор коду"
