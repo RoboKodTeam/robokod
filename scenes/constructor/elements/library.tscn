@@ -1,0 +1,255 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca13xgemjnd1m"]
+
+[ext_resource type="Theme" uid="uid://dl5g2chlcmb3e" path="res://themes/ide/tabs.tres" id="1_bdjec"]
+[ext_resource type="Script" path="res://scenes/constructor/elements/library.gd" id="1_wv8kx"]
+[ext_resource type="PackedScene" uid="uid://bhof8umrkyup8" path="res://scenes/constructor/elements/container.tscn" id="2_bkph5"]
+[ext_resource type="Texture2D" uid="uid://4e0fje0ut44x" path="res://assets/map/map.png" id="3_a1uyb"]
+
+[node name="ElementsLibrary" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wv8kx")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_bdjec")
+
+[node name="WallsTopTab" type="TabBar" parent="TabContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_bdjec")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/WallsTopTab"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/WallsTopTab/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="WallsTopContainer" type="GridContainer" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer"]
+layout_mode = 2
+columns = 6
+
+[node name="0" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+layer = "walls_top"
+
+[node name="1" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(1, 0)
+layer = "walls_top"
+
+[node name="3" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(3, 0)
+layer = "walls_top"
+
+[node name="9" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(1, 2)
+layer = "walls_top"
+
+[node name="5" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(1, 1)
+layer = "walls_top"
+
+[node name="4" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(0, 1)
+layer = "walls_top"
+
+[node name="8" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(0, 2)
+layer = "walls_top"
+
+[node name="16" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(0, 4)
+layer = "walls_top"
+
+[node name="7" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(3, 1)
+layer = "walls_top"
+
+[node name="10" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(2, 2)
+layer = "walls_top"
+
+[node name="6" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(2, 1)
+layer = "walls_top"
+
+[node name="11" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(3, 2)
+layer = "walls_top"
+
+[node name="12" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(0, 3)
+layer = "walls_top"
+
+[node name="1_2" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(1, 0)
+layer = "walls_top"
+
+[node name="15" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(3, 3)
+layer = "walls_top"
+
+[node name="2" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(2, 0)
+layer = "walls_top"
+
+[node name="13" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(1, 3)
+layer = "walls_top"
+
+[node name="17" parent="TabContainer/WallsTopTab/ScrollContainer/MarginContainer/WallsTopContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(1, 4)
+layer = "walls_top"
+
+[node name="WallsVertTab" type="TabBar" parent="TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bdjec")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/WallsVertTab"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/WallsVertTab/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="WallsVertContainer" type="GridContainer" parent="TabContainer/WallsVertTab/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 6
+
+[node name="100" parent="TabContainer/WallsVertTab/ScrollContainer/MarginContainer/WallsVertContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(4, 0)
+layer = "walls_vert"
+
+[node name="101" parent="TabContainer/WallsVertTab/ScrollContainer/MarginContainer/WallsVertContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(4, 1)
+layer = "walls_vert"
+
+[node name="102" parent="TabContainer/WallsVertTab/ScrollContainer/MarginContainer/WallsVertContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(4, 2)
+layer = "walls_vert"
+
+[node name="FloorTab" type="TabBar" parent="TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bdjec")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/FloorTab"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/FloorTab/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="FloorContainer" type="GridContainer" parent="TabContainer/FloorTab/ScrollContainer/MarginContainer"]
+layout_mode = 2
+columns = 6
+
+[node name="200" parent="TabContainer/FloorTab/ScrollContainer/MarginContainer/FloorContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(6, 0)
+layer = "floor"
+
+[node name="201" parent="TabContainer/FloorTab/ScrollContainer/MarginContainer/FloorContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(6, 1)
+layer = "floor"
+
+[node name="202" parent="TabContainer/FloorTab/ScrollContainer/MarginContainer/FloorContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(6, 2)
+layer = "floor"
+
+[node name="203" parent="TabContainer/FloorTab/ScrollContainer/MarginContainer/FloorContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(6, 3)
+layer = "floor"
+
+[node name="204" parent="TabContainer/FloorTab/ScrollContainer/MarginContainer/FloorContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(7, 0)
+layer = "floor"

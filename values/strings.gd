@@ -12,16 +12,26 @@ const MENU_BTN_SETTINGS = "Налаштування"
 
 # IDE
 const LEVEL_NAME = "Рівень %s"
+const LEVEL_NAME_CUSTOM = "Власний рівень"
 const TAB_EMULATOR = "Виконавець коду"
 const TAB_LOG = "Журнал виконання"
 const TAB_EDITOR = "Редактор коду"
 const TAB_EDITOR_PLACEHOLDER = "А Ви ризикові починати з чистого листа. У будь-якому випадку, удачі й натхнення"
 const TAB_DOCS = "Документація"
+const BUTTON_RUN = "Запустити"
 
 # Log
 const LOG_INFO = "Інформація"
 const LOG_WARN = "Зауваження"
 const LOG_ERROR = "Помилка   "
+
+# Constructor
+const TAB_WALLS_TOP = "Стіни"
+const TAB_WALLS_VERT = "Внутрішні стіни"
+const TAB_FLOOR = "Підлога"
+const BUTTON_CLEAR = "Очистити"
+const LABEL_PLAYER_X = "Розтащування гравця по X"
+const LABEL_PLAYER_Y = "Розтащування гравця по Y"
 
 # Parser
 const KEYWORDS_FUNCTION = ["function", "функція"]

@@ -15,3 +15,7 @@ func _ready():
 
 func _on_adventure_button_pressed():
 	SceneSwitcher.goto_adventure_scene()
+
+
+func _on_constructor_button_pressed():
+	SceneSwitcher.goto_constructor_scene()

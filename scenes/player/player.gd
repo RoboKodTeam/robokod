@@ -1,87 +1,50 @@
-class_name Player
-extends CharacterBody2D
+extends Node2D
 
-@export var speed = 6600
+var _character: Player
 
-@onready var target = Vector2(position)
+# Alias with applied conversions to grid coordinates
+@export var position_grid: Vector2i:
+	set(value):
+		_character.position = Utils.grid_to_coord(value)
+	get:
+		return Utils.coord_to_grid(_character.position)
 
-var in_the_air = false
-var is_alive = true
-var is_moving = false
-signal movement_finished
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+func _init():
+	_set_character()
+
+
+func _set_character():
+	var type: String = Preferences.player_character
+
+	Log.info("Loading character scene: %s.tscn" % type)
+	var scene = load("res://scenes/player/character/%s.tscn" % type)
+
+	_character = scene.instantiate()
+	add_child(_character)
 
 
 func take_off() -> bool:
-	if in_the_air:
-		UserLog.error(Strings.ERROR_PLAYER_ALREADY_IN_AIR)
-		return false
-
-	in_the_air = true
-	sprite.play("take_off")
-	await sprite.animation_finished
-	return true
+	return await _character.take_off()
 
 
 func land() -> bool:
-	if not in_the_air:
-		UserLog.error(Strings.ERROR_PLAYER_NOT_IN_AIR_YET)
-		return false
-
-	in_the_air = false
-	sprite.play("land")
-	await sprite.animation_finished
-	return true
+	return await _character.land()
 
 
-func move_to(new_target: Vector2) -> bool:
-	if not in_the_air:
-		UserLog.error(Strings.ERROR_PLAYER_NOT_IN_AIR_YET)
-		return false
+# Alias with applied conversions to grid coordinates
+func move_by(position_grid_delta: Vector2i) -> bool:
+	# Get new target
+	var target_grid = position_grid + position_grid_delta
 
-	Log.log("Moving from", position, "to", new_target)
+	return await move_to(target_grid)
 
-	# Apply sprite animation + transformation
-	var coord_diff = new_target.x - position.x
-	if abs(coord_diff) < 1:
-		sprite.play("idle")
-	else:
-		sprite.play("walk_horizontal")
-		sprite.flip_h = coord_diff < -1
 
-	is_moving = true
-	target = new_target
+# Alias with applied conversions to grid coordinates
+func move_to(target_grid: Vector2i) -> bool:
+	UserLog.info(Strings.INFO_PLAYER_MOVING % [position_grid, target_grid])
 
-	# Wait for _physics_process(delta) function to finish movement
+	# Translate grid movement vector to delta
+	var target = Utils.grid_to_coord(target_grid)
 	# Pass optional result
-	return await movement_finished
-
-
-func _physics_process(delta: float):
-	# Return if player is dead
-	if not is_alive:
-		return
-
-	# Calculate player velocity based on direction, speed, and delta value to keep time and scaling
-	velocity = position.direction_to(target) * speed * delta
-
-	# Move player until the target position is reached
-	if position.distance_to(target) > 1:
-		# Move and return if no collision detected
-		if not move_and_slide():
-			return
-
-		# Collision with certain object detected
-		is_alive = false
-		is_moving = false
-		sprite.play("death")
-
-		UserLog.error(Strings.ERROR_PLAYER_COLLIDED_WITH_OBSTACLE)
-		movement_finished.emit(false)
-
-	# Finish player moving
-	if is_moving:
-		is_moving = false
-		sprite.play("idle")
-		movement_finished.emit(true)
+	return await _character.move_to(target)

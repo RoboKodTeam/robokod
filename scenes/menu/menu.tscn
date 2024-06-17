@@ -107,3 +107,4 @@ theme = ExtResource("3_2p7e2")
 text = "Settings"
 
 [connection signal="pressed" from="VSplitContainer/BackgroundPanel/CenterContainer/VBoxContainer/AdventureButton" to="." method="_on_adventure_button_pressed"]
+[connection signal="pressed" from="VSplitContainer/BackgroundPanel/CenterContainer/VBoxContainer/ConstructorButton" to="." method="_on_constructor_button_pressed"]

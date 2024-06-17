@@ -7,42 +7,54 @@
 [ext_resource type="Texture2D" uid="uid://chxlvstomijdq" path="res://assets/ui/close_FILL0_wght400_GRAD0_opsz24.svg" id="4_ajc2g"]
 [ext_resource type="Texture2D" uid="uid://5wkthbpq5agt" path="res://assets/ui/logout_24dp_FILL0_wght400_GRAD0_opsz24.svg" id="5_i6gyl"]
 
-[node name="WindowTitleBar" type="HBoxContainer"]
+[node name="WindowTitleBar" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 34.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
 script = ExtResource("1_gv55n")
 
-[node name="WindowCredentials" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="WindowCredentials" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
 
-[node name="Icon" type="TextureRect" parent="WindowCredentials"]
+[node name="Icon" type="TextureRect" parent="HBoxContainer/WindowCredentials"]
 layout_mode = 2
 texture = ExtResource("2_d2rse")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="TitleLabel" type="Label" parent="WindowCredentials"]
+[node name="TitleLabel" type="Label" parent="HBoxContainer/WindowCredentials"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "TitleLabel"
 
-[node name="WindowControls" type="HBoxContainer" parent="."]
+[node name="WindowControls" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="MinimizeButton" type="Button" parent="WindowControls"]
+[node name="MinimizeButton" type="Button" parent="HBoxContainer/WindowControls"]
 layout_mode = 2
 theme = ExtResource("2_c50px")
 icon = ExtResource("3_61t0x")
 
-[node name="BackButton" type="Button" parent="WindowControls"]
+[node name="BackButton" type="Button" parent="HBoxContainer/WindowControls"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_c50px")
 icon = ExtResource("5_i6gyl")
 
-[node name="CloseButton" type="Button" parent="WindowControls"]
+[node name="CloseButton" type="Button" parent="HBoxContainer/WindowControls"]
 layout_mode = 2
 theme = ExtResource("2_c50px")
 icon = ExtResource("4_ajc2g")
 
-[connection signal="pressed" from="WindowControls/MinimizeButton" to="." method="_on_minimize_button_pressed"]
-[connection signal="pressed" from="WindowControls/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="WindowControls/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/WindowControls/MinimizeButton" to="." method="_on_minimize_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/WindowControls/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/WindowControls/CloseButton" to="." method="_on_close_button_pressed"]
