@@ -29,6 +29,8 @@ const TAB_WALLS_TOP = "Стіни"
 const TAB_WALLS_VERT = "Внутрішні стіни"
 const TAB_FLOOR = "Підлога"
 const BUTTON_CLEAR = "Очистити"
+const LABEL_PLAYER_X = "Розтащування гравця по X"
+const LABEL_PLAYER_Y = "Розтащування гравця по Y"
 
 # Parser
 const KEYWORDS_FUNCTION = ["function", "функція"]

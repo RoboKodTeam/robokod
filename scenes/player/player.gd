@@ -3,7 +3,7 @@ extends Node2D
 var _character: Player
 
 # Alias with applied conversions to grid coordinates
-@export var _position_grid: Vector2i:
+@export var position_grid: Vector2i:
 	set(value):
 		_character.position = Utils.grid_to_coord(value)
 	get:
@@ -35,9 +35,14 @@ func land() -> bool:
 # Alias with applied conversions to grid coordinates
 func move_by(position_grid_delta: Vector2i) -> bool:
 	# Get new target
-	var target_grid = _position_grid + position_grid_delta
+	var target_grid = position_grid + position_grid_delta
 
-	UserLog.info(Strings.INFO_PLAYER_MOVING % [_position_grid, target_grid])
+	return await move_to(target_grid)
+
+
+# Alias with applied conversions to grid coordinates
+func move_to(target_grid: Vector2i) -> bool:
+	UserLog.info(Strings.INFO_PLAYER_MOVING % [position_grid, target_grid])
 
 	# Translate grid movement vector to delta
 	var target = Utils.grid_to_coord(target_grid)

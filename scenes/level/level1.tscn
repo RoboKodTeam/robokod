@@ -8,7 +8,7 @@
 script = ExtResource("1_h5wv8")
 
 [node name="Player" parent="." instance=ExtResource("3_kwjtv")]
-_position_grid = Vector2i(9, 3)
+position_grid = Vector2i(9, 3)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_p0h0t")
