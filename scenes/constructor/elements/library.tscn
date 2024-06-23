@@ -253,3 +253,34 @@ layout_mode = 2
 atlas = ExtResource("3_a1uyb")
 atlas_coords = Vector2i(7, 0)
 layer = "floor"
+
+[node name="ObjectsTab" type="TabBar" parent="TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bdjec")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/ObjectsTab"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/ObjectsTab/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="ObjectsContainer" type="GridContainer" parent="TabContainer/ObjectsTab/ScrollContainer/MarginContainer"]
+layout_mode = 2
+columns = 6
+
+[node name="300" parent="TabContainer/ObjectsTab/ScrollContainer/MarginContainer/ObjectsContainer" instance=ExtResource("2_bkph5")]
+layout_mode = 2
+atlas = ExtResource("3_a1uyb")
+atlas_coords = Vector2i(9, 0)
+layer = "floor"
