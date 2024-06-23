@@ -24,4 +24,3 @@ func _plugging():
 
 # Managed manually
 # imjp94/gd-plug
-# godotengine/godot-git-plugin
