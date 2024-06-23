@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cnhcqapmfd3cf"]
 
-[ext_resource type="Texture2D" uid="uid://4e0fje0ut44x" path="res://assets/map/map.png" id="1_a44fq"]
+[ext_resource type="Texture2D" uid="uid://dyog287sihwyw" path="res://assets/map/map.png" id="1_a44fq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_emivj"]
 texture = ExtResource("1_a44fq")
@@ -95,6 +95,9 @@ texture_region_size = Vector2i(32, 32)
 1:4/0 = 0
 1:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:4/0/physics_layer_0/angular_velocity = 0.0
+9:0/0 = 0
+9:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:0/0/physics_layer_0/angular_velocity = 0.0
 
 [resource]
 tile_size = Vector2i(32, 32)
