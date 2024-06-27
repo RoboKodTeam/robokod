@@ -16,7 +16,8 @@ const BOX_FOCUS = preload("res://themes/element/box_focus.tres")
 		atlas_coords = value
 		queue_redraw()
 
-@export_enum(Dimens.LAYER_WALLS_TOP, Dimens.LAYER_WALLS_VERT, Dimens.LAYER_FLOOR) var layer: String
+@export_enum(LevelTileMap.LAYER_WALLS_TOP, LevelTileMap.LAYER_WALLS_VERT, LevelTileMap.LAYER_FLOOR)
+var layer: String
 
 @export var selected: bool = false:
 	set(value):

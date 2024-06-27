@@ -9,8 +9,8 @@ extends Control
 @onready var _player_y_spin_box = %PlayerYSpinBox
 
 @onready var _level = $Level
-@onready var _tile_map: TileMap = _level.tile_map
-@onready var _tile_set: TileSet = _tile_map.tile_set
+@onready var _tilemap: LevelTileMap = _level.tilemap
+@onready var _tileset: TileSet = _tilemap.tile_set
 
 var _cursor_element: ElementContainer = null
 
@@ -46,7 +46,7 @@ func _on_try_place_tile():
 
 		var layer_name = _cursor_element.layer
 
-		if Dimens.LAYER_WALLS_TOP == layer_name:
+		if LevelTileMap.LAYER_WALLS_TOP == layer_name:
 			var walls_vert_element = _library.get_random_walls_vert_element()
 			var tile_pos_below = cell_coords + Vector2(0, 1)
 			_place_element(walls_vert_element, tile_pos_below)
@@ -57,7 +57,7 @@ func _on_try_place_tile():
 func _get_mouse_cell_coords() -> Vector2:
 	var level_scale = _level.scale
 	var mouse_at = get_local_mouse_position() / level_scale
-	var cell_coords: Vector2 = _tile_map.local_to_map(mouse_at)
+	var cell_coords: Vector2 = _tilemap.local_to_map(mouse_at)
 	Log.log("Mouse click", mouse_at, "converted to", cell_coords)
 	return cell_coords
 
@@ -74,17 +74,17 @@ func _place_element(element: ElementContainer, cell_coords: Vector2):
 	Log.log("  - source_id:   ", source_id)
 	Log.log("  - atlas_coords:", atlas_coords)
 
-	_tile_map.set_cell(layer_id, cell_coords, source_id, atlas_coords)
+	_tilemap.set_cell(layer_id, cell_coords, source_id, atlas_coords)
 
 
 func _erase_elements(cell_coords: Vector2):
-	for layer_i in _tile_map.get_layers_count():
-		_tile_map.erase_cell(layer_i, cell_coords)
+	for layer_i in _tilemap.get_layers_count():
+		_tilemap.erase_cell(layer_i, cell_coords)
 
 
 func _get_layer_id(layer_name: String) -> int:
-	for layer_i in _tile_map.get_layers_count():
-		var compared_name = _tile_map.get_layer_name(layer_i)
+	for layer_i in _tilemap.get_layers_count():
+		var compared_name = _tilemap.get_layer_name(layer_i)
 
 		if layer_name == compared_name:
 			return layer_i
@@ -94,8 +94,8 @@ func _get_layer_id(layer_name: String) -> int:
 
 
 func _get_tile_set_source_id() -> int:
-	for source_i in _tile_set.get_source_count():
-		return _tile_set.get_source_id(source_i)
+	for source_i in _tileset.get_source_count():
+		return _tileset.get_source_id(source_i)
 
 	Log.error("Unable to find tile set source id")
 	return -1

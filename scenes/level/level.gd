@@ -1,14 +1,13 @@
 class_name Level
 extends Node2D
 
-@onready var tile_map: TileMap = $TileMap
-
-# Used by Executor
+# Accessed externally by the Executor instance
 @onready var player = $Player
+@onready var tilemap: LevelTileMap = $LevelTileMap
 
 
 func get_level_rect() -> Rect2:
-	var used_rect = Rect2(tile_map.get_used_rect())
+	var used_rect = Rect2(tilemap.get_used_rect())
 	# Scale level rect
 	var pos = _scale(used_rect.position)
 	var size = _scale(used_rect.size)
@@ -18,8 +17,8 @@ func get_level_rect() -> Rect2:
 
 func _scale(vector: Vector2) -> Vector2:
 	# Get scale factors
-	var tile_size = tile_map.tile_set.tile_size
-	var map_scale = tile_map.scale
+	var tile_size = tilemap.tile_set.tile_size
+	var map_scale = tilemap.scale
 	var level_scale = scale
 	# Scale at each level
 	var tile_dimens = Vector2(vector.x * tile_size.x, vector.y * tile_size.y)
