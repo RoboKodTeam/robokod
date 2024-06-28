@@ -59,31 +59,42 @@ func _on_run_button_pressed():
 	rerun_button.show()
 	stop_button.show()
 
-	_load_level_into_emulator()
-
-	# Prepare context for the script to run within
-	_executor.prepare_context()
 	# Bind user log to the node
 	UserLog.out_node = user_log
+	# Prepare context for the script to run within
+	_executor.prepare_context()
 	# Await for executor to finish
 	var execution_successful: bool = await _executor.run()
 
 	# Do not reset buttons if execution was not successful to allow user reset
 	# the level
 	if execution_successful:
-		_on_stop_button_pressed()
+		_finish_execution()
 
 
-func _on_rerun_button_pressed():
-	_on_run_button_pressed()
-
-
-func _on_stop_button_pressed():
-	# Stop everything still going on
-	_executor.interrupt()
+func _finish_execution():
 	# Unbind user log from the node
 	UserLog.out_node = null
+	# Stop everything still going on
+	_executor.interrupt()
 
 	run_button.show()
 	rerun_button.hide()
 	stop_button.hide()
+
+
+func _on_rerun_button_pressed():
+	_on_stop_button_pressed()
+	_sleep(0.5)
+	_on_run_button_pressed()
+
+
+func _on_stop_button_pressed():
+	_finish_execution()
+
+	# Reset level
+	_load_level_into_emulator()
+
+
+func _sleep(seconds: float):
+	await get_tree().create_timer(seconds).timeout
