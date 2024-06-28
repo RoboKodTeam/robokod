@@ -2,13 +2,15 @@ extends "res://addons/gd-plug/plug.gd"
 
 
 func _plugging():
-	# [Godot Engine UI]
+	# [[[Engine Features]]]
 	# gd-plug UI integration
 	plug("imjp94/gd-plug-ui")
 	# Script tabs instead of side panel
 	plug("MakovWait/godot-script-tabs")
 	# Automatic script formatting
 	plug("ryan-haskell/gdformat-on-save")
+	# Improve script scrolling behavior
+	plug("IcterusGames/SimpleScriptScroll")
 	# Signal visualizer
 	plug("Ericdowney/SignalVisualizer")
 	# Find in files dialog
@@ -18,8 +20,8 @@ func _plugging():
 	# Project time tracker
 	plug("victormajida/project-time-tracker")
 
-	# [Development and debugging]
-	# Event logger
+	# [[[Libraries]]]
+	# Logger library
 	plug("russmatney/log.gd", {"include": ["addons/log"]})
 
 # Managed manually
