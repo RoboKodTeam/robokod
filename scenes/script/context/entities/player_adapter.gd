@@ -19,7 +19,7 @@ func сісти(_ignored: String = "") -> bool:
 
 
 func up(s_steps: String = "1") -> bool:
-	return await _move(s_steps, Vector2i(0, -1))
+	return await _move(s_steps, Vector2i.UP)
 
 
 func вверх(s_steps: String = "1") -> bool:
@@ -27,7 +27,7 @@ func вверх(s_steps: String = "1") -> bool:
 
 
 func down(s_steps: String = "1") -> bool:
-	return await _move(s_steps, Vector2i(0, 1))
+	return await _move(s_steps, Vector2i.DOWN)
 
 
 func вниз(s_steps: String = "1") -> bool:
@@ -35,7 +35,7 @@ func вниз(s_steps: String = "1") -> bool:
 
 
 func left(s_steps: String = "1"):
-	return await _move(s_steps, Vector2i(-1, 0))
+	return await _move(s_steps, Vector2i.LEFT)
 
 
 func вліво(s_steps: String = "1"):
@@ -43,7 +43,7 @@ func вліво(s_steps: String = "1"):
 
 
 func right(s_steps: String = "1"):
-	return await _move(s_steps, Vector2i(1, 0))
+	return await _move(s_steps, Vector2i.RIGHT)
 
 
 func вправо(s_steps: String = "1"):

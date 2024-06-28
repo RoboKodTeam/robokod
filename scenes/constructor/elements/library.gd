@@ -4,6 +4,7 @@ extends Control
 @onready var _walls_top_tab = %WallsTopTab
 @onready var _walls_vert_tab = %WallsVertTab
 @onready var _floor_tab = %FloorTab
+@onready var _objects_tab = %ObjectsTab
 
 @onready var _walls_vert_container = %WallsVertContainer
 
@@ -17,6 +18,7 @@ func _ready():
 	_walls_top_tab.name = Strings.TAB_WALLS_TOP
 	_walls_vert_tab.name = Strings.TAB_WALLS_VERT
 	_floor_tab.name = Strings.TAB_FLOOR
+	_objects_tab.name = Strings.TAB_OBJECTS
 
 	_collect_all_elements()
 

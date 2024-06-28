@@ -16,17 +16,26 @@ func prepare_context():
 	Log.log("Preparing execution context")
 	_context = ScriptExecutionContext.new()
 
-	# Put player into the appropriate adapter and put into context
-	var player_adapter = PlayerAdapter.new(_get_player())
+	var level = _get_level()
+	var player = _get_player(level)
+
+	# Put objects into appropriate adapters
+	var player_adapter = PlayerAdapter.new(player)
+
+	# Fill the context
 	_context.put_entity(Strings.PLAYERS, player_adapter)
 
 
-func _get_player() -> Node2D:
+func _get_level() -> Level:
 	var level = _emulator.level
 	if not level:
 		Log.error("No level loaded into the emulator")
 		return null
 
+	return level
+
+
+func _get_player(level: Level) -> Node2D:
 	var player = level.player
 	if not player:
 		Log.error("No player found on the level")
@@ -49,8 +58,15 @@ func run() -> bool:
 	# Temporarily pause any editor checks to improve performance
 	_editor.should_run_checks = false
 
-	Log.log("Asking editor to begin script execution")
+	Log.info("Passing control to the script for execution")
 	var execution_successful: bool = await script.execute(_context)
+	Log.info("Acquiring control after the script executed")
+
+	var level = _get_level()
+	if level.has_player_reached_target_cell():
+		UserLog.info(Strings.INFO_TARGET_REACHED)
+	else:
+		UserLog.warn(Strings.WARNING_TARGET_NOT_REACHED)
 
 	_editor.should_run_checks = true
 	# Execution was successful
