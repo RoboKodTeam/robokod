@@ -8,83 +8,114 @@ if not exist "C:\Program Files (x86)" (
     exit /b
 )
 
-pushd "%~dp0"
-
 set $FALSE=0
 set $TRUE=1
 
+pushd "%~dp0"
+
 set $PROPS=console.properties
+set $PROPS_GIT_ROOT=git
+set $PROPS_GODOT_ROOT=godot
+set $PROPS_REPO_REMOTE=
 
-title Project Command Prompt v1.3
-cls
+::Read custom console properties if available
+for /f "delims=" %%i in ('type "%$PROPS%" 2^>nul') do call set "$PROPS_%%i"
 
 
 
-rem Read custom console properties if available
-for /f "delims=" %%i in ('type "%$PROPS%" 2^>nul') do call set %%i
+::Check Git availability
+git>nul 2>nul
+::Append Git root to PATH if no Git found (must not include brackets)
+if !errorLevel! == 9009 if exist "%$PROPS_GIT_ROOT%" path %$PROPS_GIT_ROOT%;%PATH%
 
-rem Ensure engine root is specified
-if not exist "%$ENGINE_ROOT%" (
-    echo.^(x^) Engine root not found
-    echo.    Use %$PROPS% to set the root dir as follows: $ENGINE_ROOT=[path]
+::Ensure Git availability
+git>nul 2>nul
+if !errorLevel! == 9009 (
+    echo.^(x^) Git not found
+    echo.    Use "%$PROPS%" to set the root directory as follows:
+    echo.
+    echo.    GIT_ROOT=[full_path_to_git_folder]
+    pause>nul
+    exit /b 1
+)
+
+
+
+::Ensure Godot availability
+if not exist "%$PROPS_GODOT_ROOT%" (
+    echo.^(x^) Godot Engine not found
+    echo.    Use "%$PROPS%" to set the root directory as follows:
+    echo.
+    echo.    GODOT_ROOT=[full_path_to_godot_folder]
+    pause>nul
+    exit /b 1
+)
+
+::Get the console executable path
+for %%i in ("%$PROPS_GODOT_ROOT%\*win64_console.exe") do set $GODOT_CONSOLE=%%~nxi
+
+::Append Godot root to PATH
+path %$PROPS_GODOT_ROOT%;%PATH%
+
+
+
+::Ensure repository found
+if "%$PROPS_REPO_REMOTE%" == "" (
+    echo.^(x^) Repository "%$PROPS_REPO_REMOTE%" not found
+    echo.    Use "%$PROPS%" to set the remote URL as follows:
+    echo.
+    echo.    REPO_REMOTE=[repository_url]
+    pause>nul
+    exit /b 1
+)
+
+git status>nul 2>nul
+if !errorLevel! == 128 (
+    git init
+    git remote add origin "%$PROPS_REPO_REMOTE%"
+    git fetch
+    git switch main --force & %0
     exit /b
 )
 
-rem Apply wildcard* transformations
-for /d %%i in ("%$ENGINE_ROOT%") do set $ENGINE_ROOT=%%~fi
+git config --global --add safe.directory "%cd:\=/%"
 
-rem Get the engine console path
-for %%i in ("%$ENGINE_ROOT%\*win64_console.exe") do set $ENGINE_CONSOLE=%%~nxi
-
-
-rem Append engine root to the path
-path %$ENGINE_ROOT%;%PATH%
+git status>nul 2>nul
+if !errorLevel! NEQ 0 (
+    echo.^(x^) Git reports something is wrong with your local repository
+    echo.    Please, ensure everything is right
+)
 
 
-rem Check native VCS availability
-git>nul 2>nul
-if !errorLevel! == 9009 (
-       set isGitAvailable=%$FALSE%
-) else set isGitAvailable=%$TRUE%
 
-rem Append VCS root to the path
-rem Must not include brackets
-if "%isGitAvailable%" == "%$FALSE%" if exist "%$VCS_ROOT%" path %$VCS_ROOT%;%PATH%
+::Setup custom command shortcuts
+doskey plug="%$GODOT_CONSOLE%" --headless -s plug.gd $*
 
-rem Check VCS availability again
-git>nul 2>nul
-if !errorLevel! == 9009 (
-       set isGitAvailable=%$FALSE%
-) else set isGitAvailable=%$TRUE%
+doskey editor="%$GODOT_CONSOLE%" -e $*
+doskey editor-opengl3="%$GODOT_CONSOLE%" -e --rendering-driver opengl3 $*
+
+doskey game="%$GODOT_CONSOLE%" $*
+doskey game-opengl3="%$GODOT_CONSOLE%" --rendering-driver opengl3 $*
 
 
-rem Setup custom command shortcuts
-doskey plug="%$ENGINE_CONSOLE%" --headless -s plug.gd $*
 
-doskey editor="%$ENGINE_CONSOLE%" -e $*
-doskey editor-opengl3="%$ENGINE_CONSOLE%" -e --rendering-driver opengl3 $*
-
-doskey game="%$ENGINE_CONSOLE%" $*
-doskey game-opengl3="%$ENGINE_CONSOLE%" --rendering-driver opengl3 $*
-
-
+::Show console help
+title Project Console v2.0
 
 echo.^(i^) Welcome to the Project Command Prompt
 echo.    Here's a quick help below to help you out
 echo.
 
-if "%isGitAvailable%" == "%$TRUE%" (
-    echo.    git                                access the VCS
-    echo.    git branch --all                   show all local and remote branches
-    echo.    git switch -c demo origin/demo     create and switch to a specific remote branch
-    echo.    git fetch                          fetch updates
-    echo.    git pull                           update current branch
-    echo.
-    echo.    plug                               access plugin manager
-    echo.    plug install                       install dependencies
-    echo.    plug uninstall                     uninstall dependencies
-    echo.
-)
+echo.    git                                access Git commands
+echo.    git branch --all                   show all local and remote branches
+echo.    git switch -c demo origin/demo     create and switch to a specific remote branch
+echo.    git fetch                          fetch updates
+echo.    git pull                           update current branch
+echo.
+echo.    plug                               access plugin manager
+echo.    plug install                       install dependencies
+echo.    plug uninstall                     uninstall dependencies
+echo.
 
 echo.    editor                             open the project in the editor
 echo.    editor-opengl3                     open the project in the editor with OpenGL ES 3 support
