@@ -1,4 +1,8 @@
-# Godot 4+ specific ignores
+# Portable utilities
+/git/
+/godot/
+
+# Godot 4+ files
 /.godot/
 
 # Plugins and dependencies
@@ -6,7 +10,7 @@
 /addons/*
 !/addons/gd-plug
 
-# Custom preference files
+# Custom configs & prefs
 /console.properties
 /ptt.json
 
